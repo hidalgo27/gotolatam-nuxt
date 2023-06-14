@@ -1,0 +1,13 @@
+html,#__layout,#__nuxt{
+    @apply h-full
+}
+body{
+    @apply bg-white dark:bg-gray-900 h-full
+}
+
+.btn-primary{
+    @apply rounded-md py-2 px-10 text-white bg-primary hover:bg-blue-600 duration-300
+}
+.btn-secondary{
+    @apply rounded-md py-2 px-10 text-white bg-secondary hover:bg-orange-400 duration-300
+}
