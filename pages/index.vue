@@ -19,7 +19,13 @@
     </div>
     <div class="container">
       <div class="">
-        <img src="/images/banners/banner-lg.png" alt="" class="object-cover h-1/2 w-screen">
+        <img src="/images/seccion.png" alt="" class="object-cover h-1/2 w-screen">
+        <img src="/images/seccion1.png" alt="" class="object-cover h-1/2 w-screen">
+        <img src="/images/seccion2.png" alt="" class="object-cover h-1/2 w-screen">
+        <img src="/images/seccion3.png" alt="" class="object-cover h-1/2 w-screen">
+        <img src="/images/seccion4.png" alt="" class="object-cover h-1/2 w-screen">
+        <img src="/images/seccion5.png" alt="" class="object-cover h-1/2 w-screen">
+        <img src="/images/seccion6.png" alt="" class="object-cover h-1/2 w-screen">
       </div>
     </div>
   </div>
