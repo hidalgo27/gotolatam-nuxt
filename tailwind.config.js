@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-const plugin = require('tailwindcss/plugin')
 const colors = require('tailwindcss/colors')
 module.exports = {
   content: [
@@ -9,6 +8,7 @@ module.exports = {
     "./plugins/**/*.{js,ts}",
     "./nuxt.config.{js,ts}",
     "./app.vue",
+    "./node_modules/vue-tailwind-datepicker/**/*.js"
   ],
   theme: {
     extend: {},
@@ -28,6 +28,7 @@ module.exports = {
       slate: colors.slate,
       pink: colors.pink,
       orange: colors.orange,
+      lime: colors.lime,
       // primary: '#0855c4',
       primary: '#7D8506',
       secondary: '#F9A825',
@@ -42,5 +43,10 @@ module.exports = {
     },
   },
   plugins: [],
+  options: {
+    // Include the bg-smoke for use when css is compressed
+    // see: https://tailwindcss.com/docs/controlling-file-size
+    whitelist: ['bg-smoke-800'],
+  },
 }
 
