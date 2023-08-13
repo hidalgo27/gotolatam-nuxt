@@ -93,3 +93,18 @@
   opacity: 0;
   transform: translateX(50%) translateX(-100%);
 }
+
+
+.bottom-enter-active {
+  transition: transform 0.100s cubic-bezier(0.5, 0, 0.5, 1);
+}
+
+.bottom-leave-active {
+  transition: transform 0.0s cubic-bezier(0.5, 0, 0.5, 1), opacity 0.0s linear;
+}
+
+.bottom-enter-from,
+.bottom-leave-to {
+  opacity: 0;
+  transform: translateY(50%) translateY(-100%);
+}

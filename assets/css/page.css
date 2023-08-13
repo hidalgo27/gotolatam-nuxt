@@ -5,12 +5,17 @@ body{
     /*@apply bg-white dark:bg-gray-900 h-full*/
     font-family: 'Lato', sans-serif;
 }
-
+.badged-sm{
+    @apply px-2 text-xs py-1 font-medium rounded-full text-white
+}
 .btn-primary{
     @apply rounded-lg py-3 px-10 text-white bg-primary hover:bg-opacity-95 duration-300
 }
 .btn-secondary{
     @apply rounded-lg py-2 px-10 text-white bg-secondary hover:bg-orange-400 duration-300
+}
+.btn-ternary{
+    @apply rounded-lg py-2 px-10 text-white bg-gray-800 hover:bg-gray-900 duration-300
 }
 .btn-ternary-outline{
     @apply rounded-md py-2 px-5 text-gray-800 border border-gray-800 hover:bg-gray-800 hover:text-white duration-300
