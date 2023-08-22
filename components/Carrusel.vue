@@ -21,9 +21,9 @@
           </button>
         </div>
       </div>
-{{listPackages}}
+
       <div class="col-span-5">
-        <Carousel  ref="carousel" :wrap-around="true" :breakpoints="breakpoints">
+        <Carousel  ref="carouselRef" :wrap-around="true" :breakpoints="breakpoints">
           <slide v-for="item in items" :key="item.id">
             <!-- Aquí puedes poner el contenido de cada slide, por ejemplo: -->
             <div class="mx-3 p-3 bg-white w-full rounded-lg my-2 shadow-md">
@@ -63,61 +63,37 @@
 
 <script setup lang="ts">
 import {Carousel, Slide} from "vue3-carousel";
-import {usePackageStore} from "~/stores/packages";
 
-definePageMeta({
-  // layout: "login",
-})
+    const items = ref([
+      {id: 1, image: 'ruta-de-imagen1.jpg', description: 'Descripción 1'},
+      {id: 2, image: 'ruta-de-imagen2.jpg', description: 'Descripción 2'},
+      {id: 3, image: 'ruta-de-imagen3.jpg', description: 'Descripción 3'},
+      {id: 4, image: 'ruta-de-imagen4.jpg', description: 'Descripción 4'},
+      {id: 5, image: 'ruta-de-imagen5.jpg', description: 'Descripción 5'},
+    ]);
 
-const packageStore = usePackageStore()
+    const breakpoints = {
+      // 700px and up
+      700: {
+        itemsToShow: 3.5,
+            snapAlign: 'center',
+      },
+      // 1024 and up
+      1024: {
+        itemsToShow: 3.2,
+            snapAlign: 'start',
+      },
+    }
 
-const listPackages = ref([])
+    const carouselRef = ref();
 
-const items = ref([
-  {id: 1, image: 'ruta-de-imagen1.jpg', description: 'Descripción 1'},
-  {id: 2, image: 'ruta-de-imagen2.jpg', description: 'Descripción 2'},
-  {id: 3, image: 'ruta-de-imagen3.jpg', description: 'Descripción 3'},
-  {id: 4, image: 'ruta-de-imagen4.jpg', description: 'Descripción 4'},
-  {id: 5, image: 'ruta-de-imagen5.jpg', description: 'Descripción 5'},
-]);
+    const prevSlide = () => {
+      carouselRef.value.prev();
+    }
 
-const breakpoints = {
-  // 700px and up
-  700: {
-    itemsToShow: 3.5,
-    snapAlign: 'center',
-  },
-  // 1024 and up
-  1024: {
-    itemsToShow: 3.2,
-    snapAlign: 'start',
-  },
-}
-
-const carouselRef = ref();
-
-const prevSlide = () => {
-  carouselRef.value.prev();
-}
-
-const nextSlide = () => {
-  carouselRef.value.next();
-}
-
-const getPackage = async () => {
-  const res:any = await packageStore.getPackage()
-
-
-  listPackages.value = res
-  // if (res.token) {
-  //   policyStore['tokenLogin'] = res.token
-  //   loadingUser.value = false
-  // }
-}
-
-onMounted(async () => {
-  await getPackage()
-})
+    const nextSlide = () => {
+      carouselRef.value.next();
+    }
 
 
 </script>
