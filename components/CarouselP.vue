@@ -23,7 +23,8 @@
       </div>
 
       <div class="col-span-5">
-        <Carousel  ref="carousel" :wrap-around="true" :breakpoints="breakpoints">
+
+        <Carousel  ref="carouselRef" :wrap-around="true" :breakpoints="breakpoints">
           <slide v-for="packages in listPackages" :key="packages.id">
             <!-- Aquí puedes poner el contenido de cada slide, por ejemplo: -->
 
@@ -66,7 +67,7 @@
 </template>
 
 <script setup lang="ts" name="CarouselP">
-
+import 'vue3-carousel/dist/carousel.css'
 import {Carousel, Slide} from "vue3-carousel";
 import {usePackageStore} from "~/stores/packages";
 
