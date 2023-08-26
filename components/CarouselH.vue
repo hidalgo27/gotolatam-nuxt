@@ -24,36 +24,40 @@
 
       <div class="col-span-5">
         <Carousel  ref="carousel" :wrap-around="true" :breakpoints="breakpoints">
-          <slide v-for="item in items" :key="item.id">
+          <slide v-for="packages in listPackages" :key="packages.id">
             <!-- Aquí puedes poner el contenido de cada slide, por ejemplo: -->
-            <div class="mx-3 p-3 bg-white w-full rounded-lg my-2 shadow-md">
+
+            <a :href="'/latam-travel-packages/'+packages.url" class="mx-3 p-3 bg-white w-full rounded-lg my-2 shadow-md cursor-pointer">
               <div class="relative">
-                <img src="/images/hotels/hotels.png" alt="">
+                <img src="/images/packages/package1.png" alt="">
                 <div class="bg-secondary px-2 py-1 rounded w-auto absolute bottom-0 -mb-2 m-2 text-[9px] font-semibold text-white">PAQUETE</div>
               </div>
               <div class="">
-                <h3 class="text-left text-lg font-semibold my-3">{{ item.title }}</h3>
+                <h3 class="text-left text-lg font-semibold my-3">{{ packages.titulo }}</h3>
                 <div class="flex text-xs font-semibold gap-1 items-center">
-                  PERU
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-orange-400">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
-                  </svg>
-                  COLOMBIA
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-orange-400">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
-                  </svg>
-                  BRASIL
+                  <template v-for="(destination, index, array) in uniqueDestinos = getUniqueDestinos(packages.paquetes_destinos)" :key="destination.id">
+                    {{destination.pais}}
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-orange-400" v-if="index < uniqueDestinos.length - 1">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+                    </svg>
+                  </template>
                 </div>
                 <div class="flex gap-2 mt-3 text-sm">
-                  <img src="/icons/map-location.svg" alt=""> Estaring Airpor <span class="text-primary">Cuzco</span>
+                  <img src="/icons/map-location.svg" alt=""> Estaring Airpor <span class="text-primary"> ---</span>
                 </div>
                 <div class="border my-4"></div>
                 <div class="flex justify-between text-lg font-semibold">
-                  <div>15 days</div>
-                  <div><span class="text-xs text-gray-400">From</span> $350</div>
+                  <div>{{ packages.duracion }} days</div>
+                  <div v-if="getThreeStarPrice(packages.precio_paquetes) > 0">
+                    <span class="text-xs text-gray-400">From</span> ${{ getThreeStarPrice(packages.precio_paquetes) }}
+                  </div>
+                  <div v-else>
+                    <sup class="italic light text-xs">Price </sup>Inquire
+                  </div>
                 </div>
               </div>
-            </div>
+            </a>
+
           </slide>
         </Carousel>
       </div>
@@ -61,43 +65,79 @@
   </div>
 </template>
 
-<script>
-import 'vue3-carousel/dist/carousel.css'
-import { Carousel, Slide } from 'vue3-carousel';
-export default {
-  name: "CarouselH",
-  components: {
-    Carousel,
-    Slide,
+<script setup lang="ts" name="CarouselH">
+
+import {Carousel, Slide} from "vue3-carousel";
+import {usePackageStore} from "~/stores/packages";
+
+definePageMeta({
+  // layout: "login",
+})
+
+const packageStore = usePackageStore()
+
+const listPackages = ref([])
+
+const breakpoints = {
+  // 700px and up
+  700: {
+    itemsToShow: 3.5,
+    snapAlign: 'center',
   },
-  data() {
-    return {
-      items: [
-        { id: 1, title: 'Slide 1', description: 'Description for slide 1' },
-        { id: 2, title: 'Slide 2', description: 'Description for slide 2' },
-        { id: 3, title: 'Slide 3', description: 'Description for slide 3' },
-      ],
-      breakpoints: {
-        // 700px and up
-        700: {
-          itemsToShow: 3.5,
-          snapAlign: 'center',
-        },
-        // 1024 and up
-        1024: {
-          itemsToShow: 3.2,
-          snapAlign: 'start',
-        },
-      },
-    };
-  },
-  methods: {
-    prevSlide() {
-      this.$refs.carousel.prev();
-    },
-    nextSlide() {
-      this.$refs.carousel.next();
-    },
+  // 1024 and up
+  1024: {
+    itemsToShow: 3.2,
+    snapAlign: 'start',
   },
 }
+
+const carouselRef = ref();
+
+const prevSlide = () => {
+  carouselRef.value.prev();
+}
+
+const nextSlide = () => {
+  carouselRef.value.next();
+}
+
+const getPackage = async () => {
+  const res:any = await packageStore.getPackage()
+
+
+  listPackages.value = res
+  // if (res.token) {
+  //   policyStore['tokenLogin'] = res.token
+  //   loadingUser.value = false
+  // }
+}
+
+interface Item {
+  id: number;
+  name: string;
+}
+
+const getUniqueDestinos = (arr:any) => {
+  const unique:any = {};
+  const uniqueDestinos = [];
+  for (const paqueteDestino of arr) {
+    const { destinos } = paqueteDestino;
+    if (!unique[destinos.pais]) {
+      unique[destinos.pais] = true;
+      uniqueDestinos.push(destinos);
+    }
+  }
+  return uniqueDestinos;
+};
+
+const getThreeStarPrice = (arr:any) => {
+  const price = arr.find((priceInfo: { estrellas: number; }) => priceInfo.estrellas === 3);
+  return price ? price.precio_d : 'No disponible';
+}
+
+onMounted(async () => {
+  await getPackage()
+})
+
+
 </script>

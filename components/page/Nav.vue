@@ -1,7 +1,7 @@
 <template>
   <div class="container flex justify-between py-6 items-center">
     <div class="">
-      <img src="/images/logos/logo-gotolatam.svg" width="240">
+      <nuxt-link to="/"><img src="/images/logos/logo-gotolatam.svg" width="240"></nuxt-link>
     </div>
     <div class="">
       <nav class="gap-6 hidden md:flex">

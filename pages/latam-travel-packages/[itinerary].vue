@@ -1,11 +1,15 @@
 <template>
 
+  <template v-for="packages in listPackages">
   <header class="h-[60vh] relative">
     <img src="/images/banners/banner-lg.png" alt="" class="object-cover w-screen h-full">
     <div class="absolute inset-x-0 bottom-0 text-center">
-      <h1 class="mb-24 font-bold text-6xl text-white">Ecuador Classic</h1>
+      <h1 class="mb-24 font-bold text-6xl text-white">
+        {{packages.titulo}}
+      </h1>
     </div>
   </header>
+
 
   <section class="bg-slate-100 py-8">
     <div class="container grid grid-cols-12 gap-12 items-center">
@@ -13,15 +17,19 @@
         <div class="grid grid-cols-3">
           <div class="">
             <h3 class="text-gray-400 text-xs flex gap-1 font-semibold mb-2 items-center"><img src="/icons/map.svg" alt="" class="opacity-70"> TRIP</h3>
-            <h2 class="text-2xl font-semibold">Patagonia Highlights</h2>
+            <h2 class="text-2xl font-semibold">{{packages.titulo}}</h2>
           </div>
           <div class="">
             <h3 class="text-gray-400 text-xs flex gap-1 font-semibold mb-2 items-center"><img src="/icons/map.svg" alt="" class="opacity-70"> DAYS</h3>
-            <h2 class="text-2xl font-semibold">42D/41N</h2>
+            <h2 class="text-2xl font-semibold">{{ packages.duracion }}D/{{ packages.duracion - 1 }}N</h2>
           </div>
           <div class="">
             <h3 class="text-gray-400 text-xs flex gap-1 font-semibold mb-2 items-center"><img src="/icons/map.svg" alt="" class="opacity-70"> FROM</h3>
-            <h2 class="text-2xl font-semibold flex items-center gap-2">$9099 <span class="text-[8px] leading-3">PER <br> PERSON</span></h2>
+            <h2 class="text-2xl font-semibold flex items-center gap-2" v-if="getThreeStarPrice(packages.precio_paquetes) > 0">
+              ${{ getThreeStarPrice(packages.precio_paquetes) }}
+              <span class="text-[8px] leading-3">PER <br> PERSON</span></h2>
+            <h2 class="text-2xl font-semibold flex items-center gap-2" v-else>
+              INQUIRE</h2>
           </div>
         </div>
       </div>
@@ -57,24 +65,33 @@
           <div class="flex gap-2">
             <img src="/icons/location.svg" alt="">
             <span class="font-bold">Destinations</span>
-            <span class="badged-sm bg-gray-800">Argentina</span>
-            <span class="badged-sm bg-primary">Perú</span>
+            <span class="badged-sm" :class="randomColorClasses[destinos[0].id % randomColorClasses.length]" v-for="(destinos, pais) in getGroupedByCountry(packages.paquetes_destinos)" :key="pais">{{ pais }}</span>
+
+<!--            <span class="badged-sm bg-primary">Perú</span>
             <span class="badged-sm bg-secondary">Bolivia</span>
             <span class="badged-sm bg-primary">Chile</span>
             <span class="badged-sm bg-secondary">Brasil</span>
-            <span class="badged-sm bg-gray-800">Colombia</span>
+            <span class="badged-sm bg-gray-800">Colombia</span>-->
           </div>
+
+<!--          <div v-for="(destinos, pais) in getGroupedByCountry(packages.paquetes_destinos)" :key="pais">
+            <p :class="randomColorClasses[destinos[0].id % randomColorClasses.length]">
+              {{ pais }}
+            </p>
+            <ul>
+              <li v-for="destino in destinos" :key="destino.id">
+                {{ destino.nombre }}
+              </li>
+            </ul>
+          </div>-->
           <div class="flex gap-2">
-            <img src="/icons/search.svg" alt=""> <span class="font-bold">Code</span> GTP002
+            <img src="/icons/search.svg" alt=""> <span class="font-bold">Code</span> {{ packages.codigo }}
           </div>
         </div>
 
         <article>
-          <h2 class="text-2xl font-bold mb-8">Titulo del resumen</h2>
-          <p class="font-medium">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad animi deserunt dolorum earum enim, exercitationem expedita fugit impedit obcaecati quae qui quia voluptatem. Beatae cumque dignissimos excepturi explicabo repellat voluptatem?</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad animi deserunt dolorum earum enim, exercitationem expedita fugit impedit obcaecati quae qui quia voluptatem. Beatae cumque dignissimos excepturi explicabo repellat voluptatem?</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad animi deserunt dolorum earum enim, exercitationem expedita fugit impedit obcaecati quae qui quia voluptatem. Beatae cumque dignissimos excepturi explicabo repellat voluptatem?</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad animi deserunt dolorum earum enim, exercitationem expedita fugit impedit obcaecati quae qui quia voluptatem. Beatae cumque dignissimos excepturi explicabo repellat voluptatem?</p>
+          <h2 class="text-2xl font-bold mb-8">Overview</h2>
+          {{packages.descripcion}}
         </article>
 
         <article class="my-12">
@@ -83,8 +100,7 @@
 
             <div class="w-full mx-auto relative">
 
-
-              <div v-for="(item, index) in displayedItems" :key="index" class="flex item">
+              <div v-for="(itinerary, index) in packages.paquete_itinerario.slice(0, showCount[packages.id])" :key="itinerary.id" class="flex item">
                 <div class="relative w-20 text-center gap-12">
                   <div class="absolute -z-10 left-1/2 top-0 bottom-0 border-l-2 border-dashed border-slate-300"></div>
                   <div class="bg-white py-2  font-bold text-xs" :class="[currentItem == index ? 'text-secondary' : 'text-slate-500']">DAY {{index + 1}}</div>
@@ -92,25 +108,25 @@
                 <div class="space-y-2 w-full " :class="[index + 1 == items.length ? 'border-y' : 'border-t']">
                   <div>
                     <button @click="toggleItem(index)" class="w-full text-left p-4 flex justify-between items-center hover:bg-gray-200">
-                        {{ item.title }}
+                        {{ itinerary.itinerarios.titulo }}
                       <span>
                         {{ currentItem == index ? '-' : '+' }}
                       </span>
                     </button>
                       <transition name="bottom">
-                        <div v-if="currentItem === index" class="p-4">
-                          {{ item.content }}
+                        <div v-if="currentItem === index" class="p-4" v-html="itinerary.itinerarios.resumen">
+
                         </div>
                       </transition>
                   </div>
                 </div>
               </div>
 
-              <button @click="loadMore" v-if="canLoadMore" class="mt-4 p-4 bg-[#ffeece] mt-2 font-bold text-secondary rounded w-full hover:bg-secondary hover:text-white">
+              <button @click="expand(packages.id)" v-if="showCount[packages.id] < packages.paquete_itinerario.length" class="mt-4 p-4 bg-[#ffeece] mt-2 font-bold text-secondary rounded w-full hover:bg-secondary hover:text-white">
                 View More
               </button>
 
-              <button @click="loadLess" v-if="canLoadLess" class="px-4 py-2 w-full mt-2 rounded text-red-500 hover:text-primary">
+              <button @click="contract(packages.id)" v-if="showCount[packages.id] > 2" class="px-4 py-2 w-full mt-2 rounded text-red-500 hover:text-primary">
                 View Less
               </button>
 
@@ -118,6 +134,30 @@
           </div>
 
         </article>
+
+<!--        <div>
+          <div>
+            <h4>Itinerarios:</h4>
+            <ul>
+              &lt;!&ndash; Muestra solo los elementos hasta el índice en showCount[paquete.id] &ndash;&gt;
+              <li v-for="itinerario in packages.paquete_itinerario.slice(0, showCount[packages.id])" :key="itinerario.id">
+                {{ itinerario.itinerarios.titulo }}
+              </li>
+            </ul>
+            &lt;!&ndash; Botón para expandir/colapsar &ndash;&gt;
+&lt;!&ndash;            <button @click="toggleExpand(packages.id)">
+              {{ showCount[packages.id] >= packages.paquete_itinerario.length ? 'Ver menos' : 'Ver más' }}
+            </button>&ndash;&gt;
+
+            <button @click="expand(packages.id)" v-if="showCount[packages.id] < packages.paquete_itinerario.length">
+              Ver más
+            </button>
+            &lt;!&ndash; Botón para contraer &ndash;&gt;
+            <button @click="contract(packages.id)" v-if="showCount[packages.id] > 2">
+              Ver menos
+            </button>
+          </div>
+        </div>-->
 
         <article>
           <h2 class="text-2xl font-bold mb-8">Our Rates includes</h2>
@@ -159,12 +199,13 @@
 
         <article class="my-12">
           <h2 class="text-2xl font-bold mb-8">Not Included</h2>
-          <ul class="list-inside list-image-[url(/icons/star.svg)]">
+          <div v-html="packages.noincluye"></div>
+          <!--<ul class="list-inside list-image-[url(/icons/star.svg)]">
             <li>National & International Flights</li>
             <li>Travel Insurance</li>
             <li>Visas</li>
             <li>Tips</li>
-          </ul>
+          </ul>-->
         </article>
 
         <article class="my-12">
@@ -270,23 +311,20 @@
             View Less
           </button>
 
-
-
         </article>
-
 
         <article class="my-12">
           <h2 class="text-2xl font-bold mb-8">Dates & availability</h2>
-          <div class="p-4 border-l-8 rounded-l-lg bg-slate-100 border-primary grid grid-cols-3 items-center">
+          <div class="p-4 border-l-8 rounded-l-lg bg-slate-100 grid grid-cols-3 mb-4 items-center" :class="randomColorBorder[index % randomColorBorder.length]" v-for="(price, index) in packages.precio_paquetes">
             <div class="">
               <div class="text-lg font-bold">Tour class</div>
               <div class="flex items-center gap-2">
                 <img src="/icons/calendar.svg" alt="">
-                <span class="font-bold text-3xl">$7876</span>
+                <span class="font-bold text-3xl">${{ price.precio_t }}</span>
               </div>
             </div>
             <div class="">
-              <p class="font-bold mb-2">Per adult in a twin share room</p>
+              <p class="font-bold mb-2">Per adult in a twin share room {{price.estrellas}}</p>
               <p class="text-sm text-slate-400">Want your own room? <br> From an extra $980</p>
             </div>
             <div class="">
@@ -295,7 +333,7 @@
             </div>
           </div>
 
-          <div class="p-4 border-l-8 rounded-l-lg bg-slate-100 border-secondary mt-4 grid grid-cols-3 items-center">
+<!--          <div class="p-4 border-l-8 rounded-l-lg bg-slate-100 border-secondary mt-4 grid grid-cols-3 items-center">
             <div class="">
               <div class="text-lg font-bold">Superior class</div>
               <div class="flex items-center gap-2">
@@ -311,7 +349,7 @@
               <button type="button" class="btn-ternary w-full mb-3">Get a Quote</button>
               <button type="button" class="btn-ternary-outline w-full">Get a Quote</button>
             </div>
-          </div>
+          </div>-->
         </article>
 
 
@@ -329,12 +367,30 @@
       </div>
     </div>
   </section>
-
+  </template>
 </template>
 
 <script lang="ts" setup name="itinerary">
+
+import {usePackageStore} from "~/stores/packages";
+import ur from "vue-tailwind-datepicker/dist/locale/ur";
+
+const packageStore = usePackageStore()
+
+const route = useRoute()
+
+const listPackages = ref([])
+
+const showCount = ref({})
+
 const currentItem = ref(null); //
 const viewPopover = ref()// índice del ítem actualmente abierto
+
+const randomColorClasses = ['bg-primary', 'bg-secondary', 'bg-gray-800', 'bg-yellow-500', 'bg-indigo-500'];
+
+const randomColorBorder = ['border-primary', 'border-secondary', 'border-gray-800', 'border-yellow-500', 'border-indigo-500'];
+
+
 function openPopover(val:number){
   if (val){
     viewPopover.value = val
@@ -352,6 +408,7 @@ function closePopover(val:number){
   }, 100);
 
 }
+
 
 const mouseIsOverPopover = ref(false)
 
@@ -372,7 +429,7 @@ const toggleItem = (index:any) => {
   }
 };
 
-const displayedItems = ref(items.value.slice(0, 2));
+const displayedItems = ref(listPackages.value.slice(0, 2));
 
 const loadMore = () => {
   let nextItems = items.value.slice(displayedItems.value.length, displayedItems.value.length + 2);
@@ -385,5 +442,71 @@ const loadLess = () => {
 const canLoadLess = computed(() => displayedItems.value.length > 2);
 
 const canLoadMore = computed(() => items.value.length > displayedItems.value.length);
+
+
+const getPackageItinerary = async (url) => {
+  const res:any = await packageStore.getItinerary(url)
+  listPackages.value = res
+  // if (res.token) {
+  //   policyStore['tokenLogin'] = res.token
+  //   loadingUser.value = false
+  // }
+}
+
+
+const getThreeStarPrice = (arr:any) => {
+  const price = arr.find((priceInfo: { estrellas: number; }) => priceInfo.estrellas === 3);
+  return price ? price.precio_d : 'No disponible';
+}
+
+/*const capitalizeFirstLetter = (string) => {
+  return string
+      ? string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
+      : '';
+};*/
+
+const getGroupedByCountry = (arr) => {
+  const grouped = {};
+  for (const paqueteDestino of arr) {
+    const { destinos } = paqueteDestino;
+    const { pais, nombre, id } = destinos;
+
+    if (!grouped[pais]) {
+      grouped[pais] = [];
+    }
+
+    grouped[pais].push({ nombre, id });
+  }
+  return grouped;
+};
+
+const toggleExpand = (id) => {
+  const totalLength = listPackages.value.find(p => p.id === id).paquete_itinerario.length;
+  if (showCount.value[id] >= totalLength) {
+    showCount.value[id] = 2; // Resetear a 2 elementos
+  } else {
+    showCount.value[id] = Math.min(showCount.value[id] + 2, totalLength); // Aumentar de 2 en 2
+  }
+};
+
+const expand = (id) => {
+  const totalLength = listPackages.value.find(p => p.id === id).paquete_itinerario.length;
+  showCount.value[id] = Math.min(showCount.value[id] + 2, totalLength); // Aumentar de 2 en 2
+};
+
+const contract = (id) => {
+  showCount.value[id] = Math.max(2, showCount.value[id] - 2); // Reducir de 2 en 2, mínimo 2
+};
+
+
+onMounted(async () => {
+  await getPackageItinerary(route.params.itinerary)
+  listPackages.value.forEach(p => {
+    showCount.value[p.id] = 2;
+  });
+})
+
+
+
 
 </script>
