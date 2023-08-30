@@ -69,16 +69,17 @@
 
     </div>
 
-    <carousel :items-to-show="1.5">
-      <slide v-for="slide in 10" :key="slide">
-        {{ slide }}
-      </slide>
+    <Carousel ref="carousel" v-model="currentSlide">
+      <Slide v-for="slide in 10" :key="slide">
+        <div class="carousel__item">{{ slide - 1 }}</div>
+      </Slide>
 
-      <template #addons>
-        <navigation />
-        <pagination />
-      </template>
-    </carousel>
+    </Carousel>
+    <div>
+      <button @click="next">Next</button>
+      <input type="number" min="0" max="9" v-model="currentSlide" />
+      <button @click="prev">Prev</button>
+    </div>
 <!--    <div class="container">-->
 <!--      <div class="">-->
 <!--        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ex facilis fuga illo inventore labore natus reiciendis tempore unde. Cumque deserunt, fugiat ipsa libero magnam perferendis quisquam! At, doloremque, eum?-->
@@ -116,7 +117,7 @@
 <script lang="ts" setup>
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
-
+const currentSlide = ref(0)
 const showModalProcess = ref(false)
 const dateValue = ref([])
 const destination = ref()
@@ -127,6 +128,10 @@ const formatter = ref({
   month: 'MMM'
 })
 
+function next(){
+  console.log(currentSlide.value)
+  currentSlide.value = currentSlide.value + 1
+}
   function openPopover(val:number){
     if (val){
       viewPopover.value = val
