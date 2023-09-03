@@ -24,7 +24,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 			}
 		})
 	}
-	const getItinerary = async (url) => {
+	const getItinerary = async (url:any) => {
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/json');
 
