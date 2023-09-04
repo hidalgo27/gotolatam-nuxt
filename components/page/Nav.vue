@@ -5,11 +5,11 @@
     </div>
     <div class="">
       <nav class="gap-6 hidden md:flex">
-        <nuxt-link to="/Destinations" class="flex gap-2 items-center"><img src="/icons/location.svg"> Destinations</nuxt-link>
-        <nuxt-link to="/Destinations" class="flex gap-2 items-center"><img src="/icons/map.svg"> Travel Themes</nuxt-link>
-        <nuxt-link to="/Destinations" class="flex gap-2 items-center"><img src="/icons/star.svg"> Top 12 tours</nuxt-link>
-        <nuxt-link to="/Destinations" class="flex gap-2 items-center"><img src="/icons/search.svg"> Reviews</nuxt-link>
-        <nuxt-link to="/Destinations" class="flex gap-2 items-center"><img src="/icons/user.svg"> About us</nuxt-link>
+        <nuxt-link to="/destinations" class="flex gap-2 items-center"><img src="/icons/location.svg"> Destinations</nuxt-link>
+        <nuxt-link to="/" class="flex gap-2 items-center"><img src="/icons/map.svg"> Travel Themes</nuxt-link>
+        <nuxt-link to="/" class="flex gap-2 items-center"><img src="/icons/star.svg"> Top 12 tours</nuxt-link>
+        <nuxt-link to="/" class="flex gap-2 items-center"><img src="/icons/search.svg"> Reviews</nuxt-link>
+        <nuxt-link to="/about" class="flex gap-2 items-center"><img src="/icons/user.svg"> About us</nuxt-link>
       </nav>
     </div>
     <div class="">
