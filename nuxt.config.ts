@@ -34,5 +34,8 @@ export default defineNuxtConfig({
       apiBase: process.env.API_BASE_TEST || "https://app.gotolatam.travel/api",
     }
   },
+  nitro: {
+    preset: 'node-server'
+  }
 
 })
