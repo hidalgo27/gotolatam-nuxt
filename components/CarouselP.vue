@@ -36,8 +36,8 @@
               <div class="">
                 <h3 class="text-left text-lg font-semibold my-3">{{ packages.titulo }}</h3>
                 <div class="flex text-xs font-semibold gap-1 items-center">
-                  <template v-for="(destination, index, array) in uniqueDestinos = getUniqueDestinos(packages.paquetes_destinos)" :key="destination.id">
-                    {{destination.pais}}
+                  <template v-for="(destination, index, array) in uniqueDestinos = paisesUnicos(packages.paquetes_destinos)" :key="destination.id">
+                    {{destination.nombre}}
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-orange-400" v-if="index < uniqueDestinos.length - 1">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
                     </svg>
@@ -114,17 +114,17 @@ interface Item {
   name: string;
 }
 
-const getUniqueDestinos = (arr:any) => {
-  const unique:any = {};
-  const uniqueDestinos = [];
-  for (const paqueteDestino of arr) {
-    const { destinos } = paqueteDestino;
-    if (!unique[destinos.pais]) {
-      unique[destinos.pais] = true;
-      uniqueDestinos.push(destinos);
+
+const paisesUnicos = (destinos:any) => {
+  const paisesVistos = new Set();
+  return destinos.filter((destino: { destinos: { pais: any; }; }) => {
+    const pais = destino.destinos.pais;
+    if (!paisesVistos.has(pais.id)) {
+      paisesVistos.add(pais.id);
+      return true;
     }
-  }
-  return uniqueDestinos;
+    return false;
+  }).map((destino: { destinos: { pais: any; }; }) => destino.destinos.pais);
 };
 
 const getThreeStarPrice = (arr:any) => {

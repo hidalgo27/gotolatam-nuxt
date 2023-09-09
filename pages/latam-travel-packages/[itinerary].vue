@@ -444,7 +444,7 @@ const canLoadLess = computed(() => displayedItems.value.length > 2);
 const canLoadMore = computed(() => items.value.length > displayedItems.value.length);
 
 
-const getPackageItinerary = async (url) => {
+const getPackageItinerary = async (url:any) => {
   const res:any = await packageStore.getItinerary(url)
   listPackages.value = res
   // if (res.token) {
@@ -480,7 +480,7 @@ const getGroupedByCountry = (arr) => {
   return grouped;
 };
 
-const toggleExpand = (id) => {
+const toggleExpand = (id:any) => {
   const totalLength = listPackages.value.find(p => p.id === id).paquete_itinerario.length;
   if (showCount.value[id] >= totalLength) {
     showCount.value[id] = 2; // Resetear a 2 elementos
@@ -489,12 +489,12 @@ const toggleExpand = (id) => {
   }
 };
 
-const expand = (id) => {
+const expand = (id:any) => {
   const totalLength = listPackages.value.find(p => p.id === id).paquete_itinerario.length;
   showCount.value[id] = Math.min(showCount.value[id] + 2, totalLength); // Aumentar de 2 en 2
 };
 
-const contract = (id) => {
+const contract = (id:any) => {
   showCount.value[id] = Math.max(2, showCount.value[id] - 2); // Reducir de 2 en 2, mínimo 2
 };
 
