@@ -53,7 +53,34 @@
   <section class="">
     <div class="container grid grid-cols-12 gap-12">
       <div class="col-span-9">
-        <img src="/images/banners/map.png" alt="" class="rounded-2xl w-full">
+<!--        <img src="/images/banners/map.png" alt="" class="rounded-2xl w-full">-->
+
+
+<!--          <div class="" v-for="(destination, index, array) in uniqueDestinos = paisesUnicos(packages.paquetes_destinos)" :key="destination.id">-->
+<!--            <img :src="destination.imagen" alt="" class="w-full aspect-video rounded-xl shadow-xl">-->
+
+<!--          </div>-->
+        <div class="grid grid-cols-3 gap-6">
+          <div v-for="(pais, index, array) in uniqueDestinos = paisesUnicos(packages.paquetes_destinos)" :key="pais.id" class="">
+
+              <div class="relative">
+                <img :src="pais.imagen" alt="" class=" h-80 object-cover rounded-xl shadow-xl">
+                <div class="absolute inset-x-0 bottom-0 p-3 text-white bg-gradient-to-t from-gray-800 rounded-b-xl">
+                  {{pais.nombre}}
+                </div>
+              </div>
+
+<!--              <div class="col-span-8 columns-4">-->
+<!--                <div v-for="destino in obtenerDestinosPorPais(pais.id)" :key="destino.id">-->
+<!--                  <img :src="destino.imagen" alt="" class="w-full  rounded-xl shadow-xl">-->
+<!--                  {{destino.nombre}}-->
+<!--                </div>-->
+<!--              </div>-->
+
+          </div>
+        </div>
+
+
 
         <div class="grid my-8 space-y-2">
           <div class="flex gap-2">
@@ -65,7 +92,10 @@
           <div class="flex gap-2">
             <img src="/icons/location.svg" alt="">
             <span class="font-bold">Destinations</span>
-            <span class="badged-sm" :class="randomColorClasses[destinos[0].id % randomColorClasses.length]" v-for="(destinos, pais) in getGroupedByCountry(packages.paquetes_destinos)" :key="pais">{{ pais }}</span>
+
+<!--            <span class="badged-sm" :class="randomColorClasses[index % randomColorClasses.length]" v-for="(destination, index, array) in uniqueDestinos = paisesUnicos(packages.paquetes_destinos)" :key="destination.id">-->
+<!--              {{destination.nombre}}-->
+<!--            </span>-->
 
 <!--            <span class="badged-sm bg-primary">Perú</span>
             <span class="badged-sm bg-secondary">Bolivia</span>
@@ -126,7 +156,7 @@
                 View More
               </button>
 
-              <button @click="contract(packages.id)" v-if="showCount[packages.id] > 2" class="px-4 py-2 w-full mt-2 rounded text-red-500 hover:text-primary">
+              <button @click="contract(packages.id)" v-if="showCount[packages.id] > 4" class="px-4 py-2 w-full mt-2 rounded text-red-500 hover:text-primary">
                 View Less
               </button>
 
@@ -433,6 +463,7 @@ const displayedItems = ref(listPackages.value.slice(0, 2));
 
 const loadMore = () => {
   let nextItems = items.value.slice(displayedItems.value.length, displayedItems.value.length + 2);
+  // @ts-ignore
   displayedItems.value = [...displayedItems.value, ...nextItems];
 };
 const loadLess = () => {
@@ -465,44 +496,66 @@ const getThreeStarPrice = (arr:any) => {
       : '';
 };*/
 
-const getGroupedByCountry = (arr) => {
+const getGroupedByCountry = (arr:any) => {
   const grouped = {};
   for (const paqueteDestino of arr) {
     const { destinos } = paqueteDestino;
     const { pais, nombre, id } = destinos;
-
+    // @ts-ignore
     if (!grouped[pais]) {
+      // @ts-ignore
       grouped[pais] = [];
     }
-
+    // @ts-ignore
     grouped[pais].push({ nombre, id });
   }
   return grouped;
 };
 
-const toggleExpand = (id:any) => {
-  const totalLength = listPackages.value.find(p => p.id === id).paquete_itinerario.length;
-  if (showCount.value[id] >= totalLength) {
-    showCount.value[id] = 2; // Resetear a 2 elementos
-  } else {
-    showCount.value[id] = Math.min(showCount.value[id] + 2, totalLength); // Aumentar de 2 en 2
-  }
+const paisesUnicos = (destinos:any) => {
+  const paisesVistos = new Set();
+  return destinos.filter((destino: { destinos: { pais: any; }; }) => {
+    const pais = destino.destinos.pais;
+    if (!paisesVistos.has(pais.id)) {
+      paisesVistos.add(pais.id);
+      return true;
+    }
+    return false;
+  }).map((destino: { destinos: { pais: any; }; }) => destino.destinos.pais);
 };
 
+
+const obtenerDestinosPorPais = (paisId:number) => {
+  const destinos: any[] = [];
+  listPackages.value.forEach(paquete => {
+    paquete.paquetes_destinos.forEach((destino: { destinos: { pais: { id: number; }; }; }) => {
+      if (destino.destinos.pais.id === paisId) {
+        destinos.push(destino.destinos);
+      }
+    });
+  });
+  return destinos;
+};
+
+
 const expand = (id:any) => {
+  // @ts-ignore
   const totalLength = listPackages.value.find(p => p.id === id).paquete_itinerario.length;
-  showCount.value[id] = Math.min(showCount.value[id] + 2, totalLength); // Aumentar de 2 en 2
+  // @ts-ignore
+  showCount.value[id] = Math.min(showCount.value[id] + 8, totalLength); // Aumentar de 2 en 2
 };
 
 const contract = (id:any) => {
-  showCount.value[id] = Math.max(2, showCount.value[id] - 2); // Reducir de 2 en 2, mínimo 2
+  // @ts-ignore
+  showCount.value[id] = Math.max(4, showCount.value[id] - 4); // Reducir de 2 en 2, mínimo 2
 };
 
 
 onMounted(async () => {
   await getPackageItinerary(route.params.itinerary)
   listPackages.value.forEach(p => {
-    showCount.value[p.id] = 2;
+    // @ts-ignore
+    showCount.value[p.id] = 8;
   });
 })
 

@@ -1,6 +1,7 @@
 <template>
   <header class="h-[60vh] relative">
-    <img src="/images/banners/banner-lg.png" alt="" class="object-cover w-screen h-full">
+
+    <img :src="country.imagen" alt="" class="object-cover w-screen h-full" v-for="country in paisess">
     <!--    <div class="absolute inset-x-0 bottom-0 text-center">
           <h1 class="mb-24 font-bold text-6xl text-white">
             Destinations
@@ -20,26 +21,9 @@
 
         <router-link :to="country.url" class="aside-country block" v-for="country in listPais">
           {{ country.nombre }}</router-link>
-<!--        <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-full">Bolivia</button>
-        <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-full">Chile</button>
-        <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-full">Ecuador</button>
-        <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-full">Colombia</button>
-        <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-full">Argentina</button>
-        <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-full">Brasil</button>-->
 
       </div>
       <div class="col-span-9 ">
-<!--        <div v-for="paquete in paquetesPeru" :key="paquete.id">
-          <h2>{{ paquete.titulo }}</h2>
-          <ul>
-            <li v-for="destino in paquete.paquetes_destinos" :key="destino.id">
-              {{ destino.destinos.nombre }} - {{ destino.destinos.pais.nombre }}
-            </li>
-          </ul>
-        </div>-->
-
-
-          <!-- Aquí puedes poner el contenido de cada slide, por ejemplo: -->
 
         <h1 class="text-3xl font-bold uppercase">{{ route.params.country }} Travel Packages</h1>
         <hr class="my-6">
@@ -157,15 +141,21 @@ const getPais = async () => {
 
 const paquetesPeru = computed(() => {
   return listDestination.value.filter(paquete => {
-    return paquete.paquetes_destinos.every(destino => {
+    return paquete.paquetes_destinos.every((destino: { destinos: { pais: { url: string | string[]; }; }; }) => {
       return destino.destinos.pais.url === country.value;
     });
   });
 });
 
+const paisess = computed(() => {
+  return listPais.value.filter(pais => {
+    return pais.url === country.value
+  })
+})
+
 const paquetesConPaisPeru = computed(() => {
   return listDestination.value.filter(paquete => {
-    return paquete.paquetes_destinos.some(destino => {
+    return paquete.paquetes_destinos.some((destino: { destinos: { pais: { url: string | string[]; }; }; }) => {
       return destino.destinos.pais.url === country.value;
     });
   });
@@ -174,7 +164,7 @@ const paquetesConPaisPeru = computed(() => {
 const paquetesConPeruYDosPaisesMinimo = computed(() => {
   return listDestination.value.filter(paquete => {
     // Filtra los destinos que tengan países únicos, incluyendo Perú
-    const destinosUnicos = [...new Set(paquete.paquetes_destinos.map(destino => destino.destinos.pais.url))];
+    const destinosUnicos = [...new Set(paquete.paquetes_destinos.map((destino: { destinos: { pais: { url: any; }; }; }) => destino.destinos.pais.url))];
 
     // Verifica si hay al menos tres países únicos incluyendo Perú
     return destinosUnicos.length >= 2 && destinosUnicos.includes(country.value); // 1 representa el ID de Perú
