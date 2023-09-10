@@ -8,11 +8,11 @@
         </div>
   </header>
 
-<!--  <section class="my-12">
+<!--  <sections class="my-12">
     <div class="container">
       <h1 class="text-3xl font-bold">Destinations</h1>
     </div>
-  </section>-->
+  </sections>-->
 
   <section class="my-12">
     <div class="container grid grid-cols-4 gap-12">

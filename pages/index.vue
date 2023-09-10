@@ -46,27 +46,7 @@
     </section>
 
     <section class="container py-12">
-      <h2 class="text-3xl font-bold text-center">Destinations</h2>
-      <div class="flex justify-center gap-3 my-6 overflow-x-scroll focus:touch-pan-x">
-        <button type="button" class="px-5 py-2 bg-[#D6DD85] text-primary font-medium rounded-full">Perú</button>
-        <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-full">Bolivia</button>
-        <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-full">Chile</button>
-        <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-full">Ecuador</button>
-        <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-full">Colombia</button>
-        <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-full">Argentina</button>
-        <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-full">Brasil</button>
-      </div>
-      <div class="grid grid-cols-5 gap-24 my-12">
-        <div class="col-span-2">
-          <h3 class="text-3xl font-bold">simply dummy text of</h3>
-          <div class="pr-24">
-            <p class="my-6">is simply dummy text of the printing an pesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown is simply dummy text of the printing an pesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever</p>
-          </div>
-        </div>
-        <div class="col-span-3">
-          <img src="https://gotoperu.com/images/1327.jpg" alt="">
-        </div>
-      </div>
+      <destinations></destinations>
     </section>
 
     <section class="py-12 bg-gray-100">
@@ -229,4 +209,5 @@
 
 <script lang="ts" setup>
 import InquireHome from "~/components/form/InquireHome.vue";
+import Destinations from "~/components/sections/destinations.vue";
 </script>

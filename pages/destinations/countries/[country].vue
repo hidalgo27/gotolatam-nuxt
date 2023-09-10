@@ -9,11 +9,11 @@
         </div>-->
   </header>
 
-<!--  <section class="my-12">
+<!--  <sections class="my-12">
     <div class="container">
       <h1 class="text-3xl font-bold uppercase">{{ route.params.country }} Travel Packages</h1>
     </div>
-  </section>-->
+  </sections>-->
 
   <section class="my-12">
     <div class="container grid grid-cols-12 gap-24">
@@ -119,7 +119,7 @@ const country = ref(route.params.country)
 const listMulti = ref([])
 
 const getCountry = async (url:any) => {
-  const res:any = await packageStore.getPackage()
+  const res:any = await packageStore.getPackageTop()
 
   listDestination.value = res
   // if (res.token) {

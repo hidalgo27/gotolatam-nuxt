@@ -99,7 +99,7 @@ const nextSlide = () => {
 }
 
 const getPackage = async () => {
-  const res:any = await packageStore.getPackage()
+  const res:any = await packageStore.getPackageTop()
 
 
   listPackages.value = res

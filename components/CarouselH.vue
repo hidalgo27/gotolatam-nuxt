@@ -2,10 +2,10 @@
   <div class="container">
     <div class="grid grid-cols-7">
       <div class="col-span-2">
-        <h2 class="text-3xl font-bold">Top <br>12 tours</h2>
-        <p class="my-6">We specialize inn <br> brinding you the <br> finest n luxury <br> South American <br> tours.</p>
+        <h2 class="text-3xl font-bold">Recommended</h2>
+        <p class="my-6">We specialize inn <br> brinding you the <br> finest n luxury <br> South American <br>tours.</p>
         <button type="button" class="btn-ternary-outline flex gap-2 my-6 items-center">
-          <img src="/icons/hotel.svg" alt="">
+          <img src="/icons/map.svg" alt="">
           View all
         </button>
         <div class="flex gap-6">
@@ -23,13 +23,14 @@
       </div>
 
       <div class="col-span-5">
-        <Carousel  ref="carousel" :wrap-around="true" :breakpoints="breakpoints">
+
+        <Carousel  ref="carouselRef" :wrap-around="true" :breakpoints="breakpoints">
           <slide v-for="packages in listPackages" :key="packages.id">
             <!-- Aquí puedes poner el contenido de cada slide, por ejemplo: -->
 
-            <a :href="'/latam-travel-packages/'+packages.url" class="mx-3 p-3 bg-white w-full rounded-lg my-2 shadow-md cursor-pointer">
+            <a :href="'/latam-travel-packages/'+packages.url" class="mx-3 p-3 bg-white w-full rounded-xl my-2 shadow-md cursor-pointer">
               <div class="relative">
-                <img src="/images/packages/package1.png" alt="">
+                <img :src="packages.imagen" alt="" class="rounded-lg">
                 <div class="bg-secondary px-2 py-1 rounded w-auto absolute bottom-0 -mb-2 m-2 text-[9px] font-semibold text-white">PAQUETE</div>
               </div>
               <div class="">
@@ -65,8 +66,8 @@
   </div>
 </template>
 
-<script setup lang="ts" name="CarouselH">
-
+<script setup lang="ts" name="CarouselP">
+import 'vue3-carousel/dist/carousel.css'
 import {Carousel, Slide} from "vue3-carousel";
 import {usePackageStore} from "~/stores/packages";
 
@@ -98,7 +99,7 @@ const nextSlide = () => {
 }
 
 const getPackage = async () => {
-  const res:any = await packageStore.getPackage()
+  const res:any = await packageStore.getPackageOffers()
 
 
   listPackages.value = res
@@ -112,6 +113,7 @@ interface Item {
   id: number;
   name: string;
 }
+
 
 const paisesUnicos = (destinos:any) => {
   const paisesVistos = new Set();
