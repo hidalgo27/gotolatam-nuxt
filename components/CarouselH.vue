@@ -4,10 +4,10 @@
       <div class="col-span-2">
         <h2 class="text-3xl font-bold">Recommended</h2>
         <p class="my-6">We specialize inn <br> brinding you the <br> finest n luxury <br> South American <br>tours.</p>
-        <button type="button" class="btn-ternary-outline flex gap-2 my-6 items-center">
-          <img src="/icons/map.svg" alt="">
-          View all
-        </button>
+<!--        <button type="button" class="btn-ternary-outline flex gap-2 my-6 items-center">-->
+<!--          <img src="/icons/map.svg" alt="">-->
+<!--          View all-->
+<!--        </button>-->
         <div class="flex gap-6">
           <button class="rounded-full border-2 p-2  border-gray-500 focus:bg-gray-800 focus:text-white" @click="prevSlide">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 mx-auto">

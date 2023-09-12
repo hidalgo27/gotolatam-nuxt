@@ -12,7 +12,7 @@
   <template v-for="country2 in listPais">
   <div class="grid grid-cols-12 gap-24 items-center my-12" v-if="countries == country2.url">
     <div class="col-start-2 col-end-7">
-      <h3 class="text-3xl font-bold">{{ country2.nombre }}</h3>
+      <h3 class="text-3xl font-bold"><nuxt-link :to="'/destinations/countries/'+country2.url">{{ country2.nombre }}</nuxt-link></h3>
       <div class="pr-24">
         <transition name="left" appear>
         <div class="my-6" v-html="country2.descripcion"></div>

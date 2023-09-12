@@ -1,6 +1,6 @@
 <template>
   <header class="h-[60vh] relative">
-    <img src="/images/banners/banner-lg.png" alt="" class="object-cover w-screen h-full">
+    <img src="https://gotoperu.com/images/team/banner2.jpg" alt="" class="object-cover w-screen h-full">
 <!--    <div class="absolute inset-x-0 bottom-0 text-center">-->
 <!--      <h1 class="mb-24 font-bold text-6xl text-white">-->
 <!--        about-->
