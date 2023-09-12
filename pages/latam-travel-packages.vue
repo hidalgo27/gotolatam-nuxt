@@ -3,7 +3,7 @@
     <img src="https://gotolatam.com/images/banners/country/calafate.jpg" alt="" class="object-cover w-screen h-full">
     <div class="absolute inset-x-0 bottom-0 text-center">
       <h1 class="mb-24 font-bold text-6xl text-white">
-        South America Travel Packages
+        LATAM Travel Packages
       </h1>
     </div>
   </header>
@@ -15,6 +15,12 @@
     </sections>-->
 
   <section class="my-12">
+    <div class="container my-6">
+      <div class="grid text-center text-lg">
+        <p>LATAM's packages are created by our team of travel specialists so that you can enjoy the most of your time in every destination in South America.</p>
+        <p>Every detail of your travel itinerary is planned and executed to perfection by our partners in each South American destination. If you are looking for an activity or destination not listed in our travel packages, do not hesitate to contact us for more information.</p>
+      </div>
+    </div>
     <div class="container grid grid-cols-4 gap-12">
 
         <!-- Aquí puedes poner el contenido de cada slide, por ejemplo: -->

@@ -40,3 +40,14 @@ gsl-default__indicator, gsc-indicator{
 .aside-country.router-link-active {
     @apply bg-[#D6DD85] text-primary px-5 text-center py-2 font-medium rounded-full
 }
+
+.vimeo-wrapper iframe {
+    width: 100vw;
+    height: 56.25vw;
+    min-height: 100vh;
+    min-width: 177.77vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

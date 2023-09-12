@@ -3,7 +3,7 @@
     <div class="grid grid-cols-7">
       <div class="col-span-2">
         <h2 class="text-3xl font-bold">OUR <br>TEAM</h2>
-        <p class="my-6">We specialize inn <br> brinding you the <br> finest n luxury <br> South American <br>tours.</p>
+        <p class="my-6">Meet our team of specialists, <br> who are in charge of customizing <br> your LATAM travel package to make <br> it an unforgettable experience.</p>
         <div class="flex gap-6">
           <button class="rounded-full border-2 p-2  border-gray-500 focus:bg-gray-800 focus:text-white" @click="prevSlide">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 mx-auto">

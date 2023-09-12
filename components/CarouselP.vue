@@ -3,7 +3,8 @@
     <div class="grid grid-cols-7">
       <div class="col-span-2">
         <h2 class="text-3xl font-bold">Top <br>12 tours</h2>
-        <p class="my-6">We specialize inn <br> brinding you the <br> finest n luxury <br> South American <br>tours.</p>
+        <p class="my-6">Explore LATAM's Most <br> Captivating Destinations <br> with Our Top Tour Selection</p>
+
         <button type="button" class="btn-ternary-outline flex gap-2 my-6 items-center">
           <img src="/icons/map.svg" alt="">
           View all
