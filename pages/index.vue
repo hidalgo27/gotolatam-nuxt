@@ -156,47 +156,53 @@
     </section>
 
     <section class="container py-16">
-      <div class="grid grid-cols-4 gap-6">
-        <div class="grid grid-cols-2 rounded-xl relative bg-gray-100 px-4 py-8 border gap-12">
-          <img src="/icons/shield.svg" alt="" class="absolute left-0 top-0 ml-3 -mt-6">
-          <div class="">
-            <h3 class="font-semibold text-sm">Book with Confidence</h3>
-            <p class="text-sm mt-3">Keep calm! We will help you plan your dream trip.</p>
-          </div>
-          <div class="">
-            <div class="bg-primary rounded-xl h-full w-full"></div>
-          </div>
-        </div>
-        <div class="grid grid-cols-2 rounded-xl relative bg-gray-100 px-4 py-8 border gap-12">
-          <img src="/icons/star-yellow.svg" alt="" class="absolute left-0 top-0 ml-3 -mt-6">
-          <div class="">
-            <h3 class="font-semibold text-sm">Book with Confidence</h3>
-            <p class="text-sm mt-3">Keep calm! We will help you plan your dream trip.</p>
-          </div>
-          <div class="">
-            <div class="bg-primary rounded-xl h-full w-full"></div>
+      <div class="grid grid-cols-3 gap-6">
+        <div class="rounded-xl relative bg-gray-100 px-4 py-8 border gap-12">
+          <div class="grid grid-cols-12 items-center">
+            <img src="/icons/shield.svg" alt="" class="absolute left-0 top-0 ml-3 -mt-6">
+            <div class="col-span-8">
+              <h3 class="font-semibold text-sm">Book with Confidence</h3>
+              <p class="text-sm mt-3">Keep calm! We will help you plan your dream trip.</p>
+            </div>
+            <div class="col-span-4">
+              <img src="/images/home/operator5.jpg" alt="" class="bg-primary rounded-xl h-full w-full">
+            </div>
           </div>
         </div>
-        <div class="grid grid-cols-2 rounded-xl relative bg-gray-100 px-4 py-8 border gap-12">
-          <img src="/icons/person.svg" alt="" class="absolute left-0 top-0 ml-3 -mt-6">
-          <div class="">
-            <h3 class="font-semibold text-sm">Book with Confidence</h3>
-            <p class="text-sm mt-3">Keep calm! We will help you plan your dream trip.</p>
-          </div>
-          <div class="">
-            <div class="bg-primary rounded-xl h-full w-full"></div>
-          </div>
-        </div>
-        <div class="grid grid-cols-2 rounded-xl relative bg-gray-100 px-4 py-8 border gap-12">
-          <img src="/icons/shield.svg" alt="" class="absolute left-0 top-0 ml-3 -mt-6">
-          <div class="">
-            <h3 class="font-semibold text-sm">Book with Confidence</h3>
-            <p class="text-sm mt-3">Keep calm! We will help you plan your dream trip.</p>
-          </div>
-          <div class="">
-            <div class="bg-primary rounded-xl h-full w-full"></div>
+        <div class="rounded-xl relative bg-gray-100 px-4 py-8 border gap-12">
+          <div class="grid grid-cols-12 items-center">
+            <img src="/icons/star-yellow.svg" alt="" class="absolute left-0 top-0 ml-3 -mt-6">
+            <div class="col-span-8">
+              <h3 class="font-semibold text-sm">Great Reviews</h3>
+              <p class="text-sm mt-3">We are proud of our service quality and great reviews.</p>
+            </div>
+            <div class="col-span-4">
+              <img src="/images/home/operator6.jpg" alt="" class="bg-primary rounded-xl h-full w-full">
+            </div>
           </div>
         </div>
+        <div class="items-center rounded-xl relative bg-gray-100 px-4 py-8 border gap-12">
+          <div class="grid grid-cols-12 items-center">
+            <img src="/icons/person.svg" alt="" class="absolute left-0 top-0 ml-3 -mt-6">
+            <div class="col-span-8">
+              <h3 class="font-semibold text-sm">Trusted local Perú Travel</h3>
+              <p class="text-sm mt-3">Professional service from trusted local experts.</p>
+            </div>
+            <div class="col-span-4">
+              <img src="/images/home/operator4.png" alt="" class="bg-primary rounded-xl h-full w-full">
+            </div>
+          </div>
+        </div>
+<!--        <div class="grid grid-cols-2 rounded-xl relative bg-gray-100 px-4 py-8 border gap-12">-->
+<!--          <img src="/icons/shield.svg" alt="" class="absolute left-0 top-0 ml-3 -mt-6">-->
+<!--          <div class="">-->
+<!--            <h3 class="font-semibold text-sm">Book with Confidence</h3>-->
+<!--            <p class="text-sm mt-3">Keep calm! We will help you plan your dream trip.</p>-->
+<!--          </div>-->
+<!--          <div class="">-->
+<!--            <div class="bg-primary rounded-xl h-full w-full"></div>-->
+<!--          </div>-->
+<!--        </div>-->
       </div>
     </section>
 

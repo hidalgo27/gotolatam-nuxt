@@ -2,7 +2,7 @@
   <div class="container">
     <div class="grid grid-cols-7">
       <div class="col-span-2">
-        <h2 class="text-3xl font-bold">Recommended</h2>
+        <h2 class="text-3xl font-bold">Best of</h2>
         <p class="my-6">We specialize inn <br> brinding you the <br> finest n luxury <br> South American <br>tours.</p>
 <!--        <button type="button" class="btn-ternary-outline flex gap-2 my-6 items-center">-->
 <!--          <img src="/icons/map.svg" alt="">-->
@@ -44,7 +44,7 @@
                   </template>
                 </div>
                 <div class="flex gap-2 mt-3 text-sm">
-                  <img src="/icons/map-location.svg" alt=""> Estaring Airpor <span class="text-primary"> ---</span>
+                  <img src="/icons/map-location.svg" alt=""> Estaring Airpor <span class="text-primary font-semibold">{{ packages.codigo_vuelo }}</span>
                 </div>
                 <div class="border my-4"></div>
                 <div class="flex justify-between text-lg font-semibold">
