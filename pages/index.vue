@@ -1,20 +1,58 @@
 <template>
   <div class="shadow">
 
-    <div class="">
+    <div class="relative">
       <div class="h-[75vh] relative overflow-hidden vimeo-wrapper">
 <!--        <img src="/images/banners/banner-lg.png" alt="" class="object-cover w-screen h-full">-->
         <iframe src="https://player.vimeo.com/video/772468390?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1" frameborder="0" allow="autoplay; fullscreen" class=""></iframe>
 
-        <div class="absolute inset-x-0 bottom-0 text-center">
-          <h2 class="text-white text-4xl drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)]">LET’S <span class="text-primary">GO</span> <span class="text-secondary">TOGETHER</span> TO</h2>
-
-          <InquireHome></InquireHome>
-
-        </div>
       </div>
+      <div class="absolute inset-x-0 bottom-0 text-center">
+        <h2 class="text-white text-4xl drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)]">LET’S <span class="text-primary">GO</span> <span class="text-secondary">TOGETHER</span> TO</h2>
 
+        <InquireHome></InquireHome>
+
+      </div>
     </div>
+
+<!--    <div>-->
+<!--      &lt;!&ndash; Primer dropdown &ndash;&gt;-->
+<!--      <div class="relative" @click="toggle('first')" ref="dropdownFirst">-->
+<!--        <button class="bg-gray-300 text-black p-2">-->
+<!--          {{ selectedItemsFirst.length ? selectedItemsFirst.map(i => i.name).join(', ') : 'Selecciona elementos del Primer Dropdown' }}-->
+<!--        </button>-->
+<!--        <div v-if="showFirst" class="absolute w-full bg-white border mt-2">-->
+<!--          <div-->
+<!--              v-for="item in itemsFirst"-->
+<!--              :key="item.id"-->
+<!--              @click.stop="toggleSelection(item, 'first')"-->
+<!--              class="cursor-pointer hover:bg-gray-100 p-2"-->
+<!--          >-->
+<!--            {{ item.name }}-->
+<!--            <span v-if="isSelected(item, 'first')" class="ml-2 text-green-500">&#10003;</span>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      &lt;!&ndash; Segundo dropdown &ndash;&gt;-->
+<!--      <div class="relative mt-4" @click="toggle('second')" ref="dropdownSecond">-->
+<!--        <button class="bg-gray-300 text-black p-2">-->
+<!--          {{ selectedItemsSecond.length ? selectedItemsSecond.map(i => i.name).join(', ') : 'Selecciona elementos del Segundo Dropdown' }}-->
+<!--        </button>-->
+<!--        <div v-if="showSecond" class="absolute w-full bg-white border mt-2">-->
+<!--          <div-->
+<!--              v-for="item in itemsSecond"-->
+<!--              :key="item.id"-->
+<!--              @click.stop="toggleSelection(item, 'second')"-->
+<!--              class="cursor-pointer hover:bg-gray-100 p-2"-->
+<!--          >-->
+<!--            {{ item.name }}-->
+<!--            <span v-if="isSelected(item, 'second')" class="ml-2 text-green-500">&#10003;</span>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
 
     <section class="py-12 bg-gray-100" id="top-12">
       <carousel-p></carousel-p>
@@ -218,4 +256,66 @@
 <script lang="ts" setup>
 import InquireHome from "~/components/form/InquireHome.vue";
 import Destinations from "~/components/sections/destinations.vue";
+
+
+// // Estados del primer dropdown
+// const showFirst = ref(false);
+// const selectedItemsFirst = ref([]);
+// const dropdownFirst = ref(null);
+// const itemsFirst = [
+//   { id: 1, name: 'Opción 1' },
+//   { id: 2, name: 'Opción 2' },
+//   { id: 3, name: 'Opción 3' },
+// ];
+//
+// // Estados del segundo dropdown
+// const showSecond = ref(false);
+// const selectedItemsSecond = ref([]);
+// const dropdownSecond = ref(null);
+// const itemsSecond = [
+//   { id: 4, name: 'Opción 4' },
+//   { id: 5, name: 'Opción 5' },
+//   { id: 6, name: 'Opción 6' },
+// ];
+//
+// const handleClickOutside = (event) => {
+//   if (dropdownFirst.value && !dropdownFirst.value.contains(event.target)) {
+//     showFirst.value = false;
+//   }
+//   if (dropdownSecond.value && !dropdownSecond.value.contains(event.target)) {
+//     showSecond.value = false;
+//   }
+// };
+//
+// onMounted(() => {
+//   document.addEventListener('click', handleClickOutside);
+// });
+//
+// onBeforeUnmount(() => {
+//   document.removeEventListener('click', handleClickOutside);
+// });
+//
+// const toggle = (dropdown) => {
+//   if (dropdown === 'first') {
+//     showFirst.value = !showFirst.value;
+//   } else if (dropdown === 'second') {
+//     showSecond.value = !showSecond.value;
+//   }
+// };
+//
+// const toggleSelection = (item, dropdown) => {
+//   const selectedItems = dropdown === 'first' ? selectedItemsFirst : selectedItemsSecond;
+//   const index = selectedItems.value.findIndex(i => i.id === item.id);
+//   if (index === -1) {
+//     selectedItems.value.push(item);
+//   } else {
+//     selectedItems.value.splice(index, 1);
+//   }
+// };
+//
+// const isSelected = (item, dropdown) => {
+//   const selectedItems = dropdown === 'first' ? selectedItemsFirst : selectedItemsSecond;
+//   return selectedItems.value.some(i => i.id === item.id);
+// };
+
 </script>

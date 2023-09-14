@@ -1,9 +1,9 @@
 <template>
-  <div class="container mt-36 mb-16">
+  <div class="container mt-36 mb-16" >
     <div class="relative z-10 w-4/6 bg-white mx-auto p-6 rounded-2xl">
       <div class="grid grid-cols-5 gap-5 items-center">
         <div class="relative col-span-2">
-          <input type="text" class="is-input-ico rounded-right-0 border-right-0 peer" placeholder=" " @focus="openPopover(1)" @blur="closePopover(1)" v-model="destination">
+          <input type="text" class="is-input-ico rounded-right-0 border-right-0 peer capitalize" readonly placeholder=" " @click.stop="toggle(1)"  v-model="destination">
           <label class="is-input-ico-label">Choose your destinations</label>
           <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
             <img src="/icons/search.svg" alt="">
@@ -14,19 +14,25 @@
             </svg>
           </div>
           <transition name="top" appear>
-            <div class="box-option-select" v-show="viewPopover == 1" @mouseover="mouseIsOverPopover = true" @mouseleave="mouseIsOverPopover = false">
-              <div class="grid items-start text-left">
-                <div class="py-2 px-3 hover:bg-secondary hover:text-white cursor-pointer" @click="selectDestination('Lima')">Lima</div>
-                <div class="py-2 px-3 hover:bg-secondary hover:text-white cursor-pointer" @click="selectDestination('Cusco')">Cusco</div>
-                <div class="py-2 px-3 hover:bg-secondary hover:text-white cursor-pointer" @click="selectDestination('Arequipa')">Arequipa</div>
-                <div class="py-2 px-3 hover:bg-secondary hover:text-white cursor-pointer" @click="selectDestination('Puno')">Puno</div>
+            <div class="bg-white" :class="[shouldOpenUpwardsFirst?'box-option-select-top':'box-option-select']" v-show="viewPopover == 1" ref="dropdownFirst">
+              <div class="grid items-start text-left p-2">
+<!--                <div class="py-2 px-3 hover:bg-secondary hover:text-white cursor-pointer" @click="selectDestination(destino.url)" v-for="destino in listDestination">-->
+<!--                  {{ destino.nombre }}</div>-->
+
+                <div class="flex" v-for="destino in listDestination">
+                  <input type="checkbox" :id="destino.id" class="peer hidden" :value="destino.url" v-model="destination" />
+                  <label :for="destino.id" class="select-none cursor-pointer my-1 bg-gray-100 text-gray-800 rounded-full px-5 py-2 transition-colors duration-200 ease-in-out peer-checked:bg-[#D6DD85] peer-checked:text-primary"> {{ destino.nombre }} </label>
+                </div>
+<!--                <div class="py-2 px-3 hover:bg-secondary hover:text-white cursor-pointer" @click="selectDestination('Cusco')">Cusco</div>-->
+<!--                <div class="py-2 px-3 hover:bg-secondary hover:text-white cursor-pointer" @click="selectDestination('Arequipa')">Arequipa</div>-->
+<!--                <div class="py-2 px-3 hover:bg-secondary hover:text-white cursor-pointer" @click="selectDestination('Puno')">Puno</div>-->
               </div>
             </div>
           </transition>
         </div>
         <div class="relative col-span-1">
           <div class="relative">
-            <input type="text" class="is-input-ico peer" placeholder=" " v-model="dateValue" @focus="showModalProcess = true">
+            <input type="text" class="is-input-ico peer" placeholder=" " v-model="travelDate" @focus="showModalProcess = true">
             <label class="is-input-ico-label">When</label>
             <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
               <img src="/icons/calendar.svg" alt="">
@@ -56,7 +62,7 @@
             <div class="">
               <h2 class="text-lg text-tertiary omnes-semibold mb-5">Cuando desea viajar</h2>
               <!--                <p class="my-6">Espera la confirmación del pago para recibir tu póliza SOAT.  El procesamiento del pago puede tardar unos segundos.</p>-->
-              <vue-tailwind-datepicker as-single no-input :formatter="formatter" v-model="dateValue" @click="onClickSomething()" class="calendar-w"/>
+              <vue-tailwind-datepicker as-single no-input :formatter="formatter" v-model="travelDate" @click="onClickSomething()" class="calendar-w"/>
             </div>
           </div>
         </div>
@@ -80,76 +86,96 @@
             <div class="text-left">
               <h2 class="text-lg text-tertiary omnes-semibold mb-5">What countries do you want to visit?</h2>
               <div class="flex justify-start gap-3 my-6 overflow-x-scroll focus:touch-pan-x">
-                <button type="button" class="px-5 py-2 bg-[#D6DD85] text-primary font-medium rounded-full">Perú</button>
-                <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-full">Bolivia</button>
-                <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-full">Chile</button>
-                <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-full">Ecuador</button>
-                <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-full">Colombia</button>
-                <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-full">Argentina</button>
-                <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-full">Brasil</button>
-                <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-full">Colombia</button>
-                <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-full">Argentina</button>
-                <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-full">Brasil</button>
+
+                <div class="flex" v-for="destino in listDestination">
+                  <input type="checkbox" :id="destino.id" class="peer hidden" :value="destino.url" v-model="destination" />
+                  <label :for="destino.id" class="select-none cursor-pointer bg-gray-100 text-gray-800 rounded-full px-5 py-2 transition-colors duration-200 ease-in-out peer-checked:bg-[#D6DD85] peer-checked:text-primary"> {{ destino.nombre }} </label>
+                </div>
+
+
+<!--                <div class="p-8">-->
+<!--                  <div-->
+<!--                      v-for="country in listDestination"-->
+<!--                      :key="country.id"-->
+<!--                  >-->
+<!--                    <checkbox-destination-->
+<!--                        :label="country.nombre"-->
+<!--                        :modelValue="selectedCountries[country.id]"-->
+<!--                        @update:modelValue="updateCountrySelection(country.id, $event)"-->
+<!--                    />-->
+<!--                  </div>-->
+
+<!--                  {{selectedCountries}}-->
+<!--                </div>-->
+
               </div>
               <h3 class="text-xs text-tertiary omnes-semibold">You can choose one or more countries</h3>
               <h3 class="text-lg text-tertiary omnes-semibold my-5">Number of travelers</h3>
               <div class="flex justify-start gap-3 my-6 overflow-x-scroll focus:touch-pan-x">
-                <button type="button" class="px-5 py-2 bg-primary text-white font-medium rounded-lg">1</button>
-                <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-lg">2</button>
-                <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-lg">3</button>
-                <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-lg">4</button>
-                <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-lg">5</button>
-                <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-lg">6</button>
-                <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-lg">7</button>
+
+                <div class="flex" v-for="n in 10" :key="n">
+                  <input type="radio" :id="'radio_'+n" class="peer hidden" :value="n" v-model="traveller" />
+                  <label :for="'radio_'+n" class="select-none cursor-pointer bg-gray-100 text-gray-800 rounded-lg px-5 py-2 transition-colors duration-200 ease-in-out peer-checked:bg-primary peer-checked:text-white"> {{ n }} </label>
+                </div>
+
+                <div class="flex">
+                  <input type="radio" :id="'radio_11'" class="peer hidden" value="11+" v-model="traveller" />
+                  <label :for="'radio_11'" class="select-none cursor-pointer bg-gray-100 text-gray-800 rounded-lg px-5 py-2 transition-colors duration-200 ease-in-out peer-checked:bg-primary peer-checked:text-white"> 11+ </label>
+                </div>
+
               </div>
               <h3 class="text-lg text-tertiary omnes-semibold my-5">Hotel Category</h3>
               <div class="flex justify-start gap-3 my-6 overflow-x-scroll focus:touch-pan-x">
-                <button type="button" class="px-5 py-2 border-2 border-primary font-medium rounded-lg divide-y divide-primary">
-                  <div class="pb-1">
-                    <img src="/icons/hotel.svg" alt="">
-                    <h4 class="text-primary pt-1">Luxury</h4>
-                  </div>
-                  <div class="flex pt-2 gap-1">
-                    <img src="/icons/star.svg" alt="" class="w-2">
-                    <img src="/icons/star.svg" alt="" class="w-2">
-                    <img src="/icons/star.svg" alt="" class="w-2">
-                    <img src="/icons/star.svg" alt="" class="w-2">
-                    <img src="/icons/star.svg" alt="" class="w-2">
-                  </div>
-                </button>
-                <button type="button" class="px-5 py-2 border border-gray-300 font-medium rounded-lg divide-y divide-gray-400">
-                  <div class="pb-1">
-                    <img src="/icons/hotel.svg" alt="" class="opacity-50">
-                    <h4 class="pt-1 text-gray-400">Superior</h4>
-                  </div>
-                  <div class="flex pt-2 gap-1">
-                    <img src="/icons/star.svg" alt="" class="w-2">
-                    <img src="/icons/star.svg" alt="" class="w-2">
-                    <img src="/icons/star.svg" alt="" class="w-2">
-                    <img src="/icons/star.svg" alt="" class="w-2">
-                  </div>
-                </button>
-                <button type="button" class="px-5 py-2 border border-gray-300 font-medium rounded-lg divide-y divide-gray-400">
-                  <div class="pb-1">
-                    <img src="/icons/hotel.svg" alt="" class="opacity-50">
-                    <h4 class="pt-1 text-gray-400">Best Value</h4>
-                  </div>
-                  <div class="flex pt-2 gap-1">
-                    <img src="/icons/star.svg" alt="" class="w-2">
-                    <img src="/icons/star.svg" alt="" class="w-2">
-                    <img src="/icons/star.svg" alt="" class="w-2">
-                  </div>
-                </button>
-                <button type="button" class="px-5 py-2 border border-gray-300 font-medium rounded-lg divide-y divide-gray-400">
-                  <div class="pb-1">
-                    <img src="/icons/hotel.svg" alt="" class="opacity-50">
-                    <h4 class="pt-1 text-gray-400">Budget</h4>
-                  </div>
-                  <div class="flex pt-2 gap-1">
-                    <img src="/icons/star.svg" alt="" class="w-2">
-                    <img src="/icons/star.svg" alt="" class="w-2">
-                  </div>
-                </button>
+
+                <div class="flex">
+                  <input type="checkbox" id="hotel_5" class="peer hidden" value="5" v-model="hotel" />
+                  <label for="hotel_5" class="select-none cursor-pointer px-5 py-2 border border-gray-300 text-gray-400 rounded-lg divide-y divide-gray-400 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary peer-checked:divide-primary  ">
+                    <div class="pb-1">
+                      <img src="/icons/hotel.svg" alt="">
+                      <h4 class=" pt-1">Luxury</h4>
+                    </div>
+                    <div class="flex pt-2 gap-1">
+                      <img src="/icons/star.svg" alt="" class="w-2">
+                      <img src="/icons/star.svg" alt="" class="w-2">
+                      <img src="/icons/star.svg" alt="" class="w-2">
+                      <img src="/icons/star.svg" alt="" class="w-2">
+                      <img src="/icons/star.svg" alt="" class="w-2">
+                    </div>
+                  </label>
+                </div>
+
+                <div class="flex">
+                  <input type="checkbox" id="hotel_4" class="peer hidden" value="4" v-model="hotel" />
+                  <label for="hotel_4" class="select-none cursor-pointer px-5 py-2 border border-gray-300 text-gray-400 rounded-lg divide-y divide-gray-400 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary peer-checked:divide-primary  ">
+                    <div class="pb-1">
+                      <img src="/icons/hotel.svg" alt="">
+                      <h4 class=" pt-1">Superior</h4>
+                    </div>
+                    <div class="flex pt-2 gap-1">
+                      <img src="/icons/star.svg" alt="" class="w-2">
+                      <img src="/icons/star.svg" alt="" class="w-2">
+                      <img src="/icons/star.svg" alt="" class="w-2">
+                      <img src="/icons/star.svg" alt="" class="w-2">
+                    </div>
+                  </label>
+                </div>
+
+                <div class="flex">
+                  <input type="checkbox" id="hotel_3" class="peer hidden" value="3" v-model="hotel" />
+                  <label for="hotel_3" class="select-none cursor-pointer px-5 py-2 border border-gray-300 text-gray-400 rounded-lg divide-y divide-gray-400 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary peer-checked:divide-primary  ">
+                    <div class="pb-1">
+                      <img src="/icons/hotel.svg" alt="">
+                      <h4 class=" pt-1">Best Value</h4>
+                    </div>
+                    <div class="flex pt-2 gap-1">
+                      <img src="/icons/star.svg" alt="" class="w-2">
+                      <img src="/icons/star.svg" alt="" class="w-2">
+                      <img src="/icons/star.svg" alt="" class="w-2">
+                      <img src="/icons/star.svg" alt="" class="w-2">
+                      <img src="/icons/star.svg" alt="" class="w-2">
+                    </div>
+                  </label>
+                </div>
 
               </div>
 
@@ -164,6 +190,7 @@
                         class="is-input-ico peer"
                         placeholder=" "
                         autocomplete="off"
+                        v-model="fullName"
                     />
                     <label class="is-input-ico-label">Full Name</label>
                     <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
@@ -182,6 +209,7 @@
                         class="is-input-ico peer"
                         placeholder=" "
                         autocomplete="off"
+                        v-model="phone"
                     />
                     <label class="is-input-ico-label">Phone Number</label>
                     <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
@@ -200,6 +228,7 @@
                         class="is-input-ico peer"
                         placeholder=" "
                         autocomplete="off"
+                        v-model="email"
                     />
                     <label class="is-input-ico-label">Email</label>
                     <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
@@ -210,7 +239,6 @@
                   </div>
                 </div>
 
-
                 <div class="relative">
                   <div class="relative">
                     <textarea
@@ -219,6 +247,7 @@
                         class="is-input-ico peer"
                         placeholder=" "
                         autocomplete="off"
+                        v-model="comment"
                     />
                     <label class="is-input-ico-label text-xs md:text-[15px]">What can we do for you? We have it all. Just ask!</label>
                     <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
@@ -246,16 +275,44 @@
 </template>
 
 <script lang="ts" setup name="InquireHome">
+
+import {usePackageStore} from "~/stores/packages";
+import CheckboxDestination from "~/components/form/checkboxDestination.vue";
+const packageStore = usePackageStore()
+
 const showModalProcess = ref(false)
 const showModalInquire = ref(false)
-const destination = ref()
+
 const viewPopover = ref()
 
-const dateValue = ref()
+const travelDate = ref()
+const traveller = ref()
+const hotel = ref([])
+const destination = ref([])
+const fullName = ref()
+const phone = ref()
+const email = ref()
+const comment = ref()
 
-function selectDestination (val:String) {
-  destination.value = val
-  viewPopover.value = 0
+const dropdownFirst = ref(null);
+const shouldOpenUpwardsFirst = ref(false);
+
+const listDestination = ref([])
+
+const getPais = async () => {
+  const res = await packageStore.getPais()
+
+  listDestination.value = res
+  // if (res.token) {
+  //   policyStore['tokenLogin'] = res.token
+  //   loadingUser.value = false
+  // }
+}
+
+
+function selectDestination (val:any) {
+  destination.value[0] = val
+  // viewPopover.value = 0
 }
 
 
@@ -263,28 +320,96 @@ const onClickSomething = () => {
   showModalProcess.value = false
 }
 
-function openPopover(val:number){
-  if (val){
-    viewPopover.value = val
-  }else {
-    viewPopover.value = 0
+
+const toggle = (dropdown:any) => {
+
+  if (dropdown === 1) {
+    viewPopover.value = !viewPopover.value;
   }
-}
-function closePopover(val:number){
-  setTimeout(() => {
-    if (mouseIsOverPopover) {
-      if (val){
-        viewPopover.value = 0
-      }
-    }
-  }, 100);
+
+  // checkDropdownPosition(dropdown);
+
+  self.timer = setTimeout(function() {
+    checkDropdownPosition(dropdown);
+
+  }, 100)
 
 }
 
-const mouseIsOverPopover = ref(false)
 const formatter = ref({
   date: 'YYYY/MM/DD',
   month: 'MMM'
+})
+
+
+const checkDropdownPosition = (dropdown) => {
+  const dropdownElement = dropdown === 1 ? dropdownFirst.value : null;
+
+  if (!dropdownElement) return;
+
+  const rect = dropdownElement.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
+
+  if (dropdown === 1) {
+    shouldOpenUpwardsFirst.value = rect.bottom > windowHeight;
+  }
+
+
+
+
+};
+
+
+
+const handleClickOutside = (event) => {
+  if (dropdownFirst.value && !dropdownFirst.value.contains(event.target)) {
+    viewPopover.value = 0
+  }
+}
+
+
+
+const shouldOpenUpwards = (dropdown) => {
+  return dropdown === 'first' ? shouldOpenUpwardsFirst.value : false;
+};
+
+const shouldOpenDownwards = (dropdown) => {
+  return !shouldOpenUpwards(dropdown);
+};
+
+// const selectedCountries = ref({})
+//
+// const updateCountrySelection = (id:any, value:any) => {
+//   selectedCountries.value[id] = value
+// }
+const windowHeight = ref(null);
+
+const updateWindowHeight = () => {
+  if (typeof window !== 'undefined') {
+    windowHeight.value = window.innerHeight;
+  }
+};
+
+onMounted(async () => {
+  document.addEventListener('click', handleClickOutside);
+  await getPais()
+  watchEffect(() => {
+    checkDropdownPosition(1);
+  });
+
+  if (typeof window !== 'undefined') {
+    windowHeight.value = window.innerHeight;
+    // console.log(windowHeight.value)
+    window.addEventListener('resize', updateWindowHeight);
+  }
+
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleClickOutside);
+  if (typeof window !== 'undefined') {
+    window.removeEventListener('resize', updateWindowHeight);
+  }
 })
 
 </script>
