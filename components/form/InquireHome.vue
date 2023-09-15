@@ -73,13 +73,13 @@
   <section class="modal-box">
     <transition name="fade" appear>
       <div class="modal-overlay"
-           v-if="showModalInquire"
+           v-show="showModalInquire"
            @click="showModalInquire = false"></div>
     </transition>
     <transition name="pop" appear>
       <div class="modal overflow-y-scroll"
            role="dialog"
-           v-if="showModalInquire"
+           v-show="showModalInquire"
       >
         <div class="w-full">
           <div class="grid grid-cols-1">
@@ -181,6 +181,7 @@
 
               <h3 class="text-lg text-tertiary omnes-semibold my-5">Contact information</h3>
 
+              <form @submit.prevent="handleSubmit">
               <div class="grid grid-cols-1 gap-3">
                 <div class="relative">
                   <div class="relative">
@@ -198,6 +199,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                       </svg>
                     </div>
+
+                    <div v-if="$v.fullName.$error">El nombre es requerido</div>
                   </div>
                 </div>
 
@@ -210,31 +213,40 @@
                         placeholder=" "
                         autocomplete="off"
                         v-model="phone"
+                        ref="phoneInputRef"
+                        id="phoneNumber"
                     />
+<!--                    <input ref="phoneInputRef" v-model="phone" class="is-input-ico peer" placeholder=" " id="phoneNumber" type="tel" />-->
                     <label class="is-input-ico-label">Phone Number</label>
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 3.75v4.5m0-4.5h-4.5m4.5 0l-6 6m3 12c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 014.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 00-.38 1.21 12.035 12.035 0 007.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 011.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 01-2.25 2.25h-2.25z" />
-                      </svg>
-                    </div>
+<!--                    <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">-->
+<!--                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">-->
+<!--                        <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 3.75v4.5m0-4.5h-4.5m4.5 0l-6 6m3 12c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 014.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 00-.38 1.21 12.035 12.035 0 007.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 011.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 01-2.25 2.25h-2.25z" />-->
+<!--                      </svg>-->
+<!--                    </div>-->
+
                   </div>
                 </div>
 
                 <div class="relative">
                   <div class="relative">
                     <input
-                        type="text"
+                        type="email"
                         name="search"
                         class="is-input-ico peer"
                         placeholder=" "
                         autocomplete="off"
-                        v-model="email"
+                        v-model="userEmail"
                     />
                     <label class="is-input-ico-label">Email</label>
                     <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 9v.906a2.25 2.25 0 01-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 001.183 1.981l6.478 3.488m8.839 2.51l-4.66-2.51m0 0l-1.023-.55a2.25 2.25 0 00-2.134 0l-1.022.55m0 0l-4.661 2.51m16.5 1.615a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V8.844a2.25 2.25 0 011.183-1.98l7.5-4.04a2.25 2.25 0 012.134 0l7.5 4.04a2.25 2.25 0 011.183 1.98V19.5z" />
                       </svg>
+                    </div>
+
+                    <div v-if="$v.userEmail.$error">
+                      <span v-if="$v.userEmail.email.$message">El correo electrónico es requerido</span>
+                      <span v-if="$v.userEmail.email.$message">El correo electrónico no es válido</span>
                     </div>
                   </div>
                 </div>
@@ -260,11 +272,14 @@
 
 
 
+
+
               </div>
 
               <div class="grid grid-cols-1 mt-4">
-                <button type="button" class="btn-primary">Create My Trip Now</button>
+                <button type="submit" class="btn-primary">Create My Trip Now</button>
               </div>
+              </form>
             </div>
           </div>
         </div>
@@ -274,11 +289,16 @@
 
 </template>
 
-<script lang="ts" setup name="InquireHome">
+<script lang="ts" setup>
 
 import {usePackageStore} from "~/stores/packages";
-import CheckboxDestination from "~/components/form/checkboxDestination.vue";
+import { useVuelidate } from '@vuelidate/core';
+import { required, email } from '@vuelidate/validators';
+import {useIpStore} from "~/stores/ip";
+
+
 const packageStore = usePackageStore()
+const ipStore = useIpStore()
 
 const showModalProcess = ref(false)
 const showModalInquire = ref(false)
@@ -289,19 +309,44 @@ const travelDate = ref()
 const traveller = ref()
 const hotel = ref([])
 const destination = ref([])
-const fullName = ref()
-const phone = ref()
-const email = ref()
-const comment = ref()
+
+const fullName = ref('')
+const phone = ref('')
+const userEmail = ref('')
+const comment = ref('')
 
 const dropdownFirst = ref(null);
 const shouldOpenUpwardsFirst = ref(false);
 
 const listDestination = ref([])
 
+const geoIp = ref()
+
+
+// VALIDACION
+const rules = {
+  fullName: { required },
+  phone: { required },
+  userEmail: { required, email },
+  comment: { required },
+};
+
+const $v = useVuelidate(rules, { fullName, phone, userEmail, comment});
+
+const handleSubmit = () => {
+  $v.value.$validate();
+  if ($v.value.$invalid) {
+    // manejar errores
+    console.log('Formulario no válido');
+  } else {
+    // manejar envío
+    console.log('Formulario válido');
+  }
+};
+
+
 const getPais = async () => {
   const res = await packageStore.getPais()
-
   listDestination.value = res
   // if (res.token) {
   //   policyStore['tokenLogin'] = res.token
@@ -309,17 +354,19 @@ const getPais = async () => {
   // }
 }
 
-
-function selectDestination (val:any) {
-  destination.value[0] = val
-  // viewPopover.value = 0
+const getIp = async () => {
+  const res = await ipStore.getIp()
+  geoIp.value = res
+  // if (res.token) {
+  //   policyStore['tokenLogin'] = res.token
+  //   loadingUser.value = false
+  // }
 }
 
 
 const onClickSomething = () => {
   showModalProcess.value = false
 }
-
 
 const toggle = (dropdown:any) => {
 
@@ -332,7 +379,7 @@ const toggle = (dropdown:any) => {
   self.timer = setTimeout(function() {
     checkDropdownPosition(dropdown);
 
-  }, 100)
+  }, 50)
 
 }
 
@@ -342,7 +389,7 @@ const formatter = ref({
 })
 
 
-const checkDropdownPosition = (dropdown) => {
+const checkDropdownPosition = (dropdown:any) => {
   const dropdownElement = dropdown === 1 ? dropdownFirst.value : null;
 
   if (!dropdownElement) return;
@@ -354,34 +401,23 @@ const checkDropdownPosition = (dropdown) => {
     shouldOpenUpwardsFirst.value = rect.bottom > windowHeight;
   }
 
-
-
-
 };
 
-
-
-const handleClickOutside = (event) => {
+const handleClickOutside = (event:any) => {
   if (dropdownFirst.value && !dropdownFirst.value.contains(event.target)) {
     viewPopover.value = 0
   }
 }
 
-
-
-const shouldOpenUpwards = (dropdown) => {
+const shouldOpenUpwards = (dropdown:any) => {
   return dropdown === 'first' ? shouldOpenUpwardsFirst.value : false;
 };
 
-const shouldOpenDownwards = (dropdown) => {
+const shouldOpenDownwards = (dropdown:any) => {
   return !shouldOpenUpwards(dropdown);
 };
 
-// const selectedCountries = ref({})
-//
-// const updateCountrySelection = (id:any, value:any) => {
-//   selectedCountries.value[id] = value
-// }
+
 const windowHeight = ref(null);
 
 const updateWindowHeight = () => {
@@ -390,7 +426,11 @@ const updateWindowHeight = () => {
   }
 };
 
+
+const phoneInputRef = ref(null);
+let phoneInputInstance: any;
 onMounted(async () => {
+  await getIp()
   document.addEventListener('click', handleClickOutside);
   await getPais()
   watchEffect(() => {
@@ -403,8 +443,38 @@ onMounted(async () => {
     window.addEventListener('resize', updateWindowHeight);
   }
 
-})
+  if (process.client) {
+    // @ts-ignore
+    import('intl-tel-input/build/js/intlTelInput.min.js').then((module) => {
+      const intlTelInput = module.default;
+      if (phoneInputRef.value) {
 
+          // if (res.token) {
+          //   policyStore['tokenLogin'] = res.token
+          //   loadingUser.value = false
+          // }
+
+        intlTelInput(phoneInputRef.value, {
+          initialCountry: "auto",
+          // @ts-ignore
+         geoIpLookup: function(callback) {
+          fetch("https://ipapi.co/json")
+              .then(function(res) { return res.json(); })
+              .then(function(data) { callback(data.country_code); })
+              .catch(function() { callback("us"); });
+          }
+        });
+      }
+    });
+  }
+
+})
+onUnmounted(() => {
+  if (phoneInputInstance && typeof phoneInputInstance.destroy === 'function') {
+    // Limpieza, si es necesario
+    phoneInputInstance.destroy();
+  }
+});
 onBeforeUnmount(() => {
   document.removeEventListener('click', handleClickOutside);
   if (typeof window !== 'undefined') {
@@ -413,3 +483,6 @@ onBeforeUnmount(() => {
 })
 
 </script>
+<style>
+@import 'intl-tel-input/build/css/intlTelInput.css';
+</style>
