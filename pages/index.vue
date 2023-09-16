@@ -8,7 +8,7 @@
 
       </div>
       <div class="absolute inset-x-0 bottom-0 text-center">
-        <h2 class="text-white text-4xl drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)]">LET’S <span class="text-primary">GO</span> <span class="text-secondary">TOGETHER</span> TO</h2>
+        <h2 class="text-white text-xl md:text-4xl drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)]">LET’S <span class="text-primary">GO</span> <span class="text-secondary">TOGETHER</span> TO</h2>
 
         <InquireHome></InquireHome>
 
@@ -60,7 +60,7 @@
 
     <section class="my-12 container">
       <div class="w-10/12 mx-auto">
-        <div class="grid grid-cols-2 justify-center gap-24">
+        <div class="grid md:grid-cols-2 justify-center gap-6 md:gap-24">
           <div class="">
             <div class="columns-2 gap-3 space-y-4 floa">
               <img src="/images/home/operator1.png" alt="">
@@ -72,16 +72,21 @@
 
           <div>
             <h2 class="text-3xl font-bold">LATAM Travel Operator</h2>
-            <p class="my-6">Travel fills our hearts and souls, and what <br> better way to do it than with a tailor-made <br> program created by one of LATAM's best operators?
+            <p class="my-6 md:hidden">Travel fills our hearts and souls, and what better way to do it than with a tailor-made program created by one of LATAM's best operators?
+              Our family of travel specialists has the goal of keeping our organization positioned among the best operators in LATAM,
+              <br>providing all the amenities that all our travelers need.</p>
+
+            <p class="my-6 hidden md:block">Travel fills our hearts and souls, and what <br> better way to do it than with a tailor-made <br> program created by one of LATAM's best operators?
               <br> Our family of travel specialists <br> has the goal of keeping our organization <br> positioned among the best operators in LATAM,
               <br>providing all the amenities that all our travelers need.</p>
-            <button type="button" class="btn-primary">Create My Trip Now</button>
+
+            <button type="button" class="btn-primary" @click="packageStore.showModalInquireHome = true">Create My Trip Now</button>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="py-12 bg-gray-100">
+    <section class="md:py-12 pb-12 bg-gray-100">
       <carousel-h></carousel-h>
     </section>
 
@@ -92,7 +97,7 @@
     <section class="py-12 bg-gray-100">
       <div class="container">
         <h2 class="text-3xl font-bold text-center">Reviews and Testimonials</h2>
-        <div class="columns-4 gap-6 space-y-6 my-12">
+        <div class="columns-4 gap-6 space-y-6 my-12 hidden md:block">
           <div class="relative rounded-2xl">
               <div class="relative">
                 <img src="/images/testimonials/testimonial1.png" alt="" class="w-full object-center">
@@ -185,16 +190,25 @@
             </div>
           </div>
         </div>
-        <div class="flex gap-2 items-center justify-center">
+
+        <div class="md:hidden my-12">
+
+          <testimonials></testimonials>
+
+        </div>
+        <div class="flex  gap-2 items-center justify-center">
           <p>Happy Guests are the Best Rewarc</p>
           <img src="/images/logos/tripadvisor.png" alt="" class="w-32">
           <img src="/images/logos/trustpilot.png" alt="" class="w-20">
         </div>
       </div>
+
+
     </section>
 
+
     <section class="container py-16">
-      <div class="grid grid-cols-3 gap-6">
+      <div class="grid md:grid-cols-3 gap-6">
         <div class="rounded-xl relative bg-gray-100 px-4 py-8 border gap-12">
           <div class="grid grid-cols-12 items-center">
             <img src="/icons/shield.svg" alt="" class="absolute left-0 top-0 ml-3 -mt-6">
@@ -256,7 +270,9 @@
 <script lang="ts" setup>
 import InquireHome from "~/components/form/InquireHome.vue";
 import Destinations from "~/components/sections/destinations.vue";
-
+import Testimonials from "~/components/sections/testimonials.vue";
+import {usePackageStore} from "~/stores/packages";
+const packageStore = usePackageStore()
 
 // // Estados del primer dropdown
 // const showFirst = ref(false);

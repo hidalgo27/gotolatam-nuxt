@@ -51,3 +51,15 @@ gsl-default__indicator, gsc-indicator{
     left: 50%;
     transform: translate(-50%, -50%);
 }
+/*.iti__flag{*/
+/*    background-image: "images/flags.png" !important;*/
+/*    background: red;*/
+/*}*/
+
+.iti__flag {
+    background-image: url("images/flags/flags.png") !important;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .iti__flag {background-image: url("images/flags/flags@2x.png");}
+}

@@ -1,7 +1,7 @@
 <template>
   <div class="container flex justify-between py-6 items-center">
     <div class="">
-      <nuxt-link to="/"><img src="/images/logos/logo-gotolatam.svg" width="240"></nuxt-link>
+      <nuxt-link to="/"><img src="/images/logos/logo-gotolatam.svg" class="w-[180px] md:w-[240px]"></nuxt-link>
     </div>
     <div class="">
       <nav class="gap-6 hidden md:flex">
@@ -13,11 +13,14 @@
       </nav>
     </div>
     <div class="">
-      <button type="button" class="btn-secondary">Contact</button>
+      <button type="button" class="btn-secondary" @click="packageStore.showModalInquireGlobal = !packageStore.showModalInquireGlobal">Inquire Now</button>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup name="nav">
+import {usePackageStore} from "~/stores/packages";
 
+const packageStore = usePackageStore()
+packageStore.showModalInquireGlobal = false
 </script>

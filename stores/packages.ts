@@ -3,6 +3,13 @@ import {defineStore} from "pinia";
 export const usePackageStore = defineStore('PackageStore', () => {
 	const config = useRuntimeConfig()
 
+	const showModalInquireHome = ref(false)
+	const showModalInquireGlobal = ref(false)
+
+	const travelDate = ref()
+	const destination = ref([])
+
+
 	const getPackage = async () => {
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/json');
@@ -174,7 +181,33 @@ export const usePackageStore = defineStore('PackageStore', () => {
 			}
 		})
 	}
+
+	const getInquire = async (obj:any) => {
+		let headers = new Headers();
+		headers.append('Content-Type', 'application/json');
+
+		return new Promise(async (resolve, reject) => {
+			try {
+				const res = await fetch(config.public.apiBase + "/formulario-diseno/", {
+					method: 'POST',
+					headers: headers,
+					body: JSON.stringify(obj)
+				})
+				const data = await res.json()
+				if (data) {
+					resolve(data)
+				}else {
+					reject(data)
+				}
+			} catch (error) {
+				reject(error)
+			}
+		})
+	}
 	return {
+		showModalInquireHome,
+		travelDate,
+		destination,
 		getPackage,
 		getItinerary,
 		getDestination,
@@ -182,6 +215,8 @@ export const usePackageStore = defineStore('PackageStore', () => {
 		getPais,
 		getCountry,
 		getPackageTop,
-		getPackageOffers
+		getPackageOffers,
+		getInquire,
+		showModalInquireGlobal
 	}
 },{persist: true})
