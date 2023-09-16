@@ -3,7 +3,7 @@
   <template v-for="packages in listPackages">
   <header class="h-[60vh] relative">
     <img src="/images/banners/banner-lg.png" alt="" class="object-cover w-screen h-full">
-    <div class="absolute inset-x-0 bottom-0 text-center">
+    <div class="absolute inset-x-0 bottom-0 text-center hidden md:block">
       <h1 class="mb-24 font-bold text-6xl text-white">
         {{packages.titulo}}
       </h1>
@@ -12,35 +12,35 @@
 
 
   <section class="bg-slate-100 py-8">
-    <div class="container grid grid-cols-12 gap-12 items-center">
-      <div class="col-span-9">
-        <div class="grid grid-cols-3">
-          <div class="">
+    <div class="container grid md:grid-cols-12 gap-12 items-center">
+      <div class="md:col-span-9">
+        <div class="grid grid-cols-12 md:grid-cols-3">
+          <div class="col-span-6 md:col-span-1">
             <h3 class="text-gray-400 text-xs flex gap-1 font-semibold mb-2 items-center"><img src="/icons/map.svg" alt="" class="opacity-70"> TRIP</h3>
-            <h2 class="text-2xl font-semibold">{{packages.titulo}}</h2>
+            <h2 class="md:text-2xl font-semibold">{{packages.titulo}}</h2>
           </div>
-          <div class="">
+          <div class="col-span-3 md:col-span-1">
             <h3 class="text-gray-400 text-xs flex gap-1 font-semibold mb-2 items-center"><img src="/icons/map.svg" alt="" class="opacity-70"> DAYS</h3>
-            <h2 class="text-2xl font-semibold">{{ packages.duracion }}D/{{ packages.duracion - 1 }}N</h2>
+            <h2 class="md:text-2xl font-semibold">{{ packages.duracion }}D/{{ packages.duracion - 1 }}N</h2>
           </div>
-          <div class="">
+          <div class="col-span-3 md:col-span-1">
             <h3 class="text-gray-400 text-xs flex gap-1 font-semibold mb-2 items-center"><img src="/icons/map.svg" alt="" class="opacity-70"> FROM</h3>
-            <h2 class="text-2xl font-semibold flex items-center gap-2" v-if="getThreeStarPrice(packages.precio_paquetes) > 0">
+            <h2 class="md:text-2xl font-semibold flex items-center gap-2" v-if="getThreeStarPrice(packages.precio_paquetes) > 0">
               ${{ getThreeStarPrice(packages.precio_paquetes) }}
               <span class="text-[8px] leading-3">PER <br> PERSON</span></h2>
-            <h2 class="text-2xl font-semibold flex items-center gap-2" v-else>
+            <h2 class="md:text-2xl font-semibold flex items-center gap-2" v-else>
               INQUIRE</h2>
           </div>
         </div>
       </div>
-      <div class="col-span-3">
+      <div class="md:col-span-3 hidden md:flex">
         <button type="btn" class="btn-primary block w-full">Get a Quote</button>
       </div>
     </div>
   </section>
 
   <section class="container">
-    <div class="flex gap-3 my-12">
+    <div class="flex gap-3 my-12 overflow-x-scroll focus:touch-pan-x">
       <button type="button" class="px-5 text-sm py-2 bg-[#D6DD85] text-primary font-medium rounded-full">Review</button>
       <button type="button" class="px-5 text-sm py-2 bg-slate-100 text-gray-800 font-medium rounded-full">Itinerary</button>
       <button type="button" class="px-5 text-sm py-2 bg-slate-100 text-gray-800 font-medium rounded-full">Included</button>
@@ -51,8 +51,8 @@
   </section>
 
   <section class="">
-    <div class="container grid grid-cols-12 gap-12">
-      <div class="col-span-9">
+    <div class="container grid md:grid-cols-12 gap-12">
+      <div class="md:col-span-9">
 <!--        <img src="/images/banners/map.png" alt="" class="rounded-2xl w-full">-->
 
 
@@ -60,7 +60,7 @@
 <!--            <img :src="destination.imagen" alt="" class="w-full aspect-video rounded-xl shadow-xl">-->
 
 <!--          </div>-->
-        <div class="grid grid-cols-3 gap-6">
+        <div class="grid md:grid-cols-3 gap-6">
           <div v-for="(pais, index, array) in uniqueDestinos = paisesUnicos(packages.paquetes_destinos)" :key="pais.id" class="">
 
               <div class="relative">
@@ -121,7 +121,8 @@
 
         <article>
           <h2 class="text-2xl font-bold mb-8">Overview</h2>
-          {{packages.descripcion}}
+          <div v-html="packages.descripcion">
+          </div>
         </article>
 
         <article class="my-12">
@@ -384,7 +385,7 @@
 
 
       </div>
-      <div class="col-span-3">
+      <div class="md:col-span-3">
         <div class="bg-[#eef3d3] p-6 rounded-2xl sticky top-10">
           <img src="/images/home/operator1.png" alt="" class="mx-auto -mt-16 rounded-full h-24 w-24 object-cover  border border-primary">
           <div class="p-6 rounded-2xl bg-white my-4">
