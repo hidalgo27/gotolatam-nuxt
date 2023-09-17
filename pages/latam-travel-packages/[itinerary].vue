@@ -1,15 +1,24 @@
 <template>
 
   <template v-for="packages in listPackages">
-  <header class="h-[60vh] relative">
-    <img src="/images/banners/banner-lg.png" alt="" class="object-cover w-screen h-full">
-    <div class="absolute inset-x-0 bottom-0 text-center hidden md:block">
-      <h1 class="mb-24 font-bold text-6xl text-white">
-        {{packages.titulo}}
-      </h1>
-    </div>
-  </header>
+<!--  <header class="h-[75vh] relative">-->
+<!--    <img src="/images/banners/banner-lg.png" alt="" class="object-cover w-screen h-full">-->
+<!--    <div class="absolute inset-x-0 bottom-0 text-center hidden md:block">-->
+<!--      <h1 class="mb-24 font-bold text-6xl text-white">-->
+<!--        {{packages.titulo}}-->
+<!--      </h1>-->
+<!--    </div>-->
+<!--  </header>-->
 
+    <div class="relative">
+      <div class="h-[75vh] relative overflow-hidden vimeo-wrapper">
+        <iframe src="https://player.vimeo.com/video/772468390?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1" frameborder="0" allow="autoplay; fullscreen" class=""></iframe>
+      </div>
+      <div class="absolute inset-x-0 bottom-0 text-center">
+        <h1 class="text-white text-xl md:text-4xl drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)] mb-24">{{packages.titulo}}</h1>
+
+      </div>
+    </div>
 
   <section class="bg-slate-100 py-8">
     <div class="container grid md:grid-cols-12 gap-12 items-center">
@@ -34,19 +43,19 @@
         </div>
       </div>
       <div class="md:col-span-3 hidden md:flex">
-        <button type="btn" class="btn-primary block w-full">Get a Quote</button>
+        <button type="btn" class="btn-primary block w-full" @click="packageStore.showModalItinerary = !packageStore.showModalItinerary">Get a Quote</button>
       </div>
     </div>
   </section>
 
   <section class="container">
     <div class="flex gap-3 my-12 overflow-x-scroll focus:touch-pan-x">
-      <button type="button" class="px-5 text-sm py-2 bg-[#D6DD85] text-primary font-medium rounded-full">Review</button>
-      <button type="button" class="px-5 text-sm py-2 bg-slate-100 text-gray-800 font-medium rounded-full">Itinerary</button>
-      <button type="button" class="px-5 text-sm py-2 bg-slate-100 text-gray-800 font-medium rounded-full">Included</button>
-      <button type="button" class="px-5 text-sm py-2 bg-slate-100 text-gray-800 font-medium rounded-full">Hotels</button>
-      <button type="button" class="px-5 text-sm py-2 bg-slate-100 text-gray-800 font-medium rounded-full">Hotels</button>
-      <button type="button" class="px-5 text-sm py-2 bg-slate-100 text-gray-800 font-medium rounded-full">Prices</button>
+      <a href="#review"  class="px-5 text-sm py-2 bg-slate-100 text-gray-800 font-medium rounded-full focus:bg-[#D6DD85] focus:text-primary">Review</a>
+      <a href="#itinerary" class="px-5 text-sm py-2 bg-slate-100 text-gray-800 font-medium rounded-full focus:bg-[#D6DD85] focus:text-primary" >Itinerary</a>
+      <a href="#included" class="px-5 text-sm py-2 bg-slate-100 text-gray-800 font-medium rounded-full focus:bg-[#D6DD85] focus:text-primary">Included</a>
+<!--      <a href="#hotels" class="px-5 text-sm py-2 bg-slate-100 text-gray-800 font-medium rounded-full focus:bg-[#D6DD85] focus:text-primary">Hotels</a>-->
+<!--      <a href="included" class="px-5 text-sm py-2 bg-slate-100 text-gray-800 font-medium rounded-full focus:bg-[#D6DD85] focus:text-primary">Hotels</a>-->
+      <a href="#prices" class="px-5 text-sm py-2 bg-slate-100 text-gray-800 font-medium rounded-full focus:bg-[#D6DD85] focus:text-primary">Prices</a>
     </div>
   </section>
 
@@ -125,7 +134,7 @@
           </div>
         </article>
 
-        <article class="my-12">
+        <article class="my-12" id="itinerary">
           <h2 class="text-2xl font-bold mb-8">Itinerary</h2>
           <div class="">
 
@@ -157,7 +166,7 @@
                 View More
               </button>
 
-              <button @click="contract(packages.id)" v-if="showCount[packages.id] > 4" class="px-4 py-2 w-full mt-2 rounded text-red-500 hover:text-primary">
+              <button @click="contract(packages.id)" v-if="showCount[packages.id] > 4" class="px-4 py-2 w-full mt-2 rounded text-gray-400 hover:text-primary">
                 View Less
               </button>
 
@@ -190,42 +199,43 @@
           </div>
         </div>-->
 
-        <article>
+        <article id="included">
           <h2 class="text-2xl font-bold mb-8">Our Rates includes</h2>
-          <div class="grid grid-cols-4 gap-6">
-            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">
-              <img src="/icons/star.svg" alt="" class="mb-3 w-6">
-              <p class="text-sm">Private transport Airport - Hotel</p>
-            </div>
-            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">
-              <img src="/icons/star.svg" alt="" class="mb-3 w-6">
-              <p class="text-sm">Profesional <br> Guides</p>
-            </div>
-            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">
-              <img src="/icons/star.svg" alt="" class="mb-3 w-6">
-              <p class="text-sm">Train Ollantaytambo - Machupicchu</p>
-            </div>
-            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">
-              <img src="/icons/star.svg" alt="" class="mb-3 w-6">
-              <p class="text-sm">Helpline 24 hours a day, 7 days a week</p>
-            </div>
-            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">
-              <img src="/icons/star.svg" alt="" class="mb-3 w-6">
-              <p class="text-sm">All The Entrances & Tours</p>
-            </div>
-            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">
-              <img src="/icons/star.svg" alt="" class="mb-3 w-6">
-              <p class="text-sm">41 Nights With 3 Stars hotel</p>
-            </div>
-            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">
-              <img src="/icons/star.svg" alt="" class="mb-3 w-6">
-              <p class="text-sm">Meals As Per Program</p>
-            </div>
-            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">
-              <img src="/icons/star.svg" alt="" class="mb-3 w-6">
-              <p class="text-sm">Train Service</p>
-            </div>
-          </div>
+          <div v-html="packages.incluye"></div>
+<!--          <div class="grid grid-cols-4 gap-6">-->
+<!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+<!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+<!--              <p class="text-sm">Private transport Airport - Hotel</p>-->
+<!--            </div>-->
+<!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+<!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+<!--              <p class="text-sm">Profesional <br> Guides</p>-->
+<!--            </div>-->
+<!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+<!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+<!--              <p class="text-sm">Train Ollantaytambo - Machupicchu</p>-->
+<!--            </div>-->
+<!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+<!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+<!--              <p class="text-sm">Helpline 24 hours a day, 7 days a week</p>-->
+<!--            </div>-->
+<!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+<!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+<!--              <p class="text-sm">All The Entrances & Tours</p>-->
+<!--            </div>-->
+<!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+<!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+<!--              <p class="text-sm">41 Nights With 3 Stars hotel</p>-->
+<!--            </div>-->
+<!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+<!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+<!--              <p class="text-sm">Meals As Per Program</p>-->
+<!--            </div>-->
+<!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+<!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+<!--              <p class="text-sm">Train Service</p>-->
+<!--            </div>-->
+<!--          </div>-->
         </article>
 
         <article class="my-12">
@@ -239,7 +249,7 @@
           </ul>-->
         </article>
 
-        <article class="my-12">
+        <article class="my-12 hidden">
           <h2 class="text-2xl font-bold mb-8">Hotels considered</h2>
           <div class="flex justify-between">
             <div class="flex items-center gap-2">
@@ -248,7 +258,7 @@
             <div class="flex gap-2 items-center">
               Category:
               <div class="relative col-span-2">
-                <input type="text" class="is-input-ico rounded-right-0 border-right-0 peer" placeholder=" " @focus="openPopover(1)" @blur="closePopover(1)" v-model="destination">
+                <input type="text" class="is-input-ico rounded-right-0 border-right-0 peer" placeholder=" " @focus="openPopover(1)" @blur="closePopover(1)">
                 <label class="is-input-ico-label">Choose Category</label>
                 <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
                   <img src="/icons/search.svg" alt="">
@@ -291,7 +301,7 @@
           </div>
         </article>
 
-        <article>
+        <article class="hidden" id="prices">
           <div class="grid grid-cols-12 bg-gray-800 rounded-t-xl py-3 text-white divide-x items-center">
             <div class="col-span-2 text-center pl-6">
                 Nights
@@ -338,31 +348,38 @@
             View More
           </button>
 
-          <button @click="loadLess" v-if="canLoadLess" class="px-4 py-2 w-full mt-2 rounded text-red-500 hover:text-primary">
+          <button @click="loadLess" v-if="canLoadLess" class="px-4 py-2 w-full mt-2 rounded text-gray-400 hover:text-primary">
             View Less
           </button>
 
         </article>
 
-        <article class="my-12">
+        <article class="my-12" id="prices">
           <h2 class="text-2xl font-bold mb-8">Dates & availability</h2>
-          <div class="p-4 border-l-8 rounded-l-lg bg-slate-100 grid grid-cols-3 mb-4 items-center" :class="randomColorBorder[index % randomColorBorder.length]" v-for="(price, index) in packages.precio_paquetes">
+          <div v-for="(price, index) in packages.precio_paquetes">
+          <div class="p-4 border-l-8 rounded-l-lg bg-slate-100 grid grid-cols-3 mb-4 items-center" :class="randomColorBorder[index % randomColorBorder.length]" v-if="price.estrellas > 2">
             <div class="">
-              <div class="text-lg font-bold">Tour class</div>
+              <div class="text-lg font-bold">Price {{price.estrellas}} Stars</div>
               <div class="flex items-center gap-2">
                 <img src="/icons/calendar.svg" alt="">
-                <span class="font-bold text-3xl">${{ price.precio_t }}</span>
+                <span class="font-bold text-3xl" v-if="price.precio_t > 0">${{ price.precio_t }}</span>
+                <span class=" text-red-500 italic text-xl" v-else>Inquire</span>
               </div>
             </div>
             <div class="">
-              <p class="font-bold mb-2">Per adult in a twin share room {{price.estrellas}}</p>
-              <p class="text-sm text-slate-400">Want your own room? <br> From an extra $980</p>
+              <p class="font-bold mb-2" v-if="price.estrellas == 3">Per adult in a twin share room <span class="italic text-primary">Luxury</span></p>
+              <p class="font-bold mb-2" v-if="price.estrellas == 4">Per adult in a twin share room <span class="italic text-secondary">Superior</span></p>
+              <p class="font-bold mb-2" v-if="price.estrellas == 5">Per adult in a twin share room <span class="italic text-gray-800">Best</span></p>
+              <p class="text-sm text-slate-400">Price per person based on double room</p>
             </div>
             <div class="">
-              <button type="button" class="btn-ternary w-full mb-3">Get a Quote</button>
-              <button type="button" class="btn-ternary-outline w-full">Get a Quote</button>
+<!--              <button type="button" class="btn-secondary w-full mb-3">Get a Quote</button>-->
+              <button type="button" class="btn-primary-outline w-full" v-if="price.estrellas == 3" @click="getQuote(['3'])">Get a Quote</button>
+              <button type="button" class="btn-secondary-outline w-full" v-if="price.estrellas == 4" @click="getQuote(['4'])">Get a Quote</button>
+              <button type="button" class="btn-ternary-outline w-full" v-if="price.estrellas == 5" @click="getQuote(['5'])">Get a Quote</button>
             </div>
           </div>
+      </div>
 
 <!--          <div class="p-4 border-l-8 rounded-l-lg bg-slate-100 border-secondary mt-4 grid grid-cols-3 items-center">
             <div class="">
@@ -398,13 +415,20 @@
       </div>
     </div>
   </section>
+
+    <ModalItinerary></ModalItinerary>
   </template>
 </template>
 
-<script lang="ts" setup name="itinerary">
+<script lang="ts" setup>
+import InquireHome from "~/components/form/InquireHome.vue";
+
+definePageMeta({
+  layout: 'detail',
+})
 
 import {usePackageStore} from "~/stores/packages";
-import ur from "vue-tailwind-datepicker/dist/locale/ur";
+
 
 const packageStore = usePackageStore()
 
@@ -419,8 +443,13 @@ const viewPopover = ref()// índice del ítem actualmente abierto
 
 const randomColorClasses = ['bg-primary', 'bg-secondary', 'bg-gray-800', 'bg-yellow-500', 'bg-indigo-500'];
 
-const randomColorBorder = ['border-primary', 'border-secondary', 'border-gray-800', 'border-yellow-500', 'border-indigo-500'];
+const randomColorBorder = ['border-primary','border-primary', 'border-secondary', 'border-gray-800', 'border-yellow-500', 'border-indigo-500'];
 
+
+const getQuote = (item:any) => {
+  packageStore.showModalItinerary =  true
+  packageStore.hotelDetail = item
+}
 
 function openPopover(val:number){
   if (val){
@@ -479,6 +508,9 @@ const canLoadMore = computed(() => items.value.length > displayedItems.value.len
 const getPackageItinerary = async (url:any) => {
   const res:any = await packageStore.getItinerary(url)
   listPackages.value = res
+
+  packageStore.titlePackages = res[0].titulo
+
   // if (res.token) {
   //   policyStore['tokenLogin'] = res.token
   //   loadingUser.value = false
@@ -553,6 +585,8 @@ const contract = (id:any) => {
 
 
 onMounted(async () => {
+
+  // console.log(route)
   await getPackageItinerary(route.params.itinerary)
   listPackages.value.forEach(p => {
     // @ts-ignore

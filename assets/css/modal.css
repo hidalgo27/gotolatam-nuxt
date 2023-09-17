@@ -1,6 +1,6 @@
 .modal {
   /*@apply absolute inset-x-0 h-auto bottom-0 md:fixed overflow-auto md:inset-0 m-auto p-6 md:rounded-2xl rounded-t-lg shadow-lg bg-white z-50 transform-none md:w-fit md:h-4/6 md:w-1/2*/
-  @apply absolute inset-x-0 top-0 md:fixed md:inset-0 m-auto p-6 md:rounded-2xl rounded-t-lg shadow-lg bg-white z-50 transform-none md:h-fit md:w-fit  md:w-1/2
+  @apply fixed inset-x-0 bottom-0 h-[90vh] md:fixed md:inset-0 m-auto p-6 md:rounded-2xl rounded-t-lg shadow-lg bg-white z-50 transform-none 2xl:h-fit md:w-fit  md:w-1/2
 }
 .modal-right-nav{
   @apply fixed bg-white h-full w-3/4 z-50 inset-y-0 right-0 px-6 pt-36 md:rounded-l-2xl rounded-l-lg shadow-lg !important

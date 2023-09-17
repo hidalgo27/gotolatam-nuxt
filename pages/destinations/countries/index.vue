@@ -1,5 +1,5 @@
 <template>
-  <header class="h-[60vh] relative">
+  <header class="h-[75vh] relative">
     <img src="https://gotolatam.com/images/400/1700/machu-picchu-full-day.jpg" alt="" class="object-cover w-screen h-full">
         <div class="absolute inset-x-0 bottom-0 text-center">
           <h1 class="mb-24 font-bold text-6xl text-white">
@@ -20,7 +20,7 @@
         <p>The countries of South America hide the most beautiful destinations that every traveler wishes to visit. You will have the chance to learn about the cultures of each LATAM country, experience in person the great geographic diversity of each destination, and visit both the Wonders of the World and the Natural Wonders that are on this continent. Get ready for your trip to this continent full of dream destinations.</p>
       </div>
     </div>
-    <div class="container grid grid-cols-4 gap-12">
+    <div class="container grid md:grid-cols-3 gap-12">
       <a :href="'/destinations/countries/'+country.url" class="p-3 bg-white w-full rounded-xl my-2 shadow-md cursor-pointer" v-for="country in listDestination">
         <div class="relative">
           <img :src="country.imagen_s" alt="" class="rounded-lg">

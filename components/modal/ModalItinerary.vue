@@ -3,44 +3,23 @@
   <section class="modal-box">
     <transition name="fade" appear>
       <div class="modal-overlay"
-           v-show="packageStore.showModalInquireGlobal"
-           @click="packageStore.showModalInquireGlobal = false"></div>
+           v-show="packageStore.showModalItinerary"
+           @click="packageStore.showModalItinerary = false"></div>
     </transition>
     <transition name="pop" appear>
       <div class="modal overflow-y-scroll"
            role="dialog"
-           v-show="packageStore.showModalInquireGlobal"
+           v-show="packageStore.showModalItinerary"
       >
         <div class="w-full">
           <div class="grid grid-cols-1">
             <div class="text-left">
-              <h2 class="text-lg text-tertiary omnes-semibold mb-5">What countries do you want to visit?</h2>
-              <div class="flex justify-start gap-3 my-6 overflow-x-scroll focus:touch-pan-x">
+              <h2 class="text-lg text-tertiary mb-5">Get a quote on this travel package:</h2>
 
-                <div class="flex" v-for="destino in listDestination">
-                  <input type="checkbox" :id="destino.id" class="peer hidden" :value="destino.url" v-model="packageStore.destination" />
-                  <label :for="destino.id" class="select-none cursor-pointer bg-gray-100 text-gray-800 rounded-full px-5 py-2 transition-colors duration-200 ease-in-out peer-checked:bg-[#D6DD85] peer-checked:text-primary"> {{ destino.nombre }} </label>
-                </div>
+              <h2 class="text-xl text-tertiary mb-5 text-center px-5 py-2 border border-gray-300 text-primary font-semibold rounded-lg">
+                {{ packageStore.titlePackages }}</h2>
 
-
-                <!--                <div class="p-8">-->
-                <!--                  <div-->
-                <!--                      v-for="country in listDestination"-->
-                <!--                      :key="country.id"-->
-                <!--                  >-->
-                <!--                    <checkbox-destination-->
-                <!--                        :label="country.nombre"-->
-                <!--                        :modelValue="selectedCountries[country.id]"-->
-                <!--                        @update:modelValue="updateCountrySelection(country.id, $event)"-->
-                <!--                    />-->
-                <!--                  </div>-->
-
-                <!--                  {{selectedCountries}}-->
-                <!--                </div>-->
-
-              </div>
-              <h3 class="text-xs text-tertiary omnes-semibold">You can choose one or more countries</h3>
-              <h3 class="text-lg text-tertiary omnes-semibold my-5">Number of travelers</h3>
+              <h3 class="text-lg text-tertiary my-5">Number of travelers</h3>
               <div class="flex justify-start gap-3 my-6 overflow-x-scroll focus:touch-pan-x">
 
                 <div class="flex" v-for="n in 10" :key="n">
@@ -54,11 +33,11 @@
                 </div>
 
               </div>
-              <h3 class="text-lg text-tertiary omnes-semibold my-5">Hotel Category</h3>
+              <h3 class="text-lg text-tertiary my-5">Hotel Category</h3>
               <div class="flex justify-start gap-3 my-6 overflow-x-scroll focus:touch-pan-x">
 
                 <div class="flex">
-                  <input type="checkbox" id="hotel_5" class="peer hidden" value="5" v-model="hotel" />
+                  <input type="checkbox" id="hotel_5" class="peer hidden" value="5" v-model="packageStore.hotelDetail" />
                   <label for="hotel_5" class="select-none cursor-pointer px-5 py-2 border border-gray-300 text-gray-400 rounded-lg divide-y divide-gray-400 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary peer-checked:divide-primary  ">
                     <div class="pb-1">
                       <img src="/icons/hotel.svg" alt="">
@@ -75,7 +54,7 @@
                 </div>
 
                 <div class="flex">
-                  <input type="checkbox" id="hotel_4" class="peer hidden" value="4" v-model="hotel" />
+                  <input type="checkbox" id="hotel_4" class="peer hidden" value="4" v-model="packageStore.hotelDetail" />
                   <label for="hotel_4" class="select-none cursor-pointer px-5 py-2 border border-gray-300 text-gray-400 rounded-lg divide-y divide-gray-400 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary peer-checked:divide-primary  ">
                     <div class="pb-1">
                       <img src="/icons/hotel.svg" alt="">
@@ -91,7 +70,7 @@
                 </div>
 
                 <div class="flex">
-                  <input type="checkbox" id="hotel_3" class="peer hidden" value="3" v-model="hotel" />
+                  <input type="checkbox" id="hotel_3" class="peer hidden" value="3" v-model="packageStore.hotelDetail" />
                   <label for="hotel_3" class="select-none cursor-pointer px-5 py-2 border border-gray-300 text-gray-400 rounded-lg divide-y divide-gray-400 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary peer-checked:divide-primary  ">
                     <div class="pb-1">
                       <img src="/icons/hotel.svg" alt="">
@@ -107,7 +86,8 @@
 
               </div>
 
-              <h3 class="text-lg text-tertiary omnes-semibold my-5">Contact information</h3>
+
+              <h3 class="text-lg text-tertiary my-5">Contact information</h3>
 
               <form @submit.prevent="handleSubmit">
                 <div class="grid grid-cols-1 gap-3">
@@ -132,7 +112,7 @@
                     </div>
                   </div>
 
-                  <div class="relative">
+                  <div class="grid grid-cols-2 gap-3">
                     <div class="relative">
                       <input
                           type="text"
@@ -153,6 +133,32 @@
                       <div v-if="$v.phone.$error" class="text-xs text-red-500">El nombre es requerido</div>
 
                     </div>
+
+
+                    <div class="relative">
+                      <VMenu>
+                        <input type="text" class="is-input-ico peer" placeholder=" " v-model="packageStore.travelDate" @focus="showModalProcess = true">
+                        <label class="is-input-ico-label" @click="showModalProcess = true">When</label>
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-2 md:pl-4 pointer-events-none">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                          </svg>
+                        </div>
+                        <template #popper>
+                          <vue-tailwind-datepicker as-single no-input :formatter="formatter" v-model="packageStore.travelDate" @click="onClickSomething()" class="calendar-w"/>
+                        </template>
+                      </VMenu>
+
+                    </div>
+
+<!--                    <div class="relative">-->
+<!--                      <vue-tailwind-datepicker as-single no-input :formatter="formatter" v-model="packageStore.travelDate" @click="onClickSomething()" class="calendar-w"/>-->
+<!--                    </div>-->
+
+
+
+
+
                   </div>
 
                   <div class="relative">
@@ -304,6 +310,17 @@ const geoIp = ref()
 
 const phoneInputRef = ref(null);
 
+const showModalProcess = ref(false)
+
+const formatter = ref({
+  date: 'YYYY/MM/DD',
+  month: 'MMM'
+})
+
+const onClickSomething = () => {
+  showModalProcess.value = false
+}
+
 // VALIDACION
 const rules = {
   fullName: { required },
@@ -327,7 +344,8 @@ const handleSubmit = async () => {
     showLoader.value = true
 
     let obj = {
-      category_d: hotel.value,
+      el_package: packageStore.titlePackages,
+      category_d: packageStore.hotelDetail,
       destino_d: packageStore.destination,
       pasajeros_d: traveller.value,
       // duracion_d: this.duracionSeleccionadosForm,
@@ -354,7 +372,7 @@ const handleSubmit = async () => {
       phone.value = ""
       userEmail.value = ""
       comment.value = ""
-      packageStore.showModalInquireGlobal = false
+      packageStore.showModalItinerary = false
       notify({
         group: "foo",
         title: 'Well done',
@@ -363,7 +381,7 @@ const handleSubmit = async () => {
       }, 4000) // 4s
     }else{
       showLoader.value = false
-      packageStore.showModalInquireGlobal = false
+      packageStore.showModalItinerary = false
       notify({
         group: "foo",
         title: 'Error',

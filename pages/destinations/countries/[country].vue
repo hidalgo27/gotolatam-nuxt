@@ -1,5 +1,5 @@
 <template>
-  <header class="h-[60vh] relative">
+  <header class="h-[75vh] relative">
 
     <img :src="country.imagen" alt="" class="object-cover w-screen h-full" v-for="country in paisess">
     <!--    <div class="absolute inset-x-0 bottom-0 text-center">
@@ -16,18 +16,18 @@
   </sections>-->
 
   <section class="my-12">
-    <div class="container grid grid-cols-12 gap-24">
-      <div class="col-span-3 space-y-3">
+    <div class="container grid md:grid-cols-12 gap-24">
+      <div class="md:col-span-3 space-y-3">
 
         <router-link :to="country.url" class="aside-country block" v-for="country in listPais">
           {{ country.nombre }}</router-link>
 
       </div>
-      <div class="col-span-9 ">
+      <div class="md:col-span-9 ">
 
         <h1 class="text-3xl font-bold uppercase">{{ route.params.country }} Travel Packages</h1>
         <hr class="my-6">
-          <div class="grid grid-cols-3 gap-12">
+          <div class="grid md:grid-cols-2 gap-12">
             <a :href="'/latam-travel-packages/'+packages.url" class="p-3 bg-white w-full rounded-xl shadow-md cursor-pointer" v-for="packages in paquetesPeru" :key="packages.id">
               <div class="relative">
                 <img :src="packages.imagen" alt="" class="rounded-lg w-full">
@@ -64,7 +64,7 @@
         <hr class="my-6">
 
 
-        <div class="grid grid-cols-3 gap-12">
+        <div class="grid md:grid-cols-2 gap-12">
           <a :href="'/latam-travel-packages/'+packages.url" class="p-3 bg-white w-full rounded-xl shadow-md cursor-pointer" v-for="packages in paquetesConPeruYDosPaisesMinimo" :key="packages.id">
             <div class="relative">
               <img :src="packages.imagen" alt="" class="rounded-lg w-full">

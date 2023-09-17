@@ -5,9 +5,17 @@ export const usePackageStore = defineStore('PackageStore', () => {
 
 	const showModalInquireHome = ref(false)
 	const showModalInquireGlobal = ref(false)
+	const showModalItinerary = ref(false)
+	const showModalMenu = ref(false)
 
 	const travelDate = ref()
 	const destination = ref([])
+
+	const hotelDetail = ref([])
+
+	const titlePackages = ref()
+
+	const btnDetail = ref()
 
 
 	const getPackage = async () => {
@@ -208,6 +216,10 @@ export const usePackageStore = defineStore('PackageStore', () => {
 		showModalInquireHome,
 		travelDate,
 		destination,
+		titlePackages,
+		btnDetail,
+		hotelDetail,
+		showModalMenu,
 		getPackage,
 		getItinerary,
 		getDestination,
@@ -217,6 +229,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 		getPackageTop,
 		getPackageOffers,
 		getInquire,
-		showModalInquireGlobal
+		showModalInquireGlobal,
+		showModalItinerary
 	}
 },{persist: true})

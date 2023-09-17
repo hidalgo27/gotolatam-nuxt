@@ -1,5 +1,5 @@
 <template>
-  <header class="h-[60vh] relative">
+  <header class="h-[75vh] relative">
     <img src="https://gotolatam.com/images/banners/country/calafate.jpg" alt="" class="object-cover w-screen h-full">
     <div class="absolute inset-x-0 bottom-0 text-center">
       <h1 class="mb-24 font-bold text-6xl text-white">
@@ -21,13 +21,13 @@
         <p>Every detail of your travel itinerary is planned and executed to perfection by our partners in each South American destination. If you are looking for an activity or destination not listed in our travel packages, do not hesitate to contact us for more information.</p>
       </div>
     </div>
-    <div class="container grid grid-cols-4 gap-12">
+    <div class="container grid md:grid-cols-3 gap-12">
 
       <!-- Aquí puedes poner el contenido de cada slide, por ejemplo: -->
 
-      <a :href="'/latam-travel-packages/'+packages.url" class="mx-3 p-3 bg-white w-full rounded-xl my-2 shadow-md cursor-pointer" v-for="packages in listPackages" :key="packages.id">
+      <a :href="'/latam-travel-packages/'+packages.url" class="p-3 bg-white w-full rounded-xl my-2 shadow-md cursor-pointer" v-for="packages in listPackages" :key="packages.id">
         <div class="relative">
-          <img :src="packages.imagen" alt="" class="rounded-lg">
+          <img :src="packages.imagen" alt="" class="rounded-lg w-full">
           <div class="bg-secondary px-2 py-1 rounded w-auto absolute bottom-0 -mb-2 m-2 text-[9px] font-semibold text-white">PAQUETE</div>
         </div>
         <div class="">

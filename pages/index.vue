@@ -3,9 +3,7 @@
 
     <div class="relative">
       <div class="h-[75vh] relative overflow-hidden vimeo-wrapper">
-<!--        <img src="/images/banners/banner-lg.png" alt="" class="object-cover w-screen h-full">-->
         <iframe src="https://player.vimeo.com/video/772468390?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1" frameborder="0" allow="autoplay; fullscreen" class=""></iframe>
-
       </div>
       <div class="absolute inset-x-0 bottom-0 text-center">
         <h2 class="text-white text-xl md:text-4xl drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)]">LET’S <span class="text-primary">GO</span> <span class="text-secondary">TOGETHER</span> TO</h2>
@@ -80,7 +78,7 @@
               <br> Our family of travel specialists <br> has the goal of keeping our organization <br> positioned among the best operators in LATAM,
               <br>providing all the amenities that all our travelers need.</p>
 
-            <button type="button" class="btn-primary" @click="packageStore.showModalInquireHome = true">Create My Trip Now</button>
+            <button type="button" class="btn-primary" @click="packageStore.showModalInquireGlobal = true">Create My Trip Now</button>
           </div>
         </div>
       </div>
@@ -97,7 +95,7 @@
     <section class="py-12 bg-gray-100">
       <div class="container">
         <h2 class="text-3xl font-bold text-center">Reviews and Testimonials</h2>
-        <div class="columns-4 gap-6 space-y-6 my-12 hidden md:block">
+        <div class="columns-3 gap-6 space-y-6 my-12 hidden md:block">
           <div class="relative rounded-2xl">
               <div class="relative">
                 <img src="/images/testimonials/testimonial1.png" alt="" class="w-full object-center">
