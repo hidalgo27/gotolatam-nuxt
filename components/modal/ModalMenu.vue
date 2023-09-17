@@ -10,6 +10,9 @@
            role="dialog"
            v-show="packageStore.showModalMenu"
       >
+        <div class="mb-3" @click="packageStore.showModalMenu = false">
+          X Cerrar
+        </div>
         <nav class="divide-y">
           <nuxt-link to="/destinations/countries" @click="statusModal" class="flex py-4 gap-2 items-center"><img src="/icons/location.svg"> Destinations</nuxt-link>
           <nuxt-link to="/latam-travel-packages" @click="statusModal" class="flex py-4 gap-2 items-center"><img src="/icons/map.svg"> LATAM Travel Packages</nuxt-link>

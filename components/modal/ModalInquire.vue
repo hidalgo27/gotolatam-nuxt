@@ -11,6 +11,9 @@
            role="dialog"
            v-show="packageStore.showModalInquireGlobal"
       >
+        <div class="mb-3" @click="packageStore.showModalInquireGlobal = false">
+          X Cerrar
+        </div>
         <div class="w-full">
           <div class="grid grid-cols-1">
             <div class="text-left">

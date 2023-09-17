@@ -11,6 +11,9 @@
            role="dialog"
            v-show="packageStore.showModalItinerary"
       >
+        <div class="mb-3" @click="packageStore.showModalItinerary = false">
+          X Cerrar
+        </div>
         <div class="w-full">
           <div class="grid grid-cols-1">
             <div class="text-left">
