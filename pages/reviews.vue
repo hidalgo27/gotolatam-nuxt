@@ -54,7 +54,9 @@
   </section>
 
   <section class="mb-12">
-    <div class="elfsight-app-de637865-6596-4396-8bba-ef0f7b50bc9e"></div>
+    <div class="container">
+      <div class="elfsight-app-de637865-6596-4396-8bba-ef0f7b50bc9e"></div>
+    </div>
   </section>
 
   <section class="py-12 bg-gray-100">
