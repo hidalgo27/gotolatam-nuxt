@@ -53,6 +53,10 @@
     </div>
   </section>
 
+  <section class="mb-12">
+    <div class="elfsight-app-de637865-6596-4396-8bba-ef0f7b50bc9e"></div>
+  </section>
+
   <section class="py-12 bg-gray-100">
     <div class="container">
       <h2 class="text-3xl font-bold text-center">Reviews and Testimonials</h2>
@@ -167,7 +171,20 @@
 
 </template>
 
+
 <script lang="ts" setup>
 
 import Testimonials from "~/components/sections/testimonials.vue";
+
+onMounted(async () => {
+
+  if (process.client) {
+    // @ts-ignore
+    import('https://static.elfsight.com/platform/platform.js').then((module) => {
+
+    });
+  }
+
+})
+
 </script>

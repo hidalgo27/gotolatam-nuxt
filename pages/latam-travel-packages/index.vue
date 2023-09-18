@@ -41,7 +41,7 @@
             </template>
           </div>
           <div class="flex gap-2 mt-3 text-sm">
-            <img src="/icons/map-location.svg" alt=""> Estaring Airpor <span class="text-primary font-semibold">{{ packages.codigo_vuelo }}</span>
+            <img src="/icons/map-location.svg" alt=""> Staring Airpor <span class="text-primary font-semibold">{{ packages.codigo_vuelo }}</span>
           </div>
           <div class="border my-4"></div>
           <div class="flex justify-between text-lg font-semibold">
