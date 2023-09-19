@@ -367,9 +367,9 @@
               </div>
             </div>
             <div class="">
-              <p class="font-bold mb-2" v-if="price.estrellas == 3">Per adult in a twin share room <span class="italic text-primary">Luxury</span></p>
+              <p class="font-bold mb-2" v-if="price.estrellas == 3">Per adult in a twin share room <span class="italic text-primary">Best</span></p>
               <p class="font-bold mb-2" v-if="price.estrellas == 4">Per adult in a twin share room <span class="italic text-secondary">Superior</span></p>
-              <p class="font-bold mb-2" v-if="price.estrellas == 5">Per adult in a twin share room <span class="italic text-gray-800">Best</span></p>
+              <p class="font-bold mb-2" v-if="price.estrellas == 5">Per adult in a twin share room <span class="italic text-gray-800">Luxury</span></p>
               <p class="text-sm text-slate-400">Price per person based on double room</p>
             </div>
             <div class="">
@@ -404,13 +404,19 @@
       </div>
       <div class="md:col-span-3">
         <div class="bg-[#eef3d3] p-6 rounded-2xl sticky top-10">
-          <img src="/images/home/operator1.png" alt="" class="mx-auto -mt-16 rounded-full h-24 w-24 object-cover  border border-primary">
-          <div class="p-6 rounded-2xl bg-white my-4">
-            <h4 class="text-center text-primary font-semibold">¡Hello, I'm Yoa!</h4>
-            <p class="text-sm text-center font-light mt-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad corporis dolorem explicabo modi natus necessitatibus nisi odit reprehenderit similique?</p>
+<!--          <img src="/images/home/operator1.png" alt="" class="mx-auto -mt-16 rounded-full h-24 w-24 object-cover  border border-primary">-->
+          <div class="columns-2 gap-3 space-y-4 floa">
+            <img src="/images/home/operator1.jpg" alt="" class="mt-3 rounded-xl">
+            <img src="/images/home/operator2.jpg" alt="" class="rounded-xl">
+            <img src="/images/home/operator3.jpg" alt="" class="rounded-xl">
+            <img src="/images/home/operator4.jpg" alt="" class="rounded-xl">
           </div>
-          <button type="button" class="rounded-lg py-2 w-full px-6 text-white bg-green-500 hover:bg-opacity-95 duration-300">Write Us</button>
-          <button type="button" class="rounded-lg py-2 w-full px-6 text-primary border border-primary hover:bg-primary hover:text-white duration-300 mt-3">Write Us</button>
+          <div class="p-6 rounded-2xl bg-white my-4">
+<!--            <h4 class="text-center text-primary font-semibold">¡Hello, I'm Yoa!</h4>-->
+            <p class="text-sm text-center font-light mt-3">Travel fills our hearts and souls, and what better way to do it than with a tailor-made program created by one of LATAM's best travel advisors.</p>
+          </div>
+          <button type="button" class="rounded-lg py-2 w-full px-6 text-white bg-green-500 hover:bg-opacity-95 duration-300" @click="packageStore.showModalItinerary = !packageStore.showModalItinerary">Get a Quote</button>
+<!--          <button type="button" class="rounded-lg py-2 w-full px-6 text-primary border border-primary hover:bg-primary hover:text-white duration-300 mt-3">Write Us</button>-->
         </div>
       </div>
     </div>

@@ -61,16 +61,16 @@
         <div class="grid md:grid-cols-2 justify-center gap-6 md:gap-24">
           <div class="">
             <div class="columns-2 gap-3 space-y-4 floa">
-              <img src="/images/home/operator1.png" alt="">
-              <img src="/images/home/operator2.png" alt="">
-              <img src="/images/home/operator3.png" alt="">
-              <img src="/images/home/operator4.png" alt="">
+              <img src="/images/home/operator1.jpg" alt="" class="mt-3 rounded-xl">
+              <img src="/images/home/operator2.jpg" alt="" class="rounded-xl">
+              <img src="/images/home/operator3.jpg" alt="" class="rounded-xl">
+              <img src="/images/home/operator4.jpg" alt="" class="rounded-xl">
             </div>
           </div>
 
           <div>
             <h2 class="text-3xl font-bold">LATAM Travel Operator</h2>
-            <p class="my-6 md:hidden">Travel fills our hearts and souls, and what better way to do it than with a tailor-made program created by one of LATAM's best operators?
+            <p class="my-6 md:hidden">Travel fills our hearts and souls, and what better way to do it than with a tailor-made program created by one of LATAM's best operators
               Our family of travel specialists has the goal of keeping our organization positioned among the best operators in LATAM,
               <br>providing all the amenities that all our travelers need.</p>
 
@@ -235,11 +235,11 @@
           <div class="grid grid-cols-12 items-center">
             <img src="/icons/person.svg" alt="" class="absolute left-0 top-0 ml-3 -mt-6">
             <div class="col-span-8">
-              <h3 class="font-semibold text-sm">Trusted local Perú Travel</h3>
+              <h3 class="font-semibold text-sm">Trusted local South America Travel</h3>
               <p class="text-sm mt-3">Professional service from trusted local experts.</p>
             </div>
             <div class="col-span-4">
-              <img src="/images/home/operator4.png" alt="" class="bg-primary rounded-xl h-full w-full">
+              <img src="/images/home/operator7.jpg" alt="" class="bg-primary rounded-xl h-full w-full">
             </div>
           </div>
         </div>

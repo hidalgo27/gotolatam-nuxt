@@ -2,11 +2,11 @@
   <div class="container">
     <div class="grid grid-cols-7">
       <div class="col-span-7 md:col-span-2">
-        <h2 class="text-3xl font-bold mt-12 md:mt-0 hidden md:block">Top <br>Tours</h2>
-        <p class="my-6 hidden md:block">Explore LATAM's Most <br> Captivating Destinations <br> with Our Top Tour Selection</p>
+        <h2 class="text-3xl font-bold mt-12 md:mt-0 hidden md:block">Best Of</h2>
+        <p class="my-6 hidden md:block">The Best of section offers <br> a compilation of the best <br>combinations of destinations <br>between two countries.</p>
 
         <h2 class="text-3xl font-bold mt-12 md:mt-0 md:hidden">Top Tours</h2>
-        <p class="my-6 md:hidden">Explore LATAM's Most Captivating Destinations with Our Top Tour Selection</p>
+        <p class="my-6 md:hidden">The Best of section offers a compilation of the best combinations of destinations between two countries.</p>
 
         <!--        <button type="button" class="btn-ternary-outline flex gap-2 my-6 items-center">-->
         <!--          <img src="/icons/map.svg" alt="">-->
@@ -48,7 +48,7 @@
                   </template>
                 </div>
                 <div class="flex gap-2 mt-3 text-sm">
-                  <img src="/icons/map-location.svg" alt=""> Staring Airpor <span class="text-primary font-semibold">{{ packages.codigo_vuelo }}</span>
+                  <img src="/icons/map-location.svg" alt=""> Starting Airport <span class="text-primary font-semibold">{{ packages.codigo_vuelo }}</span>
                 </div>
                 <div class="border my-4"></div>
                 <div class="flex justify-between text-lg font-semibold">
