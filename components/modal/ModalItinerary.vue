@@ -366,7 +366,7 @@ const handleSubmit = async () => {
     if (res){
       showLoader.value = false
 
-      packageStore.travelDate = ""
+      packageStore.travelDate = []
       traveller.value = ""
       hotel.value = []
       packageStore.destination = []
@@ -376,12 +376,14 @@ const handleSubmit = async () => {
       userEmail.value = ""
       comment.value = ""
       packageStore.showModalItinerary = false
+      localStorage.clear()
       notify({
         group: "foo",
         title: 'Well done',
         type: "success",
         text: "Your trip has been successfully created 🙂",
       }, 4000) // 4s
+
     }else{
       showLoader.value = false
       packageStore.showModalItinerary = false

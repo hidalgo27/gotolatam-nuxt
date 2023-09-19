@@ -348,7 +348,7 @@ const handleSubmit = async () => {
     if (res){
       showLoader.value = false
 
-      packageStore.travelDate = ""
+      packageStore.travelDate = []
       traveller.value = ""
       hotel.value = []
       packageStore.destination = []
@@ -358,6 +358,7 @@ const handleSubmit = async () => {
       userEmail.value = ""
       comment.value = ""
       packageStore.showModalInquireGlobal = false
+      localStorage.clear()
       notify({
         group: "foo",
         title: 'Well done',
