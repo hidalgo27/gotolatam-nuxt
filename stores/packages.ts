@@ -13,11 +13,17 @@ export const usePackageStore = defineStore('PackageStore', () => {
 
 	const hotelDetail = ref([])
 
-	const titlePackages = ref()
+	const titlePackages = ref("")
 
-	const btnDetail = ref()
+	const btnDetail = ref("")
 
-
+	const $reset = () => {
+		travelDate.value = []
+		destination.value = []
+		hotelDetail.value = []
+		titlePackages.value = ""
+		btnDetail.value = ""
+	}
 	const getPackage = async () => {
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/json');
@@ -230,6 +236,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 		getPackageOffers,
 		getInquire,
 		showModalInquireGlobal,
-		showModalItinerary
+		showModalItinerary,
+		$reset
 	}
 },{persist: true})

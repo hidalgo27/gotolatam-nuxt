@@ -362,9 +362,41 @@ const handleSubmit = async () => {
       country: geoIp.value.country+" "+geoIp.value.country_calling_code
     }
 
-    const res:any = await packageStore.getInquire(obj)
-    if (res){
+    const res:any = await packageStore.getInquire(obj).then((res) => {
+      if (res){
+        showLoader.value = false
+
+        packageStore.travelDate = []
+        traveller.value = ""
+        hotel.value = []
+        packageStore.destination = []
+
+        fullName.value = ""
+        phone.value = ""
+        userEmail.value = ""
+        comment.value = ""
+        packageStore.showModalItinerary = false
+        packageStore.$reset()
+        notify({
+          group: "foo",
+          title: 'Well done',
+          type: "success",
+          text: "Your trip has been successfully created 🙂",
+        }, 4000) // 4s
+
+      }else{
+        showLoader.value = false
+        packageStore.showModalItinerary = false
+        notify({
+          group: "foo",
+          title: 'Error',
+          type: "error",
+          text: "Error :(",
+        }, 4000) // 4s
+      }
+    }).catch((err) => {
       showLoader.value = false
+      packageStore.showModalItinerary = false
 
       packageStore.travelDate = []
       traveller.value = ""
@@ -375,25 +407,16 @@ const handleSubmit = async () => {
       phone.value = ""
       userEmail.value = ""
       comment.value = ""
-      packageStore.showModalItinerary = false
-      localStorage.clear()
-      notify({
-        group: "foo",
-        title: 'Well done',
-        type: "success",
-        text: "Your trip has been successfully created 🙂",
-      }, 4000) // 4s
-
-    }else{
-      showLoader.value = false
-      packageStore.showModalItinerary = false
+      
+      packageStore.$reset()
       notify({
         group: "foo",
         title: 'Error',
         type: "error",
         text: "Error :(",
       }, 4000) // 4s
-    }
+    })
+
 
   }
 };

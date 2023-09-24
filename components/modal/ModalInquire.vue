@@ -344,9 +344,38 @@ const handleSubmit = async () => {
       country: geoIp.value.country+" "+geoIp.value.country_calling_code
     }
 
-    const res:any = await packageStore.getInquire(obj)
-    if (res){
+    await packageStore.getInquire(obj).then((res) => {
+      try {
+        if (res){
+          showLoader.value = false
+
+          packageStore.travelDate = []
+          traveller.value = ""
+          hotel.value = []
+          packageStore.destination = []
+
+          fullName.value = ""
+          phone.value = ""
+          userEmail.value = ""
+          comment.value = ""
+          packageStore.showModalInquireGlobal = false
+          // localStorage.clear()
+          packageStore.$reset()
+          notify({
+            group: "foo",
+            title: 'Well done',
+            type: "success",
+            text: "Your trip has been successfully created 🙂",
+          }, 4000) // 4s
+        }else{
+          packageStore.$reset()
+        }
+      } catch (error){
+        console.log(error)
+      }
+    }).catch((err) => {
       showLoader.value = false
+      packageStore.showModalInquireGlobal = false
 
       packageStore.travelDate = []
       traveller.value = ""
@@ -358,23 +387,17 @@ const handleSubmit = async () => {
       userEmail.value = ""
       comment.value = ""
       packageStore.showModalInquireGlobal = false
-      localStorage.clear()
-      notify({
-        group: "foo",
-        title: 'Well done',
-        type: "success",
-        text: "Your trip has been successfully created 🙂",
-      }, 4000) // 4s
-    }else{
-      showLoader.value = false
-      packageStore.showModalInquireGlobal = false
+      packageStore.$reset()
+
       notify({
         group: "foo",
         title: 'Error',
         type: "error",
         text: "Error :(",
       }, 4000) // 4s
-    }
+    })
+
+
 
   }
 };
