@@ -407,7 +407,7 @@ const handleSubmit = async () => {
       phone.value = ""
       userEmail.value = ""
       comment.value = ""
-      
+
       packageStore.$reset()
       notify({
         group: "foo",
