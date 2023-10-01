@@ -284,7 +284,7 @@
           </div>
 
           <div class="flex justify-center mt-12">
-            <button type="submit" class="btn-primary" v-show="showLoader == false">Create My Trip Now</button>
+            <button type="submit" class="btn-primary" v-show="showLoader == false">Send</button>
             <button type="button" class="btn-disabled w-full justify-center flex" disabled v-show="showLoader == true">
               <svg class="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

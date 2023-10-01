@@ -79,7 +79,7 @@
               <br> Our family of travel specialists <br> has the goal of keeping our organization <br> positioned among the best operators in LATAM,
               <br>providing all the amenities that all our travelers need.</p>
 
-            <button type="button" class="btn-primary">Create My Trip Now</button>
+            <a href="#form-dream-adventure" class="btn-primary">Create My Trip Now</a>
           </div>
         </div>
       </div>
