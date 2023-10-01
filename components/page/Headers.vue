@@ -7,7 +7,7 @@
     </div>
     <Nav></Nav>
     <div class="">
-      <button type="button" class="btn-secondary" @click="packageStore.showModalInquireGlobal = !packageStore.showModalInquireGlobal">Inquire Now</button>
+      <a class="btn-secondary" href="#form-dream-adventure">Inquire Now</a>
     </div>
   </div>
 
@@ -18,5 +18,5 @@ import {usePackageStore} from "~/stores/packages";
 import Nav from "~/components/page/Nav.vue";
 
 const packageStore = usePackageStore()
-packageStore.showModalInquireGlobal = false
+
 </script>

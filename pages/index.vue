@@ -6,10 +6,10 @@
         <div class="absolute bg-gradient-to-r from-gray-800 h-[75vh] opacity-20 z-10 inset-0"></div>
         <iframe src="https://player.vimeo.com/video/772468390?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1" frameborder="0" allow="autoplay; fullscreen" class=""></iframe>
       </div>
-      <div class="absolute inset-x-0 bottom-0 z-10 text-center">
+      <div class="absolute inset-x-0 mb-52 bottom-0 z-10 text-center">
         <h2 class="text-white text-xl md:text-3xl container drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)]">THE BEST VACATION IN <span class="text-primary">SOUTH AMERICA</span> <span class="text-secondary">WITH THE BEST</span> LATAM OPERATOR</h2>
 
-        <InquireHome></InquireHome>
+<!--        <InquireHome></InquireHome>-->
 
       </div>
     </div>
@@ -79,7 +79,7 @@
               <br> Our family of travel specialists <br> has the goal of keeping our organization <br> positioned among the best operators in LATAM,
               <br>providing all the amenities that all our travelers need.</p>
 
-            <button type="button" class="btn-primary" @click="packageStore.showModalInquireGlobal = true">Create My Trip Now</button>
+            <button type="button" class="btn-primary">Create My Trip Now</button>
           </div>
         </div>
       </div>
@@ -257,17 +257,16 @@
       </div>
     </section>
 
-    <section class="container pb-16 text-center">
-      <img src="/images/logos/logo-gotolatam.svg" alt="" class="mx-auto w-52">
-      <p class="my-6">We specialize in bringing you the finest in luxury South American Tours</p>
-    </section>
+<!--    <section class="container pb-16 text-center">-->
+<!--      <img src="/images/logos/logo-gotolatam.svg" alt="" class="mx-auto w-52">-->
+<!--      <p class="my-6">We specialize in bringing you the finest in luxury South American Tours</p>-->
+<!--    </section>-->
 
   </div>
 </template>
 
 
 <script lang="ts" setup>
-import InquireHome from "~/components/form/InquireHome.vue";
 import Destinations from "~/components/sections/destinations.vue";
 import Testimonials from "~/components/sections/testimonials.vue";
 import {usePackageStore} from "~/stores/packages";

@@ -31,7 +31,8 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     public: {
-      apiBase: process.env.API_BASE_TEST || "https://app.gotolatam.travel/api",
+      // apiBase: process.env.API_BASE_TEST || "https://app.gotolatam.travel/api",
+      apiBase: process.env.API_BASE_TEST || "http://localhost:8080/api",
     }
   },
   nitro: {
