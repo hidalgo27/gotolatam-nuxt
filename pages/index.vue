@@ -2,11 +2,12 @@
   <div class="shadow">
 
     <div class="relative">
-      <div class="h-[75vh] relative overflow-hidden vimeo-wrapper">
+      <div class="h-[75vh] relative overflow-hidden relative vimeo-wrapper">
+        <div class="absolute bg-gradient-to-r from-gray-800 h-[75vh] opacity-20 z-10 inset-0"></div>
         <iframe src="https://player.vimeo.com/video/772468390?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1" frameborder="0" allow="autoplay; fullscreen" class=""></iframe>
       </div>
-      <div class="absolute inset-x-0 bottom-0 text-center">
-        <h2 class="text-white text-xl md:text-4xl drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)]">LET’S <span class="text-primary">GO</span> <span class="text-secondary">TOGETHER</span> TO</h2>
+      <div class="absolute inset-x-0 bottom-0 z-10 text-center">
+        <h2 class="text-white text-xl md:text-3xl container drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)]">THE BEST VACATION IN <span class="text-primary">SOUTH AMERICA</span> <span class="text-secondary">WITH THE BEST</span> LATAM OPERATOR</h2>
 
         <InquireHome></InquireHome>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-20 md:mt-36 -mb-12 md:mb-16">
+  <div class="container mt-20 md:mt-32 -mb-12 md:mb-16">
     <div class="relative z-10 md:w-4/6 bg-white bg-opacity-80 mx-auto p-6 rounded-2xl">
       <div class="grid grid-cols-5 gap-5 items-center">
         <div class="relative col-span-3 md:col-span-2">
