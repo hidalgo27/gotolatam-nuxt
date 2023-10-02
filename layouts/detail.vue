@@ -8,12 +8,13 @@
     </div>
     <Nav></Nav>
     <div class="">
-      <button type="button" class="btn-secondary" @click="packageStore.showModalItinerary = !packageStore.showModalItinerary">Get a Quote</button>
+      <a href="#form-dream-adventure" class="btn-secondary">Get a Quote</a>
     </div>
   </div>
 
   <slot />
   <modal-menu></modal-menu>
+  <FooterInquireDetail></FooterInquireDetail>
   <Footer></Footer>
 
 </template>
@@ -23,6 +24,7 @@ import Nav from "~/components/page/Nav.vue";
 import Footer from "~/components/page/Footer.vue";
 import {usePackageStore} from "~/stores/packages";
 import ModalMenu from "~/components/modal/ModalMenu.vue";
+import FooterInquireDetail from "~/components/form/FooterInquireDetail.vue";
 
 const packageStore = usePackageStore()
 packageStore.showModalItinerary = false

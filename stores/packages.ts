@@ -21,7 +21,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 		travelDate.value = []
 		destination.value = []
 		hotelDetail.value = []
-		titlePackages.value = ""
+		// titlePackages.value = ""
 		btnDetail.value = ""
 	}
 	const getPackage = async () => {

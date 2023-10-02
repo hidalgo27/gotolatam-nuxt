@@ -453,6 +453,9 @@ const handleSubmit = async () => {
           packageStore.showModalInquireGlobal = false
           // localStorage.clear()
           packageStore.$reset()
+
+          $v.value.$reset()
+
           notify({
             group: "foo",
             title: 'Well done',
@@ -481,6 +484,8 @@ const handleSubmit = async () => {
       comment.value = ""
       packageStore.showModalInquireGlobal = false
       packageStore.$reset()
+
+      $v.value.$reset()
 
       notify({
         group: "foo",

@@ -43,7 +43,7 @@
         </div>
       </div>
       <div class="md:col-span-3 hidden md:flex">
-        <button type="btn" class="btn-primary block w-full" @click="packageStore.showModalItinerary = !packageStore.showModalItinerary">Get a Quote</button>
+        <a href="#form-dream-adventure" class="btn-primary text-center block w-full">Get a Quote</a>
       </div>
     </div>
   </section>
@@ -59,7 +59,7 @@
     </div>
   </section>
 
-  <section class="">
+  <section class="shadow pb-24">
     <div class="container grid md:grid-cols-12 gap-12">
       <div class="md:col-span-9">
 <!--        <img src="/images/banners/map.png" alt="" class="rounded-2xl w-full">-->
@@ -403,7 +403,7 @@
 
       </div>
       <div class="md:col-span-3">
-        <div class="bg-[#eef3d3] p-6 rounded-2xl sticky top-10">
+        <div class="bg-[#eef3d3] p-6 rounded-2xl sticky top-10 text-center">
 <!--          <img src="/images/home/operator1.png" alt="" class="mx-auto -mt-16 rounded-full h-24 w-24 object-cover  border border-primary">-->
           <div class="columns-2 gap-3 space-y-4 floa">
             <img src="/images/home/operator1.jpg" alt="" class="mt-3 rounded-xl">
@@ -415,19 +415,19 @@
 <!--            <h4 class="text-center text-primary font-semibold">¡Hello, I'm Yoa!</h4>-->
             <p class="text-sm text-center font-light mt-3">Travel fills our hearts and souls, and what better way to do it than with a tailor-made program created by one of LATAM's best travel advisors.</p>
           </div>
-          <button type="button" class="rounded-lg py-2 w-full px-6 text-white bg-green-500 hover:bg-opacity-95 duration-300" @click="packageStore.showModalItinerary = !packageStore.showModalItinerary">Get a Quote</button>
+          <a href="#form-dream-adventure" class="rounded-lg py-2 w-full px-6 text-white bg-green-500 hover:bg-opacity-95 text-center block duration-300">Get a Quote</a>
 <!--          <button type="button" class="rounded-lg py-2 w-full px-6 text-primary border border-primary hover:bg-primary hover:text-white duration-300 mt-3">Write Us</button>-->
         </div>
       </div>
     </div>
   </section>
 
-    <ModalItinerary></ModalItinerary>
+<!--    <ModalItinerary></ModalItinerary>-->
   </template>
 </template>
 
 <script lang="ts" setup>
-import InquireHome from "~/components/form/InquireHome.vue";
+// import InquireHome from "~/components/form/InquireHome.vue";
 
 definePageMeta({
   layout: 'detail',
@@ -439,6 +439,9 @@ import {usePackageStore} from "~/stores/packages";
 const packageStore = usePackageStore()
 
 const route = useRoute()
+
+const router = useRouter()
+
 
 const listPackages = ref([])
 
@@ -453,7 +456,7 @@ const randomColorBorder = ['border-primary','border-primary', 'border-secondary'
 
 
 const getQuote = (item:any) => {
-  packageStore.showModalItinerary =  true
+  router.push("#form-dream-adventure")
   packageStore.hotelDetail = item
 }
 

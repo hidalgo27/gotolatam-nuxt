@@ -30,8 +30,11 @@ export default defineNuxtConfig({
     `~/assets/css/page.css`
   ],
   runtimeConfig: {
+    apiSecret: '',
     public: {
-      apiBase: process.env.API_BASE_TEST || "https://app.gotolatam.travel/api",
+      apiBase: '',
+      // apiBaseTest: process.env.API_BASE_TEST || "https://app.gotolatam.travel/api",
+      apiBaseTest: ''
       // apiBase: process.env.API_BASE_TEST || "http://localhost:8080/api",
     }
   },
