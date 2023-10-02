@@ -407,7 +407,7 @@ const handleSubmit = async () => {
       packageStore.$reset()
 
       $v.value.$reset()
-      
+
       notify({
         group: "foo",
         title: 'Error',
@@ -473,3 +473,6 @@ onMounted(async () => {
 })
 
 </script>
+<style>
+@import 'intl-tel-input/build/css/intlTelInput.css';
+</style>
