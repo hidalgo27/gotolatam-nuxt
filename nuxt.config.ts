@@ -32,7 +32,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     apiSecret: '',
     public: {
-      apiBase: '',
+      apiBase: '' || "https://app.gotolatam.travel/api",
       // apiBaseTest: process.env.API_BASE_TEST || "https://app.gotolatam.travel/api",
       apiBaseTest: ''
       // apiBase: process.env.API_BASE_TEST || "http://localhost:8080/api",
