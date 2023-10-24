@@ -11,6 +11,8 @@
 
 <!--        <InquireHome></InquireHome>-->
 
+
+        
       </div>
       <div class="absolute inset-0 bg-gradient-to-t to-70% from-gray-900 from-0% opacity-50"></div>
     </div>
