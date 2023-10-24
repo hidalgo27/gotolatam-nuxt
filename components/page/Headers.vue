@@ -1,4 +1,5 @@
 <template>
+  <div class="bg-white sticky top-0 z-20">
   <div class="container flex justify-between py-6 items-center">
     <div class="md:hidden">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6" @click="packageStore.showModalMenu = !packageStore.showModalMenu">
@@ -9,6 +10,7 @@
     <div class="">
       <a class="btn-secondary" href="#form-dream-adventure">Inquire Now</a>
     </div>
+  </div>
   </div>
 
 </template>

@@ -2,7 +2,7 @@
   <div class="shadow">
 
     <div class="relative">
-      <div class="h-[75vh] relative overflow-hidden relative vimeo-wrapper">
+      <div class="h-[75vh] relative overflow-hidden vimeo-wrapper ">
         <div class="absolute bg-gradient-to-r from-gray-800 h-[75vh] opacity-20 z-10 inset-0"></div>
         <iframe src="https://player.vimeo.com/video/772468390?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1" frameborder="0" allow="autoplay; fullscreen" class=""></iframe>
       </div>
@@ -12,6 +12,7 @@
 <!--        <InquireHome></InquireHome>-->
 
       </div>
+      <div class="absolute inset-0 bg-gradient-to-t to-70% from-gray-900 from-0% opacity-50"></div>
     </div>
 
 <!--    <div>-->
@@ -57,6 +58,13 @@
       <carousel-p></carousel-p>
     </section>
 
+
+<!--    <YouTube-->
+<!--        src="https://www.youtube.com/watch?v=jNQXAC9IVRw"-->
+<!--        ref="youtube2" />-->
+
+<!--    <button type="button" @click="play">sdsds</button>-->
+
     <section class="my-12 container">
       <div class="w-10/12 mx-auto">
         <div class="grid md:grid-cols-2 justify-center gap-6 md:gap-24">
@@ -85,125 +93,133 @@
       </div>
     </section>
 
-    <section class="md:py-12 pb-12 bg-gray-100">
-      <carousel-h></carousel-h>
-    </section>
-
-    <section class="container py-12">
-      <destinations></destinations>
-    </section>
+<!--    <section class="md:py-12 pb-12 bg-gray-100">-->
+<!--      <carousel-h></carousel-h>-->
+<!--    </section>-->
 
     <section class="py-12 bg-gray-100">
-      <div class="container">
-        <h2 class="text-3xl font-bold text-center">Reviews and Testimonials</h2>
-        <div class="columns-3 gap-6 space-y-6 my-12 hidden md:block">
-          <div class="relative rounded-2xl">
-              <div class="relative">
-                <img src="/images/testimonials/testimonial1.png" alt="" class="w-full object-center">
-                <div class="absolute inset-x-0 top-0 h-full pb-12 flex items-center">
-                  <img src="/icons/pay.svg" alt="" class="mx-auto">
-                </div>
-              </div>
-            <div class="absolute inset-x-0 bottom-0 bg-gray-800 rounded-b-2xl px-6 pb-3 pt-2 text-white">
-              <img src="/icons/quotes.svg" alt="" class="-mt-9">
-              <h3 class="text-sm my-2">Zeeshan B. / Toronto - Canada</h3>
-              <p class="text-xs">…I would recommend GotoLatam 100%. You will not regret it!!!</p>
-            </div>
-          </div>
-          <div class="relative rounded-2xl">
-              <div class="relative">
-                <img src="/images/testimonials/testimonial2.png" alt="" class="w-full object-center">
-                <div class="absolute inset-x-0 top-0 h-full pb-12 flex items-center">
-                  <img src="/icons/pay.svg" alt="" class="mx-auto">
-                </div>
-              </div>
-            <div class="absolute inset-x-0 bottom-0 bg-gray-800 rounded-b-2xl px-6 pb-3 pt-2 text-white">
-              <img src="/icons/quotes.svg" alt="" class="-mt-9">
-              <h3 class="text-sm my-2">Zeeshan B. / Toronto - Canada</h3>
-              <p class="text-xs">…I would recommend GotoLatam 100%. You will not regret it!!!</p>
-            </div>
-          </div>
-          <div class="relative rounded-2xl">
-              <div class="relative">
-                <img src="/images/testimonials/testimonial3.png" alt="" class="w-full object-center">
-                <div class="absolute inset-x-0 top-0 h-full pb-12 flex items-center">
-                  <img src="/icons/pay.svg" alt="" class="mx-auto">
-                </div>
-              </div>
-            <div class="absolute inset-x-0 bottom-0 bg-gray-800 rounded-b-2xl px-6 pb-3 pt-2 text-white">
-              <img src="/icons/quotes.svg" alt="" class="-mt-9">
-              <h3 class="text-sm my-2">Zeeshan B. / Toronto - Canada</h3>
-              <p class="text-xs">…I would recommend GotoLatam 100%. You will not regret it!!!</p>
-            </div>
-          </div>
-          <div class="relative rounded-2xl">
-              <div class="relative">
-                <img src="/images/testimonials/testimonial4.png" alt="" class="w-full object-center">
-                <div class="absolute inset-x-0 top-0 h-full pb-12 flex items-center">
-                  <img src="/icons/pay.svg" alt="" class="mx-auto">
-                </div>
-              </div>
-            <div class="absolute inset-x-0 bottom-0 bg-gray-800 rounded-b-2xl px-6 pb-3 pt-2 text-white">
-              <img src="/icons/quotes.svg" alt="" class="-mt-9">
-              <h3 class="text-sm my-2">Zeeshan B. / Toronto - Canada</h3>
-              <p class="text-xs">…I would recommend GotoLatam 100%. You will not regret it!!!</p>
-            </div>
-          </div>
-          <div class="relative rounded-2xl">
-              <div class="relative">
-                <img src="/images/testimonials/testimonial2.png" alt="" class="w-full object-center">
-                <div class="absolute inset-x-0 top-0 h-full pb-12 flex items-center">
-                  <img src="/icons/pay.svg" alt="" class="mx-auto">
-                </div>
-              </div>
-            <div class="absolute inset-x-0 bottom-0 bg-gray-800 rounded-b-2xl px-6 pb-3 pt-2 text-white">
-              <img src="/icons/quotes.svg" alt="" class="-mt-9">
-              <h3 class="text-sm my-2">Zeeshan B. / Toronto - Canada</h3>
-              <p class="text-xs">…I would recommend GotoLatam 100%. You will not regret it!!!</p>
-            </div>
-          </div>
-          <div class="relative rounded-2xl">
-              <div class="relative">
-                <img src="/images/testimonials/testimonial5.png" alt="" class="w-full object-center">
-                <div class="absolute inset-x-0 top-0 h-full pb-12 flex items-center">
-                  <img src="/icons/pay.svg" alt="" class="mx-auto">
-                </div>
-              </div>
-            <div class="absolute inset-x-0 bottom-0 bg-gray-800 rounded-b-2xl px-6 pb-3 pt-2 text-white">
-              <img src="/icons/quotes.svg" alt="" class="-mt-9">
-              <h3 class="text-sm my-2">Zeeshan B. / Toronto - Canada</h3>
-              <p class="text-xs">…I would recommend GotoLatam 100%. You will not regret it!!!</p>
-            </div>
-          </div>
-          <div class="relative rounded-2xl">
-              <div class="relative">
-                <img src="/images/testimonials/testimonial3.png" alt="" class="w-full object-center">
-                <div class="absolute inset-x-0 top-0 h-full pb-12 flex items-center">
-                  <img src="/icons/pay.svg" alt="" class="mx-auto">
-                </div>
-              </div>
-            <div class="absolute inset-x-0 bottom-0 bg-gray-800 rounded-b-2xl px-6 pb-3 pt-2 text-white">
-              <img src="/icons/quotes.svg" alt="" class="-mt-9">
-              <h3 class="text-sm my-2">Zeeshan B. / Toronto - Canada</h3>
-              <p class="text-xs">…I would recommend GotoLatam 100%. You will not regret it!!!</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="md:hidden my-12">
-
-          <testimonials></testimonials>
-
-        </div>
-        <div class="flex  gap-2 items-center justify-center">
-          <p>Happy Guests are the Best Rewarc</p>
-          <img src="/images/logos/tripadvisor.png" alt="" class="w-32">
-          <img src="/images/logos/trustpilot.png" alt="" class="w-20">
-        </div>
-      </div>
-
-
+    <div class="container">
+      <destinations></destinations>
+    </div>
     </section>
+
+    <section class="mb-12 mt-12">
+      <div class="container">
+        <div class="elfsight-app-de637865-6596-4396-8bba-ef0f7b50bc9e"></div>
+      </div>
+    </section>
+
+<!--    <section class="py-12 bg-gray-100">-->
+<!--      <div class="container">-->
+<!--        <h2 class="text-3xl font-bold text-center">Reviews and Testimonials</h2>-->
+<!--        <div class="columns-3 gap-6 space-y-6 my-12 hidden md:block">-->
+<!--          <div class="relative rounded-2xl">-->
+<!--              <div class="relative">-->
+<!--                <img src="/images/testimonials/testimonial1.png" alt="" class="w-full object-center">-->
+<!--                <div class="absolute inset-x-0 top-0 h-full pb-12 flex items-center">-->
+<!--                  <img src="/icons/pay.svg" alt="" class="mx-auto">-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            <div class="absolute inset-x-0 bottom-0 bg-gray-800 rounded-b-2xl px-6 pb-3 pt-2 text-white">-->
+<!--              <img src="/icons/quotes.svg" alt="" class="-mt-9">-->
+<!--              <h3 class="text-sm my-2">Zeeshan B. / Toronto - Canada</h3>-->
+<!--              <p class="text-xs">…I would recommend GotoLatam 100%. You will not regret it!!!</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="relative rounded-2xl">-->
+<!--              <div class="relative">-->
+<!--                <img src="/images/testimonials/testimonial2.png" alt="" class="w-full object-center">-->
+<!--                <div class="absolute inset-x-0 top-0 h-full pb-12 flex items-center">-->
+<!--                  <img src="/icons/pay.svg" alt="" class="mx-auto">-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            <div class="absolute inset-x-0 bottom-0 bg-gray-800 rounded-b-2xl px-6 pb-3 pt-2 text-white">-->
+<!--              <img src="/icons/quotes.svg" alt="" class="-mt-9">-->
+<!--              <h3 class="text-sm my-2">Zeeshan B. / Toronto - Canada</h3>-->
+<!--              <p class="text-xs">…I would recommend GotoLatam 100%. You will not regret it!!!</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="relative rounded-2xl">-->
+<!--              <div class="relative">-->
+<!--                <img src="/images/testimonials/testimonial3.png" alt="" class="w-full object-center">-->
+<!--                <div class="absolute inset-x-0 top-0 h-full pb-12 flex items-center">-->
+<!--                  <img src="/icons/pay.svg" alt="" class="mx-auto">-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            <div class="absolute inset-x-0 bottom-0 bg-gray-800 rounded-b-2xl px-6 pb-3 pt-2 text-white">-->
+<!--              <img src="/icons/quotes.svg" alt="" class="-mt-9">-->
+<!--              <h3 class="text-sm my-2">Zeeshan B. / Toronto - Canada</h3>-->
+<!--              <p class="text-xs">…I would recommend GotoLatam 100%. You will not regret it!!!</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="relative rounded-2xl">-->
+<!--              <div class="relative">-->
+<!--                <img src="/images/testimonials/testimonial4.png" alt="" class="w-full object-center">-->
+<!--                <div class="absolute inset-x-0 top-0 h-full pb-12 flex items-center">-->
+<!--                  <img src="/icons/pay.svg" alt="" class="mx-auto">-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            <div class="absolute inset-x-0 bottom-0 bg-gray-800 rounded-b-2xl px-6 pb-3 pt-2 text-white">-->
+<!--              <img src="/icons/quotes.svg" alt="" class="-mt-9">-->
+<!--              <h3 class="text-sm my-2">Zeeshan B. / Toronto - Canada</h3>-->
+<!--              <p class="text-xs">…I would recommend GotoLatam 100%. You will not regret it!!!</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="relative rounded-2xl">-->
+<!--              <div class="relative">-->
+<!--                <img src="/images/testimonials/testimonial2.png" alt="" class="w-full object-center">-->
+<!--                <div class="absolute inset-x-0 top-0 h-full pb-12 flex items-center">-->
+<!--                  <img src="/icons/pay.svg" alt="" class="mx-auto">-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            <div class="absolute inset-x-0 bottom-0 bg-gray-800 rounded-b-2xl px-6 pb-3 pt-2 text-white">-->
+<!--              <img src="/icons/quotes.svg" alt="" class="-mt-9">-->
+<!--              <h3 class="text-sm my-2">Zeeshan B. / Toronto - Canada</h3>-->
+<!--              <p class="text-xs">…I would recommend GotoLatam 100%. You will not regret it!!!</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="relative rounded-2xl">-->
+<!--              <div class="relative">-->
+<!--                <img src="/images/testimonials/testimonial5.png" alt="" class="w-full object-center">-->
+<!--                <div class="absolute inset-x-0 top-0 h-full pb-12 flex items-center">-->
+<!--                  <img src="/icons/pay.svg" alt="" class="mx-auto">-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            <div class="absolute inset-x-0 bottom-0 bg-gray-800 rounded-b-2xl px-6 pb-3 pt-2 text-white">-->
+<!--              <img src="/icons/quotes.svg" alt="" class="-mt-9">-->
+<!--              <h3 class="text-sm my-2">Zeeshan B. / Toronto - Canada</h3>-->
+<!--              <p class="text-xs">…I would recommend GotoLatam 100%. You will not regret it!!!</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="relative rounded-2xl">-->
+<!--              <div class="relative">-->
+<!--                <img src="/images/testimonials/testimonial3.png" alt="" class="w-full object-center">-->
+<!--                <div class="absolute inset-x-0 top-0 h-full pb-12 flex items-center">-->
+<!--                  <img src="/icons/pay.svg" alt="" class="mx-auto">-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            <div class="absolute inset-x-0 bottom-0 bg-gray-800 rounded-b-2xl px-6 pb-3 pt-2 text-white">-->
+<!--              <img src="/icons/quotes.svg" alt="" class="-mt-9">-->
+<!--              <h3 class="text-sm my-2">Zeeshan B. / Toronto - Canada</h3>-->
+<!--              <p class="text-xs">…I would recommend GotoLatam 100%. You will not regret it!!!</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class="md:hidden my-12">-->
+
+<!--          <testimonials></testimonials>-->
+
+<!--        </div>-->
+<!--        <div class="flex  gap-2 items-center justify-center">-->
+<!--          <p>Happy Guests are the Best Rewarc</p>-->
+<!--          <img src="/images/logos/tripadvisor.png" alt="" class="w-32">-->
+<!--          <img src="/images/logos/trustpilot.png" alt="" class="w-20">-->
+<!--        </div>-->
+<!--      </div>-->
+
+
+<!--    </section>-->
 
 
     <section class="container py-16">
@@ -272,6 +288,8 @@ import Testimonials from "~/components/sections/testimonials.vue";
 import {usePackageStore} from "~/stores/packages";
 const packageStore = usePackageStore()
 
+const youtube2 = ref(null);
+
 // // Estados del primer dropdown
 // const showFirst = ref(false);
 // const selectedItemsFirst = ref([]);
@@ -331,5 +349,23 @@ const packageStore = usePackageStore()
 //   const selectedItems = dropdown === 'first' ? selectedItemsFirst : selectedItemsSecond;
 //   return selectedItems.value.some(i => i.id === item.id);
 // };
+
+// const play = () => {
+//   if (youtube2.value && youtube2.value.playVideo) {
+//     youtube2.value.playVideo();
+//   }
+// };
+
+onMounted(async () => {
+  // if (youtube.value && youtube.value.playVideo) {
+  //   youtube.value.playVideo();
+  // }
+  if (process.client) {
+    // @ts-ignore
+    import('https://static.elfsight.com/platform/platform.js').then((module) => {
+
+    });
+  }
+})
 
 </script>

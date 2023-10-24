@@ -1,41 +1,39 @@
 <template>
   <div class="container">
     <div class="grid grid-cols-7">
-      <div class="col-span-7 md:col-span-2">
-        <h2 class="text-3xl font-bold mt-12 md:mt-0 hidden md:block">Top <br>Tours</h2>
-        <p class="my-6 hidden md:block">Explore LATAM's most <br> captivating destinations <br> with our top tour selection</p>
+<!--      <div class="col-span-7 md:col-span-2">-->
+<!--        <h2 class="text-3xl font-bold mt-12 md:mt-0 hidden md:block">Top <br>Tours</h2>-->
+<!--        <p class="my-6 hidden md:block">Explore LATAM's most <br> captivating destinations <br> with our top tour selection</p>-->
 
-        <h2 class="text-3xl font-bold mt-12 md:mt-0 md:hidden">Top Tours</h2>
-        <p class="my-6 md:hidden">Explore LATAM's most captivating destinations with our top tour selection</p>
+<!--        <h2 class="text-3xl font-bold mt-12 md:mt-0 md:hidden">Top Tours</h2>-->
+<!--        <p class="my-6 md:hidden">Explore LATAM's most captivating destinations with our top tour selection</p>-->
 
-<!--        <button type="button" class="btn-ternary-outline flex gap-2 my-6 items-center">-->
-<!--          <img src="/icons/map.svg" alt="">-->
-<!--          View all-->
-<!--        </button>-->
-        <div class="hidden gap-6 md:flex">
-          <button class="rounded-full border-2 p-2  border-gray-500 focus:bg-gray-800 focus:text-white" @click="prevSlide">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 mx-auto">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-            </svg>
-          </button>
-          <button class="rounded-full border-2 p-2  border-gray-500 focus:bg-gray-800 focus:text-white" @click="nextSlide">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-            </svg>
-          </button>
-        </div>
-      </div>
+<!--      </div>-->
 
-      <div class="col-span-7 md:col-span-5">
+      <div class="col-span-7 md:col-span-7">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-        <Carousel  ref="carouselRef" :wrap-around="true" :breakpoints="breakpoints">
-          <slide v-for="packages in listPackages" :key="packages.id">
+<!--        <Carousel  ref="carouselRef" :wrap-around="true" :breakpoints="breakpoints">-->
+<!--          <div v-for="packages in listPackages" :key="packages.id">-->
             <!-- Aquí puedes poner el contenido de cada slide, por ejemplo: -->
 
-            <a :href="'/latam-travel-packages/'+packages.url" class="mx-3 p-3 bg-white w-full rounded-xl my-2 shadow-md cursor-pointer">
+          <div class="bg-white md:col-span-2 w-full rounded-xl my-2 block shadow-md relative overflow-hidden">
+            <img src="https://www.peruforless.com/content-files/uploads/v2/be-machu-picchu-1-c.webp" alt="" class="object-cover w-full h-full 2xl:h-[595px] md:h-[490px]">
+            <div class="absolute text-center mt-12 text-white top-0 inset-x-0 z-10">
+              <h2 class="text-3xl font-bold mt-12 md:mt-0 hidden md:block">Top <br>Tours</h2>
+              <p class="my-6 hidden md:block">Explore LATAM's most <br> captivating destinations <br> with our top tour selection</p>
+
+              <h2 class="text-3xl font-bold mt-12 md:mt-0 md:hidden">Top Tours</h2>
+              <p class="my-6 md:hidden">Explore LATAM's most captivating destinations with our top tour selection</p>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-b to-70% from-gray-900 from-0% opacity-50"></div>
+          </div>
+
+            <a :href="'/latam-travel-packages/'+packages.url" class="p-3 bg-white col-span-1 w-full rounded-xl my-2 block shadow-md cursor-pointer" v-for="packages in listPackages" :key="packages.id">
               <div class="relative">
                 <img :src="packages.imagen" alt="" class="w-full rounded-lg">
-                <div class="bg-secondary px-2 py-1 rounded w-auto absolute bottom-0 -mb-2 m-2 text-[9px] font-semibold text-white">PAQUETE</div>
+                <div class="bg-secondary px-2 py-1 z-10 rounded w-auto absolute bottom-0 -mb-2 m-2 text-[9px] font-semibold text-white">PAQUETE</div>
+                <div class="absolute inset-0 bg-gradient-to-t to-70% from-gray-900 from-0% opacity-40"></div>
               </div>
               <div class="">
                 <h3 class="text-left text-lg font-semibold my-3">{{ packages.titulo }}</h3>
@@ -63,8 +61,9 @@
               </div>
             </a>
 
-          </slide>
-        </Carousel>
+<!--          </div>-->
+        </div>
+<!--        </Carousel>-->
       </div>
     </div>
   </div>
