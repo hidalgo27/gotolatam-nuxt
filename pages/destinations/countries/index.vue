@@ -27,9 +27,9 @@
         </div>
         <div class="">
           <h3 class="text-left text-lg font-semibold my-3">{{ country.nombre }}</h3>
-          <div class="flex gap-2 mt-3 text-sm">
-            <img src="/icons/map-location.svg" alt=""> {{country.resumen}}
-          </div>
+<!--          <div class="flex gap-2 mt-3 text-sm">-->
+<!--            <img src="/icons/map-location.svg" alt=""> {{country.resumen}}-->
+<!--          </div>-->
         </div>
       </a>
     </div>
