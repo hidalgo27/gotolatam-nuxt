@@ -92,35 +92,26 @@
 
           <div class="col-span-12 md:col-span-10 grid grid-cols-4 md:grid-cols-6 gap-3 overflow-x-scroll focus:touch-pan-x">
           <div class="flex">
-            <input type="checkbox" :id="'radio_t_1'" class="peer hidden" value="3-5" v-model="trip_length" />
+            <input type="checkbox" :id="'radio_t_1'" class="peer hidden" value="3-7" v-model="trip_length" />
             <label :for="'radio_t_1'" class="select-none leading-3 cursor-pointer w-full border border-gray-300 text-center text-gray-400 rounded-lg px-5 py-2 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary">
-              <span class="text-sm">3-5</span>
+              <span class="text-sm">3-7</span>
               <hr>
               <span class="text-xs">days</span>
             </label>
           </div>
 
           <div class="flex">
-            <input type="checkbox" :id="'radio_t_2'" class="peer hidden" value="6-8" v-model="trip_length" />
+            <input type="checkbox" :id="'radio_t_2'" class="peer hidden" value="8-11" v-model="trip_length" />
             <label :for="'radio_t_2'" class="select-none cursor-pointer w-full border border-gray-300 text-center leading-3 text-gray-400 rounded-lg px-5 py-2 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary">
-              <span class="text-sm">6-8</span>
+              <span class="text-sm">8-11</span>
               <hr>
               <span class="text-xs">days</span>
             </label>
           </div>
 
           <div class="flex">
-            <input type="checkbox" :id="'radio_t_3'" class="peer hidden" value="9-11" v-model="trip_length" />
+            <input type="checkbox" :id="'radio_t_3'" class="peer hidden" value="12-16" v-model="trip_length" />
             <label :for="'radio_t_3'" class="select-none cursor-pointer w-full border border-gray-300 text-center leading-3 text-gray-400 rounded-lg px-5 py-2 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary">
-              <span class="text-sm">9-11</span>
-              <hr>
-              <span class="text-xs">days</span>
-            </label>
-          </div>
-
-          <div class="flex">
-            <input type="checkbox" :id="'radio_t_4'" class="peer hidden" value="12-16" v-model="trip_length" />
-            <label :for="'radio_t_4'" class="select-none cursor-pointer w-full border border-gray-300 text-center leading-3 text-gray-400 rounded-lg px-5 py-2 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary">
               <span class="text-sm">12-16</span>
               <hr>
               <span class="text-xs">days</span>
@@ -128,7 +119,16 @@
           </div>
 
           <div class="flex">
-            <input type="checkbox" :id="'radio_t_5'" class="peer hidden" value="17+" v-model="trip_length" />
+            <input type="checkbox" :id="'radio_t_4'" class="peer hidden" value="17-21" v-model="trip_length" />
+            <label :for="'radio_t_4'" class="select-none cursor-pointer w-full border border-gray-300 text-center leading-3 text-gray-400 rounded-lg px-5 py-2 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary">
+              <span class="text-sm">17-21</span>
+              <hr>
+              <span class="text-xs">days</span>
+            </label>
+          </div>
+
+          <div class="flex">
+            <input type="checkbox" :id="'radio_t_5'" class="peer hidden" value="22+" v-model="trip_length" />
             <label :for="'radio_t_5'" class="select-none cursor-pointer w-full border border-gray-300 text-center leading-3 text-gray-400 rounded-lg px-5 py-2 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary">
               <span class="text-sm">17+</span>
               <hr>
