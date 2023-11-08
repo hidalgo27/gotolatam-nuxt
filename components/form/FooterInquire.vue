@@ -130,7 +130,7 @@
           <div class="flex">
             <input type="checkbox" :id="'radio_t_5'" class="peer hidden" value="22+" v-model="trip_length" />
             <label :for="'radio_t_5'" class="select-none cursor-pointer w-full border border-gray-300 text-center leading-3 text-gray-400 rounded-lg px-5 py-2 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary">
-              <span class="text-sm">17+</span>
+              <span class="text-sm">22+</span>
               <hr>
               <span class="text-xs">days</span>
             </label>
