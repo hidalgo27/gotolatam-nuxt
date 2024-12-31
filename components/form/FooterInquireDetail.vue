@@ -143,7 +143,7 @@
                           </svg>
                         </div>
                         <template #popper>
-                          <vue-tailwind-datepicker as-single no-input :formatter="formatter" v-model="packageStore.travelDate" @click="onClickSomething()" class="calendar-w"/>
+                          <vue-tailwind-datepicker as-single no-input :formatter="formatter" v-model="packageStore.travelDate" :disable-date="disablePastDates" @click="onClickSomething()" class="calendar-w"/>
                         </template>
                       </VMenu>
 
@@ -313,6 +313,12 @@ const formatter = ref({
   month: 'MMM'
 })
 
+const disablePastDates = (date:any) => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Asegurarse de que solo se comparen las fechas
+  return date < today;
+};
+
 const onClickSomething = () => {
   showModalProcess.value = false
 }
@@ -348,7 +354,7 @@ const handleSubmit = async () => {
 
       el_nombre: fullName.value,
       el_email: userEmail.value,
-      el_fecha: packageStore.travelDate,
+      el_fecha: packageStore.travelDate.toString(),
       el_telefono: phone.value,
       el_textarea: comment.value,
 

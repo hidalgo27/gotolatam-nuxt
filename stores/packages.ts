@@ -8,7 +8,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 	const showModalItinerary = ref(false)
 	const showModalMenu = ref(false)
 
-	const travelDate = ref([])
+	const travelDate = ref()
 	const destination = ref([])
 
 	const hotelDetail = ref([])
@@ -18,7 +18,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 	const btnDetail = ref("")
 
 	const $reset = () => {
-		travelDate.value = []
+		travelDate.value = ''
 		destination.value = []
 		hotelDetail.value = []
 		// titlePackages.value = ""
