@@ -17,17 +17,17 @@
 <!--          <div v-for="packages in listPackages" :key="packages.id">-->
             <!-- Aquí puedes poner el contenido de cada slide, por ejemplo: -->
 
-          <div class="bg-white md:col-span-2 w-full rounded-xl my-2 block shadow-md relative overflow-hidden">
-            <img src="https://www.peruforless.com/content-files/uploads/v2/be-machu-picchu-1-c.webp" alt="" class="object-cover w-full h-full 2xl:h-[595px] md:h-[490px]">
-            <div class="absolute text-center mt-12 text-white top-0 inset-x-0 z-10">
-              <h2 class="text-3xl font-bold mt-12 md:mt-0 hidden md:block">Top <br>Tours</h2>
-              <p class="my-6 hidden md:block">Explore LATAM's most <br> captivating destinations <br> with our top tour selection</p>
+<!--          <div class="bg-white md:col-span-2 w-full rounded-xl my-2 block shadow-md relative overflow-hidden">-->
+<!--            <img src="https://www.peruforless.com/content-files/uploads/v2/be-machu-picchu-1-c.webp" alt="" class="object-cover w-full h-full 2xl:h-[595px] md:h-[490px]">-->
+<!--            <div class="absolute text-center mt-12 text-white top-0 inset-x-0 z-10">-->
+<!--              <h2 class="text-3xl font-bold mt-12 md:mt-0 hidden md:block">Top <br>Tours</h2>-->
+<!--              <p class="my-6 hidden md:block">Explore LATAM's most <br> captivating destinations <br> with our top tour selection</p>-->
 
-              <h2 class="text-3xl font-bold mt-12 md:mt-0 md:hidden">Top Tours</h2>
-              <p class="my-6 md:hidden">Explore LATAM's most captivating destinations with our top tour selection</p>
-            </div>
-            <div class="absolute inset-0 bg-gradient-to-b to-70% from-gray-900 from-0% opacity-50"></div>
-          </div>
+<!--              <h2 class="text-3xl font-bold mt-12 md:mt-0 md:hidden">Top Tours</h2>-->
+<!--              <p class="my-6 md:hidden">Explore LATAM's most captivating destinations with our top tour selection</p>-->
+<!--            </div>-->
+<!--            <div class="absolute inset-0 bg-gradient-to-b to-70% from-gray-900 from-0% opacity-50"></div>-->
+<!--          </div>-->
 
             <a :href="'/latam-travel-packages/'+packages.url" class="p-3 bg-white col-span-1 w-full rounded-xl my-2 block shadow-md cursor-pointer" v-for="packages in listPackages" :key="packages.id">
               <div class="relative">
