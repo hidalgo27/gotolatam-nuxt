@@ -9,7 +9,7 @@
 <!--    <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-full">Argentina</button>-->
 <!--    <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-full">Brasil</button>-->
   </div>
-  
+
   <template v-for="country2 in listPais">
 
   <div class="grid md:grid-cols-12 md:gap-24 gap-6 items-center my-12" v-if="countries == country2.url">

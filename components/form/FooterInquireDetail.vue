@@ -134,18 +134,44 @@
 
 
                     <div class="relative">
-                      <VMenu>
-                        <input type="text" class="is-input-ico peer" placeholder=" " v-model="packageStore.travelDate" @focus="showModalProcess = true">
-                        <label class="is-input-ico-label" @click="showModalProcess = true">When</label>
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-2 md:pl-4 pointer-events-none">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
-                          </svg>
-                        </div>
-                        <template #popper>
-                          <vue-tailwind-datepicker as-single no-input :formatter="formatter" v-model="packageStore.travelDate" :disable-date="disablePastDates" @click="onClickSomething()" class="calendar-w"/>
-                        </template>
-                      </VMenu>
+<!--                      <VMenu>-->
+<!--                        <input type="text" class="is-input-ico peer" placeholder=" " v-model="packageStore.travelDate" @focus="showModalProcess = true">-->
+<!--                        <label class="is-input-ico-label" @click="showModalProcess = true">When</label>-->
+<!--                        <div class="absolute inset-y-0 left-0 flex items-center pl-2 md:pl-4 pointer-events-none">-->
+<!--                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">-->
+<!--                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />-->
+<!--                          </svg>-->
+<!--                        </div>-->
+<!--                        <template #popper>-->
+<!--                          <vue-tailwind-datepicker as-single no-input :formatter="formatter" v-model="packageStore.travelDate" :disable-date="disablePastDates" @click="onClickSomething()" class="calendar-w"/>-->
+<!--                        </template>-->
+<!--                      </VMenu>-->
+
+                      <client-only>
+                        <VDatePicker v-model="travelDate" mode="date" :min-date="today">
+                          <template #default="{ togglePopover }">
+                            <button
+                                class="is-input-ico peer text-left relative"
+                                @click="togglePopover"
+                            >
+
+                              <!--                        <span v-if="filters.created_start && filters.created_end">{{ filters.created_start+' to '+filters.created_end }}</span>-->
+                              <span v-if="travelDate">{{ moment(travelDate).format('YYYY-MM-DD') }}</span>
+                              <span class="text-gray-500" v-else>Tentative travel date</span>
+                              <span class="is-input-ico-label" >Inquire Date</span>
+
+                              <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                                </svg>
+
+                              </div>
+                            </button>
+
+                          </template>
+                        </VDatePicker>
+                      </client-only>
+                      <div v-if="$v.travelDate.$error" class="text-xs text-red-500">Travel date required</div>
 
                     </div>
 
@@ -284,11 +310,17 @@ import {email, required} from "@vuelidate/validators";
 import {useVuelidate} from "@vuelidate/core";
 import {useIpStore} from "~/stores/ip";
 import {Notification, NotificationGroup, notify} from "notiwind";
+import moment from "moment-timezone";
+
+const { dataLayer } = useScriptGoogleTagManager()
+
+const { $device } = useNuxtApp()
 
 const packageStore = usePackageStore()
 const ipStore = useIpStore()
 
 const showLoader = ref(false)
+const today = new Date();
 
 const travelDate = ref()
 const traveller = ref()
@@ -328,10 +360,24 @@ const rules = {
   fullName: { required },
   phone: { required },
   userEmail: { required, email },
+  travelDate: { required },
   // comment: { required },
 };
 
-const $v = useVuelidate(rules, { fullName, phone, userEmail});
+const $v = useVuelidate(rules, { fullName, phone, userEmail, travelDate});
+
+const saveInquire = async (obj:any) => {
+  await packageStore.saveInquire(obj)
+}
+
+function getBrowserName() {
+  if ($device.isChrome) return 'Chrome'
+  if ($device.isSafari) return 'Safari'
+  if ($device.isFirefox) return 'Firefox'
+  if ($device.isEdge) return 'Edge'
+  if ($device.isSamsung) return 'Samsung Browser'
+  return 'Unknown'
+}
 
 const handleSubmit = async () => {
 
@@ -347,6 +393,7 @@ const handleSubmit = async () => {
 
     let obj = {
       el_package: packageStore.titlePackages,
+      package: packageStore.titlePackages,
       category_d: packageStore.hotelDetail,
       destino_d: packageStore.destination,
       pasajeros_d: traveller.value,
@@ -358,14 +405,23 @@ const handleSubmit = async () => {
       el_telefono: phone.value,
       el_textarea: comment.value,
 
-      country: geoIp.value.country+" "+geoIp.value.country_calling_code
+      country: geoIp.value.country+" "+geoIp.value.country_calling_code,
+      codigo_pais: geoIp.value.country+" "+geoIp.value.country_calling_code,
+
+      producto: "gotolatam.travel",
+      device: $device.isMobile ? 'Mobile' : $device.isTablet ? 'Tablet' : 'Desktop',
+      browser: getBrowserName(),
+      origen: "Web",
+      inquire_date: moment().tz('America/Lima').format('YYYY-MM-DD HH:mm:ss')
     }
 
-    const res:any = await packageStore.getInquire(obj).then((res) => {
+    await packageStore.getInquire(obj).then((res) => {
       if (res){
+        saveInquire(obj)
+
         showLoader.value = false
 
-        packageStore.travelDate = []
+        travelDate.value = ''
         traveller.value = ""
         hotel.value = []
         packageStore.destination = []
@@ -400,7 +456,7 @@ const handleSubmit = async () => {
       showLoader.value = false
       packageStore.showModalItinerary = false
 
-      packageStore.travelDate = []
+      travelDate.value = ''
       traveller.value = ""
       hotel.value = []
       packageStore.destination = []

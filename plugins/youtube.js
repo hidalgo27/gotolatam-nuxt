@@ -1,5 +1,5 @@
-import YouTube from 'vue3-youtube'
+// import YouTube from 'vue3-youtube'
 export default defineNuxtPlugin((nuxtApp) => {
     // Doing something with nuxtApp
-    nuxtApp.vueApp.component('YouTube', YouTube)
+    // nuxtApp.vueApp.component('YouTube', YouTube)
 })

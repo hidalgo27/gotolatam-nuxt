@@ -22,7 +22,7 @@
           </div>
           <div class="col-span-12 md:col-span-10 grid grid-cols-2 md:grid-cols-4 gap-3 overflow-x-scroll focus:touch-pan-x">
             <div class="flex" v-for="destino in listDestination">
-              <input type="checkbox" :id="destino.id" class="peer hidden" :value="destino.url" v-model="packageStore.destination" />
+              <input type="checkbox" :id="destino.id" class="peer hidden" :value="destino.url" v-model="destination" />
               <label :for="destino.id" class="w-full flex items-center gap-2 select-none cursor-pointer bg-gray-100 text-gray-800 rounded-full px-5 py-2 transition-colors duration-200 ease-in-out grayscale peer-checked:grayscale-0 peer-checked:bg-[#D6DD85] peer-checked:text-primary">
 
                 <img :src="destino.imagen" alt="" class=" w-8 h-8 rounded-full shadow-lg float-left">
@@ -226,50 +226,73 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                   </svg>
                 </div>
-
-                <div v-if="$v.fullName.$error" class="text-xs text-red-500">El nombre es requerido</div>
               </div>
+              <div v-if="$v.fullName.$error" class="text-xs text-red-500">Full Name requered</div>
             </div>
 
             <div class="grid grid-cols-2 gap-3">
 
               <div class="relative">
-                <input
-                    type="text"
-                    class="is-input-ico peer"
-                    placeholder=" "
-                    autocomplete="off"
-                    v-model="phone"
-                    ref="phoneInputRef"
-                    id="phoneNumber"
-                />
-                <!--                    <input ref="phoneInputRef" v-model="phone" class="is-input-ico peer" placeholder=" " id="phoneNumber" type="tel" />-->
-                <label class="is-input-ico-label">Phone Number</label>
-                <!--                    <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">-->
-                <!--                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">-->
-                <!--                        <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 3.75v4.5m0-4.5h-4.5m4.5 0l-6 6m3 12c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 014.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 00-.38 1.21 12.035 12.035 0 007.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 011.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 01-2.25 2.25h-2.25z" />-->
-                <!--                      </svg>-->
-                <!--                    </div>-->
-                <div v-if="$v.phone.$error" class="text-xs text-red-500">El nombre es requerido</div>
+                <div class="relative">
+                  <input
+                      type="text"
+                      class="is-input-ico peer"
+                      placeholder=" "
+                      autocomplete="off"
+                      v-model="phone"
+                      ref="phoneInputRef"
+                      id="phoneNumber"
+                  />
+                  <label class="is-input-ico-label">Phone Number</label>
 
+                </div>
+                <div v-if="$v.phone.$error" class="text-xs text-red-500">Phone Number requered</div>
               </div>
 
 
-            <div class="relative">
-              <VMenu>
-                <input type="text" class="is-input-ico peer" placeholder=" " v-model="packageStore.travelDate" @focus="showModalProcess = true">
-                <label class="is-input-ico-label" @click="showModalProcess = true">When</label>
-                <div class="absolute inset-y-0 left-0 flex items-center pl-2 md:pl-4 pointer-events-none">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
-                  </svg>
-                </div>
-                <template #popper>
-                  <vue-tailwind-datepicker as-single no-input :formatter="formatter" v-model="packageStore.travelDate" :disable-date="disablePastDates" @click="onClickSomething()" class="calendar-w"/>
-                </template>
-              </VMenu>
+              <div class="relative">
+  <!--              <VMenu>-->
+  <!--                <input type="text" class="is-input-ico peer" placeholder=" " v-model="packageStore.travelDate" @focus="showModalProcess = true">-->
+  <!--                <label class="is-input-ico-label" @click="showModalProcess = true">When</label>-->
+  <!--                <div class="absolute inset-y-0 left-0 flex items-center pl-2 md:pl-4 pointer-events-none">-->
+  <!--                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">-->
+  <!--                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />-->
+  <!--                  </svg>-->
+  <!--                </div>-->
+  <!--                <template #popper>-->
+  <!--                  <vue-tailwind-datepicker as-single no-input :formatter="formatter" v-model="packageStore.travelDate" :disable-date="disablePastDates" @click="onClickSomething()" class="calendar-w"/>-->
+  <!--                </template>-->
+  <!--              </VMenu>-->
 
-            </div>
+
+
+                <client-only>
+                  <VDatePicker v-model="travelDate" mode="date" :min-date="today">
+                    <template #default="{ togglePopover }">
+                      <button
+                          class="is-input-ico peer text-left relative"
+                          @click="togglePopover"
+                      >
+
+                        <!--                        <span v-if="filters.created_start && filters.created_end">{{ filters.created_start+' to '+filters.created_end }}</span>-->
+                        <span v-if="travelDate">{{ moment(travelDate).format('YYYY-MM-DD') }}</span>
+                        <span class="text-gray-500" v-else>Tentative travel date</span>
+                        <span class="is-input-ico-label" >Inquire Date</span>
+
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                          </svg>
+
+                        </div>
+                      </button>
+
+                    </template>
+                  </VDatePicker>
+                </client-only>
+                <div v-if="$v.travelDate.$error" class="text-xs text-red-500">Travel date required</div>
+
+              </div>
             </div>
 
             <div class="relative">
@@ -288,10 +311,9 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 9v.906a2.25 2.25 0 01-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 001.183 1.981l6.478 3.488m8.839 2.51l-4.66-2.51m0 0l-1.023-.55a2.25 2.25 0 00-2.134 0l-1.022.55m0 0l-4.661 2.51m16.5 1.615a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V8.844a2.25 2.25 0 011.183-1.98l7.5-4.04a2.25 2.25 0 012.134 0l7.5 4.04a2.25 2.25 0 011.183 1.98V19.5z" />
                   </svg>
                 </div>
-
-                <div v-if="$v.userEmail.$error" class="text-xs text-red-500">
-                  <span v-if="$v.userEmail.email.$message">{{ $v.userEmail.email.$message }}</span>
-                </div>
+              </div>
+              <div v-if="$v.userEmail.$error" class="text-xs text-red-500">
+                <span v-if="$v.userEmail.email.$message">{{ $v.userEmail.email.$message }}</span>
               </div>
             </div>
 
@@ -396,11 +418,17 @@ import {email, required} from "@vuelidate/validators";
 import {useVuelidate} from "@vuelidate/core";
 import {useIpStore} from "~/stores/ip";
 import {Notification, NotificationGroup, notify} from "notiwind";
+import moment from "moment-timezone";
+
+const { dataLayer } = useScriptGoogleTagManager()
+
+const { $device } = useNuxtApp()
 
 const packageStore = usePackageStore()
 const ipStore = useIpStore()
 
 const showLoader = ref(false)
+const today = new Date();
 
 const travelDate = ref()
 const traveller = ref()
@@ -438,14 +466,27 @@ const rules = {
   phone: { required },
   userEmail: { required, email },
   // comment: { required },
+  travelDate: { required },
 };
 
-const $v = useVuelidate(rules, { fullName, phone, userEmail});
+const $v = useVuelidate(rules, { fullName, phone, userEmail, travelDate});
 
 const onClickSomething = () => {
   showModalProcess.value = false
 }
 
+const saveInquire = async (obj:any) => {
+  await packageStore.saveInquire(obj)
+}
+
+function getBrowserName() {
+  if ($device.isChrome) return 'Chrome'
+  if ($device.isSafari) return 'Safari'
+  if ($device.isFirefox) return 'Firefox'
+  if ($device.isEdge) return 'Edge'
+  if ($device.isSamsung) return 'Samsung Browser'
+  return 'Unknown'
+}
 
 const handleSubmit = async () => {
 
@@ -461,28 +502,38 @@ const handleSubmit = async () => {
 
     let obj = {
       category_d: hotel.value,
-      destino_d: packageStore.destination,
+      destino_d: destination.value,
       pasajeros_d: traveller.value,
       duracion_d: trip_length.value,
 
       el_nombre: fullName.value,
       el_email: userEmail.value,
-      el_fecha: packageStore.travelDate.toString(),
+      el_fecha: travelDate.value ? moment(travelDate.value).format('YYYY-MM-DD') : null,
       el_telefono: phone.value,
       el_textarea: comment.value,
 
-      country: geoIp.value.country+" "+geoIp.value.country_calling_code
+      country: geoIp.value.country+" "+geoIp.value.country_calling_code,
+      codigo_pais: geoIp.value.country+" "+geoIp.value.country_calling_code,
+
+      producto: "gotolatam.travel",
+      device: $device.isMobile ? 'Mobile' : $device.isTablet ? 'Tablet' : 'Desktop',
+      browser: getBrowserName(),
+      origen: "Web",
+      inquire_date: moment().tz('America/Lima').format('YYYY-MM-DD HH:mm:ss')
     }
 
     await packageStore.getInquire(obj).then((res) => {
       try {
         if (res){
+
+          saveInquire(obj)
+
           showLoader.value = false
 
-          packageStore.travelDate = []
+          travelDate.value = ''
           traveller.value = ""
           hotel.value = []
-          packageStore.destination = []
+          destination.value = []
 
           fullName.value = ""
           phone.value = ""
@@ -511,10 +562,10 @@ const handleSubmit = async () => {
       showLoader.value = false
       packageStore.showModalInquireGlobal = false
 
-      packageStore.travelDate = []
+      travelDate.value = ''
       traveller.value = ""
       hotel.value = []
-      packageStore.destination = []
+      destination.value = []
 
       fullName.value = ""
       phone.value = ""
